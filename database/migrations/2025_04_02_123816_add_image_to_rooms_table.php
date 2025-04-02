@@ -8,14 +8,14 @@ class AddImageToRoomsTable extends Migration
     public function up()
     {
         Schema::table('rooms', function (Blueprint $table) {
-            $table->string('image')->nullable()->after('available_rooms'); // Thêm cột image, cho phép null
+            $table->string('image')->nullable()->after('available_rooms'); 
         });
     }
 
     public function down()
     {
         Schema::table('rooms', function (Blueprint $table) {
-            $table->dropColumn('image'); // Xóa cột image nếu rollback
+            $table->dropColumn('image');
         });
     }
 }

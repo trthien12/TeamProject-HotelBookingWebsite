@@ -91,7 +91,7 @@
                     </li>
                 </ul>
             </div>
-            <!-- Main Content -->
+            <!-- Main -->
             <div class="col-md-9 main-content">
                 @yield('content')
             </div>

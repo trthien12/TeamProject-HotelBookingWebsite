@@ -12,7 +12,7 @@ class RoomController extends Controller
         return view('rooms.index', compact('rooms'));
     }
 
-    // Các phương thức khác (edit, update) không thay đổi
+    
     public function edit($id)
     {
         $room = Room::findOrFail($id);
