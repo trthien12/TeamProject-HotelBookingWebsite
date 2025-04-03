@@ -16,7 +16,6 @@
             {{ session('status') }}
         </div>
     @endif
-
     <form method = 'post' action="{{route('saveinfo')}}" enctype="multipart/form-data"
             style='width:30%; margin:0 auto'>
         <div style='text-align:center;font-weight:bold;color:#15c;'>CẬP NHẬT THÔNG TIN CÁ NHÂN</div>
@@ -27,9 +26,9 @@
         <label>Số điện thoại</label>
         <input type='text' class='form-control form-control-sm' name='phone' value="{{$user->phone}}">
         <input type ='hidden' value='{{$user->id}}' name='id'>
+        <label>Ảnh đại diện</label><br>       
         <img src="{{asset('storage/profile/'.$user->photo) }}" width="50px" class='mb-1'/>
-        <label>Ảnh đại diện</label><br>
-        <input type="file" name="photo" id="photo" accept="image/*" class="form-control-file">
+        <input type="file" name="photo" id="photo" accept="image/*" class="form-control-file" >
         {{ csrf_field() }}
         <div style='text-align:center;'><input type='submit' class='btn btn-primary mt-1' value='Lưu'></div>
     </form>

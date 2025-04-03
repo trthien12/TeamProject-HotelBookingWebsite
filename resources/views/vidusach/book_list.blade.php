@@ -16,6 +16,19 @@
             </tr>
         </thead>
         <tbody>
+            <script>
+                $(document).ready(function(){
+                    new DataTable('#book-table', {
+                        responsive: true,
+                        "bStateSave":true
+                    });
+                });
+            </script>
+            @if (session('status'))
+                <div class="alert alert-success">
+                {{ session('status') }}
+                </div>
+            @endif
             @foreach($data as $row)
             <tr>
                 <td >{{$row->tieu_de}}</td>
@@ -36,25 +49,9 @@
                             {{ csrf_field() }}
                         </form>
                     </div>
-                    
                 </td>
             </tr>
             @endforeach
-
-            <script>
-                $(document).ready(function(){
-                    new DataTable('#book-table', {
-                        responsive: true,
-                        "bStateSave":true
-                    });
-                });
-            </script>
-            
-            @if (session('status'))
-                <div class="alert alert-success">
-                {{ session('status') }}
-                </div>
-            @endif
         </tbody>
     </table>
 </x-account-panel>

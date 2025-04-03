@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-
 class AccountController extends Controller
 {
     function accountpanel()
@@ -20,8 +19,7 @@ class AccountController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'phone' => ['nullable', 'string'],
-            'photo' => ['nullable','image']
+            'phone' => ['nullable', 'image']
         ]);
         $id = $request->input('id');
         $data["name"] = $request->input("name");
@@ -38,11 +36,4 @@ class AccountController extends Controller
         DB::table("users")->where("id",$id)->update($data);
         return redirect()->route('account')->with('status', 'Cập nhật thành công');
     }
-
-    public function bookcreate(){
-        $the_loai = DB::table("the_loai")->get();
-        $action = "add";
-        return view("vidusach.book_form",compact("the_loai","action"));
-    }
-
 }

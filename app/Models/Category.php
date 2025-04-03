@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-
     protected $table = "the_loai";
     protected $primaryKey = "id";
     public $timestamps = false;

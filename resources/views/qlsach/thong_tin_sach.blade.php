@@ -1,9 +1,19 @@
 <html>
-    <head>
-    </head>
-    <body>
+<head>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>Tiêu đề</th>
+            <th>Tác giả</th>
+        </tr>
         @foreach($sach as $row)
-            Tiêu đề: {{$row->tieu_de}}, Tác giả: {{$row->tac_gia}}<br>
+        <tr>
+            <td>{{$row->tieu_de}}</td>
+            <td>{{$row->tac_gia}}</td>
+        </tr>
         @endforeach
-    </body>
+    </table>
+   
+</body>
 </html>

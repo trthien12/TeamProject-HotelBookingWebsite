@@ -6,11 +6,7 @@ use Illuminate\Http\Request;
 
 class ViDuController extends Controller
 {
-    function vidu1(){
-        $name = "HUB";
-        return view('vidu1',["name1"=>$name]);
-    }
-
+    //
     function vidu2(){
         return view('vidu2');
     }
@@ -23,10 +19,6 @@ class ViDuController extends Controller
         return "Kết quả là: ".$ket_qua;
     }
 
-    function theloai($id)
-    {
-        $data = DB::select("select * from sach where the_loai = ?",[$id]);
-        return view("vidusach.index", compact("data"));
-    }
-
+    
+        
 }

@@ -7,14 +7,19 @@ use Illuminate\Support\Facades\DB;
 
 class ViduLayoutController extends Controller
 {
+    //
     function trang1()
     {
         return view("vidulayout.trang1");
     }
+    function trang2()
+    {
+        return view("vidulayout.trang2");
+    }
 
     function sach()
     {
-        $data = DB::select("select * from sach where gia_ban !=0 order by gia_ban asc limit 0,8");
+        $data = DB::select("select * from sach where tieu_de!='test' order by gia_ban asc limit 0,8");
         return view("vidusach.index", compact("data"));
     }
 
