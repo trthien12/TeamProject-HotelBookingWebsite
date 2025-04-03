@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "$schema": "https://getcomposer.org/schema.json",
     "name": "laravel/laravel",
     "type": "project",
@@ -19,6 +20,28 @@
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
         "phpunit/phpunit": "^11.5.3"
+=======
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "require": {
+        "php": "^7.3|^8.0",
+        "fruitcake/laravel-cors": "^2.0",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "laravel/framework": "^8.75",
+        "laravel/sanctum": "^2.11",
+        "laravel/tinker": "^2.5"
+    },
+    "require-dev": {
+        "facade/ignition": "^2.5",
+        "fakerphp/faker": "^1.9.1",
+        "laravel/sail": "^1.0.1",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^5.10",
+        "phpunit/phpunit": "^9.5.10"
+>>>>>>> d1e50b9d9245bd216fdd71d4c74cd228546db4d6
     },
     "autoload": {
         "psr-4": {
@@ -44,6 +67,7 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
+<<<<<<< HEAD
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
@@ -51,6 +75,9 @@
         "dev": [
             "Composer\\Config::disableProcessTimeout",
             "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
+=======
+            "@php artisan key:generate --ansi"
+>>>>>>> d1e50b9d9245bd216fdd71d4c74cd228546db4d6
         ]
     },
     "extra": {
@@ -61,6 +88,7 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
+<<<<<<< HEAD
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
@@ -68,5 +96,10 @@
         }
     },
     "minimum-stability": "stable",
+=======
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+>>>>>>> d1e50b9d9245bd216fdd71d4c74cd228546db4d6
     "prefer-stable": true
 }

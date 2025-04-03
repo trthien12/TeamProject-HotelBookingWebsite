@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 * text=auto eol=lf
+=======
+* text=auto
+>>>>>>> d1e50b9d9245bd216fdd71d4c74cd228546db4d6
 
 *.blade.php diff=html
 *.css diff=css
@@ -8,4 +12,7 @@
 
 /.github export-ignore
 CHANGELOG.md export-ignore
+<<<<<<< HEAD
 .styleci.yml export-ignore
+=======
+>>>>>>> d1e50b9d9245bd216fdd71d4c74cd228546db4d6
