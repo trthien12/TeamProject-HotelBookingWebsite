@@ -30,23 +30,23 @@
   </div>
 </header>
 
-<div class="phandau">
-<div class="container" style="background-color: #B88A44">
-  <div class="phandaua">
-     <div class="phandaua1 active1">
-          <span>1</span>
-          <p>Thông tin khách hàng</p>
-      </div>
-      <div class="phandaua1">
-          <span>2</span>
-          <p>Chi tiết thanh toán</p>
-      </div>
-      <div class="phandaua1">
-          <span>3</span>
-          <p>Xác nhận đặt phòng</p>
-      </div>
-  </div>
-</div>
+<div class="phandau booking-page">
+    <div class="container" style="background-color: #B88A44">
+        <div class="phandaua">
+            <div class="phandaua1 active">
+                <span>1</span>
+                <p>Thông tin khách hàng</p>
+            </div>
+            <div class="phandaua1">
+                <span>2</span>
+                <p>Chi tiết thanh toán</p>
+            </div>
+            <div class="phandaua1">
+                <span>3</span>
+                <p>Xác nhận đặt phòng</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <form action="{{ route('booking.submit') }}" method="POST">

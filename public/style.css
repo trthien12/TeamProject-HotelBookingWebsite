@@ -197,22 +197,27 @@ header {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
 }
-.phandaua1.active1 span{
-  background-color: white;
-  color: black;
-}
+
 .phandaua1:hover span {
   transform: scale(1.1);
 }
-
+/*
+.phandaua1.active span {
+  background-color: white !important;
+  color: black !important;
+}
 .phandaua1.active span {
   background-color: white;
   color: black;
 }
-
+*/
 /* Chỉnh màu số 2 thành #b88a44 */
-.phandaua1:nth-child(1) span {
-  background-color: #c4c6b9;
+.booking-page .phandaua1:nth-child(1) span {
+  background-color: white;
+  color: black;
+}
+.xong-page .phandaua1:nth-child(3) span {
+  background-color: white;
   color: black;
 }
 
