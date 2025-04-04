@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+//use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\LoginController;
@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Auth;
 */
 /*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
-Route::get('/dashboard', function () {
+/*Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
