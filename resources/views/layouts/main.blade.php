@@ -43,13 +43,13 @@
                             </a>
                         </li>
                         <li>
-                            @auth <!-- Xử lý trạng thái đăng nhập -->
-                                <form method="POST" action="{{ route('logout') }}">
+                            @auth
+                                <form method="POST" action="{{ route('admin.logout') }}">
                                     @csrf
                                     <button type="submit" class="primary-btn">Logout</button>
                                 </form>
                             @else
-                                <a href="{{ route('login') }}" class="primary-btn">Login</a>
+                                <a href="{{ route('admin.login.form') }}" class="primary-btn">Login</a>
                             @endauth
                         </li>
                     </ul>

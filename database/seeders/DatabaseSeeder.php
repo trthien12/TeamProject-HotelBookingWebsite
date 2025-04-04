@@ -3,6 +3,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Slideshow;
+use App\Models\Admin; // Import model Admin
 
 class DatabaseSeeder extends Seeder
 {
@@ -31,6 +32,13 @@ class DatabaseSeeder extends Seeder
                 'caption1' => 'Feel at Home',
                 'caption2' => 'Explore new experience with Golden Tree Hotel',
             ],
+        ]);
+
+        //admin
+        Admin::create([
+            'name' => 'Admin',
+            'email' => 'ng.thanhnguyen162@gmail.com',
+            'password' => bcrypt('20012004'), // Mật khẩu đã mã hóa
         ]);
     }
 }

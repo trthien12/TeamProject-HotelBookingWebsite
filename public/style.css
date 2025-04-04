@@ -1,432 +1,229 @@
-
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
-
-}
-
-h1,
-h2 {
-  font-family: 'Roboto', sans-serif;
-
-  font-weight: 400;
-}
-
-a {
-  text-decoration: none;
-}
-
-li {
-  list-style: none;
-}
-
-.flex {
-  display: flex;
-}
-
-.flex_space {
-  display: flex;
-  justify-content: space-between;
-}
-
-button {
-  border: none;
-  background: none;
-  outline: none;
-  transition: 0.5s;
-  cursor: pointer;
-  
-}
-.logo span {
-  font-size: 1.5rem; /* Giữ kích thước hợp lý */
-  font-weight: bold;
-  white-space: nowrap; /* Không xuống dòng, tránh lỗi */
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.primary-btn {
-  padding: 10px 20px;
-  background:#c4c6b9;
-  font-weight: bold;
-  color: black;
-  min-height: 46px;
-  border-radius: 5px;
-  
-}
-
-.primary-btn:hover {
-  background-color: #c4c6b9;
-  color: black;
-}
-
-.secondary-btn {
-  padding: 15px 40px;
-  background: none;
-  border: 2px solid white;
-  font-weight: bold;
-  color: white;
-}
-
-.secondary-btn:hover {
-  background-color: #a09688;
-  color: #fff;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+    max-width: 1440px;
+    margin: 0 auto;
 }
 
 .container {
-  max-width: 100%;
-  width:100%;
-  margin: 0 auto;
-  padding: 20px 40px;
+    padding: 0 40px;
 }
 
-
-header {
-  background: #fff;
-  padding: 10px 20px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+.phandau {
+    background: linear-gradient(135deg, #b88a44 0%, #8b6b2f 100%);
+    padding: 40px 0;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-
-.content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap; /* Cho phép xuống dòng khi không đủ chỗ */
-  padding: 10px 20px;
-  max-width: 100%;
-  overflow: hidden;
-}
-
-.navlinks ul {
-  list-style: none;
-  display: flex;
-  gap: 26px;
-  align-items: center;   
-  flex-wrap: wrap; /* Xuống dòng khi thiếu chỗ */
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-}
-
-.navlinks ul li {
-  display: inline-block;
-}
-
-.navlinks ul li a {
-  text-decoration: none;
-  color: #333;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 8px;
-  white-space: nowrap; /* Tránh chữ bị xuống dòng trong từng mục */
-}
-
-.navlinks ul li a:hover {
-  color:   #B88A44;
-}
-.back-btn{
-  color:#B88A44 ;
-  
-}
-
-.btn {
-  background-color: #c4c6b9;
-  color: black;
-  padding: 8px 16px;
-  border-radius: 5px;
-  font-size: 1rem;
-  text-align: center;
-}
-.btn:hover {
-  background-color:  #B88A44;
-}
-
 .phandau h1 {
-  text-align: center;
-  font-size: 3rem;
-  margin-bottom: 30px;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .phandaua {
-  display: flex;
-  justify-content: center;
-  gap: 100px;
-  margin-top: 40px;
-  position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin-top: 40px;
+    position: relative;
 }
 
 .phandaua::before {
-  content: "";
-  position: absolute;
-  top: 17px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  height: 2px;
-  background-color: rgba(255, 255, 255, 0.3);
-  z-index: 0;
+    content: "";
+    position: absolute;
+    top: 17px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.3);
+    z-index: 0;
 }
 
 .phandaua1 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  position: relative;
-  z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    z-index: 1;
 }
 
 .phandaua1 span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background-color:  #c4c6b9;/* Màu nền mặc định cho số 1 và 3 */
-  color: black; /* Màu chữ mặc định cho số 1 và 3 */
-  font-weight: bold;
-  font-size: 1.2rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #c4c6b9; /* Màu nền mặc định cho số 1 và 3 */
+    color: black; /* Màu chữ mặc định cho số 1 và 3 */
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 }
 
 .phandaua1:hover span {
-  transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 .phandaua1.active span {
-  background-color:  black;
-  color: white;
+    background-color: black;
+    color: white;
 }
 
 /* Chỉnh màu số 2 thành #b88a44 */
 .phandaua1:nth-child(1) span {
-  background-color: white;
-  color: black;
+    background-color: white;
+    color: black;
 }
 
 .phandaua1 p {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: white;
-  text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: white;
+    text-align: center;
 }
 
 .phanthanmot {
-  text-align: center;
-  padding: 20px;
-  background-color: white;
-  margin: 30px auto;
-  max-width: 900px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    padding: 20px;
+    background-color: white;
+    margin: 30px auto;
+    max-width: 900px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .phanthanmot p {
-  text-align: center;
-  font-size: 1.3rem;
-  color: #e74c3c;
-  margin-bottom: 20px;
-  font-weight: 500;
+    text-align: center;
+    font-size: 1.3rem;
+    color: #e74c3c;
+    margin-bottom: 20px;
+    font-weight: 500;
 }
 .complete-payment {
-text-align: center;
-margin-top: 20px;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .btn-complete {
-  background-color: #4CAF50; /* Màu xanh */
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 1.2rem;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+    background-color: #4caf50; /* Màu xanh */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
 .btn-complete:hover {
-  background-color: #45a049; /* Màu xanh đậm khi hover */
+    background-color: #45a049; /* Màu xanh đậm khi hover */
 }
 /*Thông tin đặt phồng*/
 .infor-container-right {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 h2 {
-  text-align: center;
-  color: #333;
+    text-align: center;
+    color: #333;
 }
 
 .infor_order {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
 }
 
-.infor_order th, .infor_order td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: center;
+.infor_order th,
+.infor_order td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
 }
 
 .infor_order th {
-  background-color: #B88A44;
-  color: white;
-  font-weight: bold;
+    background-color: #b88a44;
+    color: white;
+    font-weight: bold;
 }
 
 .infor_order tr:nth-child(even) {
-  background-color: #f9f9f9;
+    background-color: #f9f9f9;
 }
 
 .infor_order tr:hover {
-  background-color: #f1f1f1;
+    background-color: #f1f1f1;
 }
 
 .loading {
-  font-style: italic;
-  color: black;
+    font-style: italic;
+    color: black;
 }
 
 .booking-container {
-  width: 90%;
-  max-width: 1200px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start; /* Giữ nội dung ở trên */
-  margin: 0 auto; /* Căn giữa */
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Giữ nội dung ở trên */
+    margin: 0 auto; /* Căn giữa */
 }
 
 .booking-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch; /* Đảm bảo chiều cao hai phần bằng nhau */
-  width: 90%;
-  max-width: 1200px;
-  gap: 20px;
-  
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Đảm bảo chiều cao hai phần bằng nhau */
+    width: 90%;
+    max-width: 1200px;
+    gap: 20px;
 }
 
 .booking-form {
-  width: 30%; /* Giảm kích thước để vừa với phần bên cạnh */
-  background: #f8f9fa;
-  padding: 20px;
-  border-radius: 10px;
-  min-width: 280px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 30%; /* Giảm kích thước để vừa với phần bên cạnh */
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 280px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .booking-info {
-  width: 65%; /* Phần thông tin đặt phòng lớn hơn */
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 65%; /* Phần thông tin đặt phòng lớn hơn */
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive: Khi màn hình nhỏ, xếp dọc */
 @media (max-width: 768px) {
-  .booking-content {
-      flex-direction: column;
-      align-items: center;
-  }
+    .booking-content {
+        flex-direction: column;
+        align-items: center;
+    }
 
-  .booking-form, .booking-info {
-      width: 100%;
-  }
+    .booking-form,
+    .booking-info {
+        width: 100%;
+    }
 }
-
-
-/*--------footer---------*/
-footer {
-  background: #1e1e28; /* Màu tối hơn một chút */
-  color: #dcdde1; /* Màu sáng hơn để dễ đọc */
-  padding: 20px; /* Giảm padding trên và dưới */
-  width: 100%;
-  clear: both;
-}
-
-footer .grid {
-  display: grid;
-  grid-template-columns: 4fr 2fr 3fr;
-  gap: 30px;
-}
-
-footer p {
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-footer .icon i {
-  margin-right: 15px;
-  font-size: 18px;
-  color: #B88A44;
-  transition: color 0.3s ease-in-out;
-}
-footer .icon i {
-  color: #B88A44;
-}
-
-footer .icon i:hover {
-  color:  #c4c6b9; 
-}
-
-footer h2 {
-  color: #fff;
-  margin-bottom: 15px;
-  font-size: 18px;
-  text-transform: uppercase;
-  border-bottom: 2px solid #B88A44;
-  padding-bottom: 5px;
-  display: inline-block;
-}
-
-footer li {
-  margin-bottom: 15px;
-  list-style: none;
-}
-
-footer li a {
-  text-decoration: none;
-  color: #c4c6b9;
-  transition: color 0.3s ease-in-out;
-}
-
-footer li a:hover {
-  color:#B88A44;
-}
-
-footer i {
-  color: #B88A44;
-  margin-right: 10px;
-  font-size: 16px;
-}
-
-footer label {
-  font-size: 14px;
-}
-
-.legal {
-  text-align: center;
-  padding: 15px 0;
-  background: #181822;
-  color: #b6b7b9;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 14px;
-}
-

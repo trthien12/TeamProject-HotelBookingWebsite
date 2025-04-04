@@ -3,17 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Booking;
 
 class BookingController extends Controller
 {
     // Hiển thị form đặt phòng
-    public function showForm()
+    public function showForm(Request $request)
     {
-        return view('booking_form');
+        $room_id = $request->input('room_id');
+
+        return view('homepage.booking_form', [
+            'room_id' => $room_id,
+            'check_in' => $request->input('check_in'),
+            'check_out' => $request->input('check_out'),
+            'adults' => $request->input('adults'),
+            'children' => $request->input('children'),
+        ]);
     }
 
     // Xử lý lưu đặt phòng
-    /*public function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'ho_ten' => 'required|string|max:255',
@@ -27,15 +36,15 @@ class BookingController extends Controller
             'children' => 'required|integer|min:0'
         ]);
         Booking::create($request->all());
-
-        return redirect()->route('booking.form');
+        return redirect()->route('home')->with('success', 'Đặt phòng thành công!');
+        //return redirect()->route('booking.form');
     }
     /* Trang xác nhận đặt phòng thành công
     public function success()
     {
         return view('booking_success');
     }*/
-    public function submitBooking(Request $request)
+    /*public function submitBooking(Request $request)
     {
         $request->validate([
             'room_id' => 'required|exists:rooms,id',
@@ -58,7 +67,7 @@ class BookingController extends Controller
     }
 
     // API lấy thông tin đặt phòng theo Room ID
-    public function getBookingInfo($roomId)
+    /*public function getBookingInfo($roomId)
     {
         $room = Room::findOrFail($roomId);
         $booking = Booking::where('room_id', $roomId)->latest()->first();
@@ -75,5 +84,5 @@ class BookingController extends Controller
             'price_per_night' => $room->price,
             'total_amount' => $room->price * (strtotime($booking->check_out) - strtotime($booking->check_in)) / (60 * 60 * 24),
         ]);
-    }
+    }*/
 }

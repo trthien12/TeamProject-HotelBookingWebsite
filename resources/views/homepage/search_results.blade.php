@@ -21,9 +21,14 @@
                             <p><i class="fas fa-users"></i> Sức chứa: {{ $room->capacities->first()->max_capacity ?? 'Không xác định' }} người</p>
 
                             <div class="action-buttons">
-                                <form method='GET' action='{{ url("fill_thong_tin")}}'>
-                                    <input type='hidden' name='room_id' value="{{ $room->id }}">
-                                    <button type='submit' class='book-now'>Đặt ngay</button>
+                                <form action="{{ route('booking.form') }}" method="GET" class="p-4 bg-light rounded shadow">
+                                @csrf
+                                    <input type="hidden" name="room_id" value="{{ $room->id }}">
+                                    <input type="hidden" name="check_in" value="{{ $check_in }}">
+                                    <input type="hidden" name="check_out" value="{{ $check_out }}">
+                                    <input type="hidden" name="adults" value="{{ $adults }}">
+                                    <input type="hidden" name="children" value="{{ $children }}">
+                                    <button type="submit" class="book-now">Đặt ngay</button>
                                 </form>
                                 <form method="POST" action="{{ route('cart.add') }}">
                                     @csrf

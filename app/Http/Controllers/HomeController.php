@@ -19,6 +19,7 @@ class HomeController extends Controller
     //lấy danh sách phòng
     public function search(Request $request)
     {
+        
         $validated = $request->validate([
             'check_in' => 'required|date',
             'check_out' => 'required|date|after:check_in',
@@ -44,9 +45,12 @@ class HomeController extends Controller
             ->orderBy('price_per_night', 'asc')
             ->get();
     
-        return view('homepage.search_results', [
+        return view('homepage.search_results',[
             'rooms' => $rooms,
-            'searchParams' => $validated
+            'check_in' => $validated['check_in'],
+            'check_out' => $validated['check_out'],
+            'adults' => $validated['adults'],
+            'children' => $validated['children'],
         ]);
     }
 

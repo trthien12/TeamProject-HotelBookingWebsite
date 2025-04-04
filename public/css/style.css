@@ -214,9 +214,12 @@ input {
 }
 
 .book {
+    position: relative;
     padding: 40px 0;
     background: #3a3434;
     color: #fff;
+    z-index: 10; /* Đảm bảo book form luôn ở trên */
+    padding-top: 20px; /* Đảm bảo không có phần tử nào che khuất form */
 }
 
 h1 {
