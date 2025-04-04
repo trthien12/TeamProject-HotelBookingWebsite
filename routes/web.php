@@ -33,3 +33,5 @@ Route::post('/booking-submit', [BookingController::class, 'submit'])->name('book
 
 Route::post('/booking/submit', [BookingController::class, 'submitBooking'])->name('booking.submit');
 Route::get('/api/booking-info/{roomId}', [BookingController::class, 'getBookingInfo']);
+
+Route::get('/dat-phong-thanh-cong', [BookingController::class, 'success'])->name('booking.success');

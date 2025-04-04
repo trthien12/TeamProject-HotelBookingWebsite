@@ -33,7 +33,7 @@
 <div class="phandau">
 <div class="container" style="background-color: #B88A44">
   <div class="phandaua">
-      <div class="phandaua1">
+     <div class="phandaua1 active1">
           <span>1</span>
           <p>Thông tin khách hàng</p>
       </div>
