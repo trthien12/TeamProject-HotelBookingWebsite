@@ -240,6 +240,8 @@ header {
   color: #e74c3c;
   margin-bottom: 20px;
   font-weight: 500;
+  font-weight: bold;
+
 }
 .complete-payment {
 text-align: center;
@@ -247,7 +249,7 @@ margin-top: 20px;
 }
 
 .btn-complete {
-  background-color: #4CAF50; /* Màu xanh */
+  background-color: #B88A44; /* Màu xanh */
   color: white;
   padding: 10px 20px;
   text-align: center;
