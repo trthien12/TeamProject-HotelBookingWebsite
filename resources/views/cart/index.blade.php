@@ -1,44 +1,52 @@
 <div class="container">
     <h2>GIỎ HÀNG CỦA BẠN</h2>
     @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+        <div class="alert alert-success">{{ session('success') }}</div>
     @endif
     @if(session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
+        <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
     @if(empty(Session::get('shoppingCart')))
         <p>Giỏ hàng của bạn hiện đang trống.</p>
     @else
         @foreach(Session::get('shoppingCart') as $roomId => $cartItem)
             <div class="room-info">
-                <h3>Thông Tin Phòng: {{ $cartItem['room_type'] }}</h3>
-                <img src="{{ asset($cartItem['image_url']) }}" alt="{{ $cartItem['room_type'] }}" width="400px">
-                <p><strong>ID:</strong> {{ $cartItem['room_id'] }}</p>
-                <p><strong>Loại Giường:</strong> {{ $cartItem['bed_type'] }}</p>
-                <p><strong>Diện Tích:</strong> {{ $cartItem['area'] }} m²</p>
-                <p><strong>Hướng phòng:</strong> {{ $cartItem['view'] }}</p>
-                <p><strong>Giá Mỗi Đêm:</strong> {{ number_format($cartItem['price_per_night'], 0, ',', '.') }} VNĐ</p>
-                <p><strong>Ngày Nhận Phòng:</strong> {{ $cartItem['check_in'] }}</p>
-                <p><strong>Ngày Trả Phòng:</strong> {{ $cartItem['check_out'] }}</p>
+                <div class="room-details">
+                    <h3>Thông Tin Phòng: {{ $cartItem['room_type'] }}</h3>
+                    <img src="{{ asset($cartItem['image_url']) }}" alt="{{ $cartItem['room_type'] }}" width="400px">
+                    <p><strong>ID:</strong> {{ $cartItem['room_id'] }}</p>
+                    <p><strong>Loại Giường:</strong> {{ $cartItem['bed_type'] }}</p>
+                    <p><strong>Diện Tích:</strong> {{ $cartItem['area'] }} m²</p>
+                    <p><strong>Hướng phòng:</strong> {{ $cartItem['view'] }}</p>
+                    <p><strong>Giá Mỗi Đêm:</strong> {{ number_format($cartItem['price_per_night'], 0, ',', '.') }} VNĐ</p>
+                    <p><strong>Ngày Nhận Phòng:</strong> {{ $cartItem['check_in'] }}</p>
+                    <p><strong>Ngày Trả Phòng:</strong> {{ $cartItem['check_out'] }}</p>
+                </div>
 
-                <form action="{{ route('cart.remove', $roomId) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Xóa</button>
-                </form>
+                <div class="action-buttons">
+                    <form action="{{ route('cart.remove', $roomId) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn">Xóa</button>
+                    </form>
+                    <form method="GET" action="{{ route('booking.form') }}">
+                        <input type="hidden" name="room_id" value="{{ $cartItem['room_id'] }}">
+                        <input type="hidden" name="check_in" value="{{ $cartItem['check_in'] }}">
+                        <input type="hidden" name="check_out" value="{{ $cartItem['check_out'] }}">
+                        <input type="hidden" name="adults" value="{{ $cartItem['adults'] ?? 1 }}">
+                        <input type="hidden" name="children" value="{{ $cartItem['children'] ?? 0 }}">
+                        <button type="submit" class="btn">Đặt ngay</button>
+                    </form>
+                </div>
             </div>
             <hr>
         @endforeach
     @endif
-        <div style="text-align: center; margin-top: 20px;">
+    <div style="text-align: center; margin-top: 20px;">
         <a href="{{ route('home') }}" class="btn-back">Quay lại trang chính</a>
-        </div>
     </div>
-    <style>
+</div>
+<style>
     body, h1, h2, h3, p {
         margin: 0;
         padding: 0;
@@ -50,9 +58,7 @@
         background-color: #f4f4f4;
         color: #333;
         line-height: 1.6;
-    }
-
-    /* Container chính */
+    }/* Container chính */
     .container {
         width: 80%;
         max-width: 1200px;
@@ -61,8 +67,7 @@
         background: white;
         border-radius: 8px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
+    }    
     /* Tiêu đề chính */
     h2 {
         text-align: center;
@@ -79,6 +84,16 @@
         display: flex;
         justify-content: space-between; /* Đặt phần thông tin bên trái, nút lệnh bên phải */
         align-items: flex-start; /* Căn phần tử lên trên cùng */
+    }
+    .room-details {
+            width: 70%;
+        }
+    .action-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-left: 20px;
+        width: 25%;
     }
     /* Tiêu đề phòng */
     .room-info h3 {
@@ -99,14 +114,6 @@
         border: 1px solid #ddd;
         margin: 20px 0;
     }
-    /* Container cho các nút */
-    .button-container {
-        display: flex;
-        justify-content: center; 
-        align-items: center; 
-        width: 100%;
-        margin: 20px ;
-    }
     /* Nút quay lại */
     .btn-back {
         margin-right: auto;
@@ -120,13 +127,6 @@
     .btn-back:hover {
         background: #6F4C3E; /* Màu nền khi hover */
     }
-    /* Container cho các nút thêm, sửa, xóa */
-    .action-buttons {
-        display: flex; 
-        flex-direction: column; 
-        justify-content: center; 
-        margin-left: 20px; 
-    }
     /* Các nút */
     .btn {
         margin: 5px ; 
@@ -136,8 +136,7 @@
         text-decoration: none;
         border-radius: 5px;
         transition: background 0.3s;
-        text-align: center;
-       
+        text-align: center;   
     }
     .btn:hover {
         background: #6F4C3E; /* Màu nền khi hover */

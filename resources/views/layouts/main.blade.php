@@ -52,10 +52,23 @@
                                 <a href="{{ route('admin.login.form') }}" class="primary-btn">Login</a>
                             @endauth
                         </li>
+                        <span class="fa fa-bars" onclick="menutoggle()"></span>
                     </ul>
                 </nav>
             </div>
         </header>
+        <script>
+                var menulist = document.getElementById('menulist');
+                menulist.style.maxHeight = "0px";
+
+                function menutoggle() {
+                    if (menulist.style.maxHeight == "0px") {
+                        menulist.style.maxHeight = "100vh";
+                    } else {
+                        menulist.style.maxHeight = "0px";
+                    }
+                }
+        </script>
         <!-- Page Content -->
         <main>
              @yield('content')
@@ -77,11 +90,11 @@
                 <div class="box">
                     <h2>Links</h2>
                     <ul>
-                        <li>Company History</li>
-                        <li>About Us</li>
-                        <li>Contact Us</li>
-                        <li>Services</li>
-                        <li>Privacy Policy</li>
+                        <li><a href="#">Company History</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
                     </ul>
                 </div>            
                 <div class="box">
@@ -106,14 +119,3 @@
         @stack('scripts') <!-- Cho phép các view con thêm JS -->
     </body>
 </html>
-<script>
-    var menulist =document.getElementById('menulist');
-    menulist.style.maxHeight ="0px";
-    function menutoggle(){
-        if(menulist.style.maxHeight == "0px"){
-            menulist.style.maxHeight ="100vh";
-        }else{
-            menulist.style.maxHeight ="0px";
-        }
-    }
-</script>

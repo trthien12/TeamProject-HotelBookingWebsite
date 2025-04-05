@@ -1,134 +1,152 @@
 @extends('layouts.app')
-@section('title', 'Dashboard')
+@section('title', 'DASHBOARD')
 @section('content')
 <style>
    @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap");
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    body {
-        font-family: 'Roboto', sans-serif; /* Sử dụng font Roboto nhất quán */
-    }
-    /* Container chính */
-    .container {
-        position: relative;
-        width: 100%;
-        padding: 20px; /* Đảm bảo có khoảng cách bên trong */
-    }
-    /* Navigation */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif; /* Sử dụng font Roboto nhất quán */
+}
+
+/* Container chính */
+.container {
+    position: relative;
+    width: 100%;
+    padding: 20px; /* Đảm bảo có khoảng cách bên trong */
+}
+
+/* Navigation */
+.Navigation {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background: #B88A44;
+    padding: 20px 0; /* Khoảng cách bên trong cho navigation */
+}
+
+.Navigation.active {
+    width: 80px;
+}
+
+.Navigation ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0; /* Bỏ padding để tránh chồng chéo */
+}
+
+.Navigation ul li {
+    position: relative;
+    width: 100%;
+    list-style: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    margin-bottom: 20px; /* Khoảng cách giữa các mục */
+}
+
+.Navigation ul li a {
+    display: flex;
+    text-decoration: none;
+    color: beige;
+    padding: 15px; /* Khoảng cách bên trong cho liên kết */
+}
+
+.Navigation ul li:hover,
+.Navigation ul li.hovered {
+    background-color: beige;
+}
+
+.Navigation ul li:hover a,
+.Navigation ul li.hovered a {
+    color: #B88A44;
+}
+
+/* Main nội dung */
+.main {
+    margin-left: 300px; /* Đảm bảo không chồng chéo với navigation */
+    min-height: 100vh;
+    background: beige;
+    padding: 20px; /* Khoảng cách bên trong cho nội dung */
+    transition: margin-left 0.3s;
+}
+
+.main.active {
+    margin-left: 80px; /* Điều chỉnh cho chế độ active */
+}
+
+/* Thanh điều hướng trên cùng */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; /* Khoảng cách bên trong */
+    background-color: #ffffff;
+}
+
+.toggle {
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.admin-info {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa tên và ảnh */
+}
+
+.admin-info .name span {
+    font-size: 16px;
+    color: #333;
+}
+
+.admin-info .user img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Nút và các hành động */
+.btn-back, .btn {
+    padding: 10px 20px;
+    background: #8B5A2B;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.btn-back:hover, .btn:hover {
+    background: #6F4C3E; /* Màu nền hover */
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 768px) {
     .Navigation {
-        position: fixed;
-        width: 300px;
-        height: 100%;
-        background: #B88A44;
-        padding: 20px 0; /* Khoảng cách bên trong cho navigation */
-    }
-    .Navigation.active {
-        width: 80px;
-    }
-    .Navigation ul {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 0; /* Bỏ padding để tránh chồng chéo */
-    }
-    .Navigation ul li {
-        position: relative;
-        width: 100%;
-        list-style: none;
-        border-top-left-radius: 30px;
-        border-bottom-left-radius: 30px;
-        margin-bottom: 20px; /* Khoảng cách giữa các mục */
-    }
-    .Navigation ul li a {
-        display: flex;
-        text-decoration: none;
-        color: beige;
-        padding: 15px; /* Khoảng cách bên trong cho liên kết */
+        width: 100%; /* Chiếm toàn bộ chiều rộng trên thiết bị nhỏ */
     }
 
-    .Navigation ul li:hover,
-    .Navigation ul li.hovered {
-        background-color: beige;
-    }
-
-    .Navigation ul li:hover a,
-    .Navigation ul li.hovered a {
-        color: #B88A44;
-    }
-
-    /* Main nội dung */
     .main {
-        margin-left: 300px; /* Đảm bảo không chồng chéo với navigation */
-        min-height: 100vh;
-        background: beige;
-        padding: 20px; /* Khoảng cách bên trong cho nội dung */
-        transition: margin-left 0.3s;
-    }
-    .main.active {
-        margin-left: 80px; /* Điều chỉnh cho chế độ active */
-    }
-    /* Thanh điều hướng trên cùng */
-    .topbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px; /* Khoảng cách bên trong */
-        background-color: #ffffff;
-    }
-    .toggle {
-        font-size: 2.5rem;
-        cursor: pointer;
-    }
-    .admin-info {
-        display: flex;
-        align-items: center;
-        gap: 10px; /* Khoảng cách giữa tên và ảnh */
-    }
-    .admin-info .name span {
-        font-size: 16px;
-        color: #333;
-    }
-    .admin-info .user img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-    /* Nút và các hành động */
-    .btn-back, .btn {
-        padding: 10px 20px;
-        background: #8B5A2B;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background 0.3s;
-    }
-    .btn-back:hover, .btn:hover {
-        background: #6F4C3E; /* Màu nền hover */
-    }
-    /* Responsive Design */
-    @media only screen and (max-width: 768px) {
-        .Navigation {
-            width: 100%; /* Chiếm toàn bộ chiều rộng trên thiết bị nhỏ */
-        }
-        .main {
         margin-left: 0; /* Điều chỉnh chiều rộng cho màn hình nhỏ */
         padding: 10px; /* Giảm padding cho không gian nhỏ hơn */
     }
-    }
+}
 </style>
 
 <header>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    <div class="content">
+    <div class="content flex_space">
         <div class="logo">
-        <span>GOLDEN TREE APARTMENT</span>
+            <span>GOLDEN TREE APARTMENT</span>
         </div>
         <div class="navlinks">
             <ul id="menulist">
@@ -139,11 +157,11 @@
                 <li><a href="#">News</a></li>
                 <li><a href="#">Contact</a></li>
                 <li>
-                <a href="#" title="Giỏ hàng">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </a>
+                    <form method="POST" action="{{ route('admin.logout') }}">
+                    @csrf
+                        <button type="submit" class="primary-btn">LOGOUT</button>
+                    </form>
                 </li>
-                <li><a href="#" class="btn" style="background-color: #c4c6b9; color:black ; padding: 8px 16px; border-radius: 5px;">Logout</a></li>
             </ul>
         </div>
     </div>
@@ -177,7 +195,6 @@
                 </li>
             </ul>
         </div>
-
         <div class="main">
             <div class="topbar">
                 <div class="toggle">
@@ -237,8 +254,8 @@
     <div class="legal">
          <p class="container">Copyright &copy; {{ date('Y') }} Golden Tree Apartment. All Rights Reserved.</p>
     </div>
-@endsection
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <!--Thêm lớp "hovered" cho mục danh sách đã chọn-->
 <script>
@@ -252,3 +269,4 @@
 
     list.forEach((item) => item.addEventListener("mouseover", activeLink));
 </script>
+@endsection

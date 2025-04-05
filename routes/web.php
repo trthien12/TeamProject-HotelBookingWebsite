@@ -40,13 +40,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 // Tìm kiếm phòng trống
 Route::match(['get', 'post'], '/home/search', [HomeController::class, 'search'])->name('home.search');
 
-// Giỏ hàng (Cart)
-Route::prefix('cart')->group(function () {
-    Route::get('/', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/add', [CartController::class, 'add'])->name('cart.add');
-    Route::post('/remove/{roomId}', [CartController::class, 'remove'])->name('cart.remove');
-});
-
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::delete('/cart/remove/{roomId}', [CartController::class, 'remove'])->name('cart.remove');
 // Đặt phòng (Booking)
 Route::get('/dat-phong', [BookingController::class, 'showForm'])->name('booking.form');
 Route::post('/dat-phong', [BookingController::class, 'store'])->name('booking.store');

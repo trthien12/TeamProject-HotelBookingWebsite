@@ -40,16 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-<<<<<<< HEAD
             // Thêm guard cho admin
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
-=======
-        'admin' => [   // Thêm guard admin
-        'driver' => 'session',
-        'provider' => 'admins',
->>>>>>> Trang-chủ
     ],
     ],
 
@@ -75,16 +69,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-<<<<<<< HEAD
-        // Thêm cấu hình cho admin
-        'admins' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Admin::class, // Đảm bảo bạn đã tạo model Admin
-=======
         'admins' => [   // Thêm provider admin
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
->>>>>>> Trang-chủ
         ],
 
         // 'users' => [

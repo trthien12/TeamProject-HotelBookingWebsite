@@ -1,5 +1,5 @@
 @extends("layouts.main")
-@section("title","Trang chủ")
+@section("title","Trang chủ Golden Tree")
 @section("content")
     @include('homepage.sections.slider')
     @include('homepage.sections.search')

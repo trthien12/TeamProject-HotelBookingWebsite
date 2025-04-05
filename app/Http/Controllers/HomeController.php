@@ -6,7 +6,6 @@ use App\Models\RoomDetail;
 use Illuminate\Support\Facades;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     public function index()
