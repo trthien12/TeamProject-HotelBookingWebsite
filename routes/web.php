@@ -24,7 +24,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     //Route tạm thời cho các chức năng quản lý
     Route::middleware('auth:admin')->group(function () {
         Route::get('rooms', function () {
-            return "Chức năng Thông tin phòng đangđang được phát triển...";
+            return "Chức năng Thông tin phòng đang được phát triển...";
         })->name('rooms');
 
         Route::get('customers', function () {

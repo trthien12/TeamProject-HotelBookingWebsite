@@ -33,8 +33,8 @@
                                 <form method="POST" action="{{ route('cart.add') }}">
                                     @csrf
                                     <input type="hidden" name="room_id" value="{{ $room->id }}">
-                                    <input type="hidden" name="check_in" value="{{ date('Y-m-d') }}">
-                                    <input type="hidden" name="check_out" value="{{ date('Y-m-d', strtotime('+1 day')) }}">
+                                    <input type="hidden" name="check_in" value="{{ $check_in }}">
+                                    <input type="hidden" name="check_out" value="{{ $check_out }}">
                                     <input type="hidden" name="adults" value="{{ $adults }}">
                                     <input type="hidden" name="children" value="{{ $children }}">
                                     <button type="submit" class="add-cart">Thêm vào giỏ hàng</button>

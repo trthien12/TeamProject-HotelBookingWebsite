@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\RoomDetail;
+use Illuminate\Support\Facades;
 
 class LoginController extends Controller
 {
@@ -39,11 +41,12 @@ class LoginController extends Controller
         return redirect('/');
     }
 
-    // Hiển thị Dashboard cho Admin
-    public function dashboard()
-    {
-        return view('admin.dashboard');
-    }
+     // Hiển thị Dashboard cho Admin
+     public function dashboard()
+     {
+         $roomDetails = RoomDetail::all();
+         return view('admin.dashboard', compact('roomDetails'));
+     }
 }
 
   

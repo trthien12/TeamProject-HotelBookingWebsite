@@ -1,9 +1,8 @@
 @extends('layouts.app')
-@section('title', 'DASHBOARD')
+@section('title', 'DASHBOARD_Thông tin phòng')
 @section('content')
 <style>
    @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap");
-
 * {
     margin: 0;
     padding: 0;
@@ -15,12 +14,10 @@ body {
 }
 
 /* Container chính */
-.container {
+.container{
     position: relative;
     width: 100%;
-    padding: 20px; /* Đảm bảo có khoảng cách bên trong */
 }
-
 /* Navigation */
 .Navigation {
     position: fixed;
@@ -55,7 +52,6 @@ body {
     display: flex;
     text-decoration: none;
     color: beige;
-    padding: 15px; /* Khoảng cách bên trong cho liên kết */
 }
 
 .Navigation ul li:hover,
@@ -63,11 +59,28 @@ body {
     background-color: beige;
 }
 
+.Navigation ul li:nth-child(1){
+    margin-bottom: 40px;
+    pointer-events: none;
+}
 .Navigation ul li:hover a,
 .Navigation ul li.hovered a {
     color: #B88A44;
 }
 
+.Navigation ul li .icon{
+    position: relative;
+    display:block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 75px;
+    text-align: center;
+}
+
+.Navigation ul li a .icon ion-icon{
+    font-size: 1.75rem;
+
+}
 /* Main nội dung */
 .main {
     margin-left: 300px; /* Đảm bảo không chồng chéo với navigation */
@@ -81,52 +94,116 @@ body {
     margin-left: 80px; /* Điều chỉnh cho chế độ active */
 }
 
-/* Thanh điều hướng trên cùng */
-.topbar {
-    display: flex;
+/* CSS cho giao diện */
+.container-detail {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px; /* Khoảng cách giữa các thẻ .room-detail */
+        padding: 20px;
+    }
+
+    .room-detail {
+        display: flex;
+        flex-direction: column; /* Để các phần tử trong room-info xếp theo cột */
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .room-info {
+        display: flex;
+        justify-content: space-between; /* Đảm bảo các phần tử bên trái và phải nằm cách nhau */
+        gap: 20px; /* Khoảng cách giữa room-header và room-description */
+    }
+
+    .room-header {
+        display: flex;
+        flex-direction: column; /* Để h3 và img xếp theo cột */
+        align-items: flex-start;
+        gap: 10px; /* Khoảng cách giữa h3 và img */
+    }
+
+    .room-header h3 {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .room-header img {
+        max-width: 300px;
+        border-radius: 8px;
+        margin: 10px 0; /* Khoảng cách trên và dưới */
+    }
+
+    .room-description {
+        flex: 1;
+        display: flex;
+        flex-direction: column; /* Để các dòng thông tin xếp theo cột */
+        gap: 10px; /* Khoảng cách giữa các dòng thông tin */
+    }
+
+    .room-description p {
+        margin: 0; /* Xóa margin mặc định để không bị thừa khoảng trống */
+    }
+
+    .btn-back, .btn {
+        padding: 10px 20px;
+        background: #8B5A2B;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background 0.3s;
+    }
+
+    .btn-back:hover, .btn:hover {
+        background: #6F4C3E;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+
+
+    .topbar {
+    display: flex; 
+    align-items: center; 
     justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px; /* Khoảng cách bên trong */
-    background-color: #ffffff;
-}
+    padding: 10px 20px; 
+    background-color: #ffffff; 
+    }
 
-.toggle {
-    font-size: 2.5rem;
-    cursor: pointer;
-}
+    .topbar .toggle {
+        display: flex;
+        align-items: center;
+    }
 
-.admin-info {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Khoảng cách giữa tên và ảnh */
-}
+    .topbar .toggle .icon {
+        font-size: 24px; /* Kích thước biểu tượng */
+        color: #333;
+    }
 
-.admin-info .name span {
-    font-size: 16px;
-    color: #333;
-}
+    .topbar .admin-info {
+        display: flex; /* Đặt tên và ảnh trong một hàng */
+        align-items: center; 
+        gap: 10px; 
+    }
 
-.admin-info .user img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-}
+    .topbar .admin-info .name span {
+        font-size: 16px; 
+        color: #333; 
+    }
 
-/* Nút và các hành động */
-.btn-back, .btn {
-    padding: 10px 20px;
-    background: #8B5A2B;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s;
-}
-
-.btn-back:hover, .btn:hover {
-    background: #6F4C3E; /* Màu nền hover */
-}
-
+    .topbar .admin-info .user img {
+        width: 40px; 
+        height: 40px; 
+        border-radius: 50%; 
+        object-fit: cover; 
+    }
 /* Responsive Design */
 @media only screen and (max-width: 768px) {
     .Navigation {
@@ -139,33 +216,9 @@ body {
     }
 }
 </style>
-
-<header>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    <div class="content flex_space">
-        <div class="logo">
-            <span>GOLDEN TREE APARTMENT</span>
-        </div>
-        <div class="navlinks">
-            <ul id="menulist">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Rooms</a></li>
-                <li><a href="#">Pages</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Contact</a></li>
-                <li>
-                    <form method="POST" action="{{ route('admin.logout') }}">
-                    @csrf
-                        <button type="submit" class="primary-btn">LOGOUT</button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-    </div>
-</header>
 <div class="container">
         <div class="Navigation">
             <ul>
@@ -176,22 +229,28 @@ body {
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.rooms') }}">
+                    <a href="{{ route('admin.bookings') }}">
                         <span class="icon"><ion-icon name="file-tray-full-outline"></ion-icon></span>
                         <span class="title">Danh sách đặt phòng</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.customers') }}">
+                    <a href="{{ route('admin.rooms') }}">
                         <span class="icon"><ion-icon name="newspaper-outline"></ion-icon></span>
                         <span class="title">Thông tin phòng</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.bookings') }}">
+                    <a href="{{ route('admin.customers') }}">
                         <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
                         <span class="title">Danh sách khách hàng</span>
                     </a>
+                </li>
+                <li>
+                    <form method="POST" action="{{ route('admin.logout') }}">
+                    @csrf
+                        <button type="submit" class="primary-btn">LOGOUT</button>
+                    </form>
                 </li>
             </ul>
         </div>
@@ -212,9 +271,28 @@ body {
                 </div>
             </div>
 
-            <div class="content">
-                @yield('content')
-            </div>
+            <div class="container-detail">
+            @foreach ($roomDetails as $room)
+                <div class="room-detail">
+                    <div class="room-info"style="padding: 5px;">
+                        <div class="room-header">
+                            <h3> Phòng: {{ $room->room_type }}</h3>
+                            <img src="{{ asset($room->image_url) }}" alt="{{ $room->room_type }}" />
+                        </div>
+                        <div class="room-description">
+                            <p><strong>ID:</strong> {{ $room->id }}</p>
+                            <p><strong>Loại Phòng:</strong> {{ $room->room_type }}</p>
+                            <p><strong>Loại Giường:</strong> {{ $room->bed_type }}</p>
+                            <p><strong>Diện Tích:</strong> {{ $room->area }} m²</p>
+                            <p><strong>Hướng Nhìn:</strong> {{ $room->view }}</p>
+                            <p><strong>Giá Mỗi Đêm:</strong> {{ number_format($room->price_per_night, 0, ',', '.') }} VNĐ</p>
+                            <p><strong>Giảm Giá:</strong> {{ $room->discount_percent }}%</p>
+                            <p><strong>Số Phòng Còn:</strong> {{ $room->remaining_rooms }}</p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
         </div>
     </div>
     <!-- Footer -->
@@ -259,7 +337,7 @@ body {
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <!--Thêm lớp "hovered" cho mục danh sách đã chọn-->
 <script>
-    let list = document.querySelectorAll(".Navigation ul li");
+    let list = document.querySelectorAll(".Navigation ul li ");
     function activeLink() {
         list.forEach((item) => {
             item.classList.remove("hovered"); // Sửa tên lớp thành "hovered" cho nhất quán
