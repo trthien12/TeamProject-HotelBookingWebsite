@@ -47,5 +47,14 @@ Route::delete('/cart/remove/{roomId}', [CartController::class, 'remove'])->name(
 Route::get('/dat-phong', [BookingController::class, 'showForm'])->name('booking.form');
 Route::post('/dat-phong', [BookingController::class, 'store'])->name('booking.store');
 
+Route::post('/booking-submit', [BookingController::class, 'submit'])->name('booking.submit');
+
+
+Route::post('/booking/submit', [BookingController::class, 'submitBooking'])->name('booking.submit');
+Route::get('/api/booking-info/{roomId}', [BookingController::class, 'getBookingInfo']);
+
+Route::get('/dat-phong-thanh-cong', [BookingController::class, 'success'])->name('booking.success');
+
 // Đảm bảo đăng ký các route cho auth
 require __DIR__.'/auth.php';
+
