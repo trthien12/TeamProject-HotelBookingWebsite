@@ -21,7 +21,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Route logout cho admin
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-    //Route tạm thời cho các chức năng quản lý
+    //Route tạm thời cho các chức năng quản lý, khi nào merge chỉnh lại cho khớp
     Route::middleware('auth:admin')->group(function () {
         Route::get('rooms', function () {
             return "Chức năng Thông tin phòng đang được phát triển...";
