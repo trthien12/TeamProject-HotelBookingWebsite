@@ -13,18 +13,27 @@
     </div>
     <div class="navlinks">
       <ul id="menulist">
-        <li><a href="#">Home</a></li>
+        <li><a href="{{ route('home') }}">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Rooms</a></li>
         <li><a href="#">Pages</a></li>
         <li><a href="#">News</a></li>
         <li><a href="#">Contact</a></li>
         <li>
-          <a href="#" title="Giỏ hàng">
-            <i class="fa-solid fa-cart-shopping"></i>
-          </a>
+            <a href="{{ route('cart.index') }}" aria-label="Giỏ hàng">
+                <i class="fa-solid fa-cart-shopping"></i>
+                @if(session('shoppingCart') && count(session('shoppingCart')) > 0) <!-- Kiểm tra nếu giỏ hàng có sản phẩm -->
+                    @php
+                        $cartCount = 0;
+                        foreach(session('shoppingCart') as $item) {
+                            $cartCount += $item['quantity']; // Tính tổng số lượng phòng trong giỏ
+                         }
+                    @endphp
+                <span class="cart-count">{{ $cartCount }}</span>
+                @endif
+            </a>
         </li>
-        <li><a href="#" class="btn" style="background-color: #c4c6b9; color:black ; padding: 8px 16px; border-radius: 5px;">Login</a></li>
+        <li><a href="{{ route('admin.login.form') }}" class="btn" style="background-color: #c4c6b9; color:black ; padding: 8px 16px; border-radius: 5px;">Login</a></li>
       </ul>
     </div>
   </div>
@@ -33,7 +42,7 @@
 <div class="phandau">
 <div class="container" style="background-color: #B88A44">
   <div class="phandaua">
-      <div class="phandaua1">
+     <div class="phandaua1 active1">
           <span>1</span>
           <p>Thông tin khách hàng</p>
       </div>
@@ -56,13 +65,8 @@
     <input type="hidden" name="check_in" value="{{ old('check_in', $checkin_date ?? '') }}">
     <input type="hidden" name="check_out" value="{{ old('check_out', $checkout_date ?? '') }}">
     <input type="hidden" name="adults" value="{{ old('adults', $adults ?? '') }}">
-    <input type="hidden" name="children" value="{{ old('children', $children ?? '') }}">
-
-    
+    <input type="hidden" name="children" value="{{ old('children', $children ?? '') }}">    
 </form>
-
-
-
 <div class="main-container">
     <div class="booking-container">
         <!-- Form Đặt Phòng -->
@@ -96,7 +100,6 @@
                 </div>
             </form>
         </div>
-
 <!-- Hiển thị thông tin đặt phòng -->
         <div class="infor-container-right">
             <h2>Thông tin đặt phòng</h2>

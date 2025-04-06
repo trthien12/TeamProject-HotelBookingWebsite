@@ -76,4 +76,10 @@ class BookingController extends Controller
             'total_amount' => $room->price * (strtotime($booking->check_out) - strtotime($booking->check_in)) / (60 * 60 * 24),
         ]);
     }
+    // Trang đặt phòng thành công
+    public function success()
+    {
+        return view('xong'); // Trang xong.blade.php
+    }
 }
+
