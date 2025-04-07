@@ -1,8 +1,10 @@
 <?php
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BookingController;
-use App\Http\Controllers\PaymentController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,37 +16,42 @@ use App\Http\Controllers\PaymentController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome'); // hoặc view trang chủ của bạn
-})->name('home');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-/*
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/about', [PageController::class, 'about'])->name('about');
-Route::get('/rooms', [PageController::class, 'rooms'])->name('rooms');
-Route::get('/pages', [PageController::class, 'pages'])->name('pages');
-Route::get('/news', [PageController::class, 'news'])->name('news');
-Route::get('/contact', [PageController::class, 'contact'])->name('contact');
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
-*/
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
-Route::get('/dat-phong', [BookingController::class, 'showForm'])->name('booking.form');
+require __DIR__.'/auth.php';
 
-Route::post('/booking-submit', [BookingController::class, 'submit'])->name('booking.submit');
+// Trang admin, danh sách đặt phòng, danh sách khách hàng (Phần của Thiên)
+Route::get('/admin','App\Http\Controllers\QuanLyController@admin');
+Route::get('/list_roomBooking','App\Http\Controllers\QuanLyController@danhsachdatphong');
+Route::get('/detail_roomBooking/{id}','App\Http\Controllers\QuanLyController@chitietdatphong');
+Route::post('/rooms_status/{id}','App\Http\Controllers\QuanLyController@updateroomstatus');
+Route::get('/customer','App\Http\Controllers\QuanLyController@danhsachkhachhang');
 
+// Trang thông tin phòng, login nhà làm :v (Phần của Mai)
+    // Route cho đăng nhập
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
 
-Route::post('/booking/submit', [BookingController::class, 'submitBooking'])->name('booking.submit');
-Route::post('/dat-phong', [BookingController::class, 'storeBooking'])->name('booking.store');
-Route::get('/api/booking-info/{roomId}', [BookingController::class, 'getBookingInfo']);
+    // Route cho đăng xuất
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Route cho trang thanh toán
-Route::get('/payment_form', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
+    // Route cho trang Thông tin phòng (yêu cầu đăng nhập)
+    Route::middleware('auth')->group(function () {
+        Route::get('/rooms', [RoomController::class, 'index'])->name('rooms.index');
+        Route::get('/rooms/{id}/edit', [RoomController::class, 'edit'])->name('rooms.edit');
+        Route::put('/rooms/{id}', [RoomController::class, 'update'])->name('rooms.update');
+    });
 
-// Route xác nhận thanh toán
-Route::get('/payment', [PaymentController::class, 'processPayment'])->name('payment.process');
-
-// Route cho trang thanh toán
-Route::get('/payment/success', [PaymentController::class, 'completePayment'])->name('payment.complete');
+    // Chuyển hướng mặc định đến trang đăng nhập
+    Route::get('/', function () {
+        return redirect()->route('login');
+    });
 
 
 
