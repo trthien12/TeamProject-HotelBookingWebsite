@@ -1,0 +1,115 @@
+@extends('layouts.manager')
+
+@section('content')
+    <h2 class="main-title">Thông Tin Phòng</h2>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    @foreach ($rooms as $room)
+        <div class="room-card d-flex align-items-center mb-5">
+            <div class="col-md-4 image-container">
+                <img src="{{ $room->image_url }}" alt="{{ $room->room_type }} Image" class="img-fluid rounded">
+            </div>
+            <div class="col-md-8 content-container">
+                <h4 class="room-title">Thông Tin Phòng: {{ $room->room_type }}</h4>
+                <p><strong>ID:</strong> {{ $room->id }}</p>
+                <p><strong>Loại Phòng:</strong> {{ $room->room_type }}</p>
+                <p><strong>Loại Giường:</strong> {{ $room->bed_type }}</p>
+                <p><strong>Diện Tích:</strong> {{ $room->area }} m²</p>
+                <p><strong>Hướng Nhìn:</strong> {{ $room->view }}</p>
+                <p><strong>Giá Mỗi Đêm:</strong> <span class="price">{{ number_format($room->price_per_night) }} VND</span></p>
+                <p><strong>Giảm Giá:</strong> <span class="price-discounted">{{ number_format($room->discount_percent) }} %</span></p>
+                <p><strong>Số Phòng Còn:</strong> {{ $room->remaining_rooms }}</p>
+                <div class="text-end">
+                    <a href="{{ route('rooms.edit', $room->id) }}" class="btn btn-brown">Sửa</a>
+                </div>
+            </div>
+        </div>
+    @endforeach
+@endsection
+
+<style>
+    .main-title {
+        color: #8B4513;
+        font-weight: 600;
+        margin-bottom: 30px;
+    }
+
+    .room-card {
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+
+    .room-card:hover {
+        transform: scale(1.02); 
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        border-color: #8B5A2B;    
+    }
+
+    .image-container {
+        padding-right: 20px;
+    }
+
+    .content-container {
+        padding-left: 20px;
+    }
+
+    .image-container img {
+        max-width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        transition: transform 0.3s;
+    }
+
+    .image-container img:hover {
+        transform: scale(1.05);
+    }
+
+    .content-container .room-title {
+        color: #8B4513;
+        font-weight: 500;
+        margin-bottom: 15px;
+    }
+
+    .content-container p {
+        margin-bottom: 10px;
+        font-size: 15px;
+        color: #333;
+    }
+
+    .content-container .price {
+        font-weight: 500;
+        color: #555;
+    }
+
+    .content-container .price-discounted {
+        font-weight: 600;
+        color: #e74c3c;
+    }
+
+    .btn-brown {
+        align-self: flex-end; 
+        margin-top: 10px; 
+        padding: 10px 20px;
+        background: linear-gradient(90deg, #8B5A2B 0%, #a67b5b 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-brown:hover {
+        background: linear-gradient(90deg, #704c2d 0%, #8B5A2B 100%);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+    }
+</style>
