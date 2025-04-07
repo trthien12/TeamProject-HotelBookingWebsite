@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Management</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Thêm Google Fonts (Poppins) -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Thêm Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         html, body {
@@ -28,39 +26,116 @@
 
         .sidebar {
             background-color: #d4a373;
-            padding: 20px;
+            padding: 30px 20px;
             min-height: 100%;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .sidebar h3 {
             color: white;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: 1px;
         }
 
         .sidebar .nav-link {
             color: white;
             font-size: 16px;
+            font-weight: 500;
+            padding: 12px 20px;
             margin-bottom: 10px;
-            transition: color 0.3s;
-        }
-
-        .sidebar .nav-link:hover {
-            color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
         }
 
         .sidebar .nav-link i {
-            margin-right: 10px;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: #b5894f;
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar .nav-link.active {
+            background-color: #b5894f;
+            border-left: 4px solid #fff;
+            padding-left: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .sidebar .logout-form {
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar .logout-btn {
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 12px 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+
+        .sidebar .logout-btn i {
+            margin-right: 12px;
+            font-size: 18px;
+        }
+
+        .sidebar .logout-btn:hover {
+            background-color: #b5894f;
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .main-content {
             padding: 20px;
+            position: relative;
         }
 
-        /* Thêm style để làm nổi bật mục đang active */
-        .sidebar .nav-link.active {
-            background-color: #b5894f;
-            border-radius: 5px;
-            padding: 8px 15px;
+        .user-info {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-info .user-name {
+            color: #8B4513;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .user-info .user-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .user-info .user-logo:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s;
+        }
+        .user-info .user-name:hover {
+            color: #723b0f;
+            transition: color 0.3s;
         }
     </style>
 </head>
@@ -86,13 +161,22 @@
                             <i class="fas fa-users"></i> Danh sách khách hàng
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Log out</a>
+                    <li class="nav-item logout-form">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="logout-btn">
+                                <i class="fas fa-sign-out-alt"></i> Log out
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </div>
-            <!-- Main -->
+            <!-- Main Content -->
             <div class="col-md-9 main-content">
+                <div class="user-info">
+                    <span class="user-name">{{ Auth::user()->ten }}</span>
+                    <img src="https://i.pinimg.com/736x/eb/c5/5b/ebc55b8062883e4a4f2efe225bbf6d7c.jpg" alt="User Logo" class="user-logo">
+                </div>
                 @yield('content')
             </div>
         </div>

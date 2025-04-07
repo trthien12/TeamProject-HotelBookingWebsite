@@ -47,7 +47,9 @@
     }
 
     .room-card:hover {
-        transform: translateY(-5px);
+        transform: scale(1.02); 
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        border-color: #8B5A2B;    
     }
 
     .image-container {
@@ -93,15 +95,21 @@
     }
 
     .btn-brown {
-        background-color: #8B4513;
+        align-self: flex-end; 
+        margin-top: 10px; 
+        padding: 10px 20px;
+        background: linear-gradient(90deg, #8B5A2B 0%, #a67b5b 100%);
         color: white;
-        border-radius: 5px;
-        padding: 8px 20px;
-        transition: background-color 0.3s, box-shadow 0.3s;
+        text-decoration: none;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: background 0.3s ease, transform 0.2s ease;
     }
 
     .btn-brown:hover {
-        background-color: #723b0f;
+        background: linear-gradient(90deg, #704c2d 0%, #8B5A2B 100%);
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
     }
 </style>
