@@ -12,6 +12,7 @@
         "laravel/ui": "^4.6"
     },
     "require-dev": {
+<<<<<<< HEAD
         "fakerphp/faker": "^1.23",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.13",
@@ -19,6 +20,15 @@
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
         "phpunit/phpunit": "^11.5.3"
+=======
+        "facade/ignition": "^2.5",
+        "fakerphp/faker": "^1.9.1",
+        "laravel/breeze": "^1.10",
+        "laravel/sail": "^1.0.1",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^5.10",
+        "phpunit/phpunit": "^9.5.10"
+>>>>>>> Danh-sách-đặt-phòng
     },
     "autoload": {
         "psr-4": {
