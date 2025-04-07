@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,46 +20,38 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
-Route::get('/vidu2','App\Http\Controllers\ViDuController@vidu2');
-Route::post('/tinhtong','App\Http\Controllers\ViDuController@tinhtong');
-
-Route::get("/qlsach/theloai","App\Http\Controllers\BookController@laythongtintheloai");
-Route::get("/qlsach/thongtinsach","App\Http\Controllers\BookController@laythongtinsach");
-
-Route::get("/qlsach/nhapdulieusach","App\Http\Controllers\BookController@nhapdulieu");
-Route::post("/qlsach/luudulieu","App\Http\Controllers\BookController@luudulieu");
-
-Route::get('/trang1','App\Http\Controllers\ViduLayoutController@trang1');
-Route::get('/sach','App\Http\Controllers\ViduLayoutController@sach');
-Route::get('/sach/theloai/{id}','App\Http\Controllers\ViduLayoutController@theloai');
-Route::get('/sach/chitiet/{id}','App\Http\Controllers\ViduLayoutController@chitiet');
-
-Route::get('/','App\Http\Controllers\ViduLayoutController@sach');
-Route::get('/accountpanel','App\Http\Controllers\AccountController@accountpanel')
-            ->middleware('auth')->name("account");
-Route::post('/saveaccountinfo','App\Http\Controllers\AccountController@saveaccountinfo')
-            ->middleware('auth')->name('saveinfo');
-Route::get('/book/list','App\Http\Controllers\BookController@booklist')
-            ->middleware('auth')->name("booklist");
-
-Route::get('/book/create','App\Http\Controllers\BookController@bookcreate')
-            ->middleware('auth')->name("bookcreate");
-Route::get('/book/edit/{id}','App\Http\Controllers\BookController@bookedit')
-            ->middleware('auth')->name("bookedit");
-Route::post('/book/save/{action}','App\Http\Controllers\BookController@booksave')
-            ->middleware('auth')->name("booksave");
-Route::post('/book/delete','App\Http\Controllers\BookController@bookdelete')
-            ->middleware('auth')->name("bookdelete");
-
-// Bài tập nhóm - Booking
+// Trang admin, danh sách đặt phòng, danh sách khách hàng (Phần của Thiên)
+Route::get('/admin','App\Http\Controllers\QuanLyController@admin');
 Route::get('/list_roomBooking','App\Http\Controllers\QuanLyController@danhsachdatphong');
 Route::get('/detail_roomBooking/{id}','App\Http\Controllers\QuanLyController@chitietdatphong');
 Route::post('/rooms_status/{id}','App\Http\Controllers\QuanLyController@updateroomstatus');
+Route::get('/customer','App\Http\Controllers\QuanLyController@danhsachkhachhang');
+
+// Trang thông tin phòng, login nhà làm :v (Phần của Mai)
+    // Route cho đăng nhập
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+
+    // Route cho đăng xuất
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // Route cho trang Thông tin phòng (yêu cầu đăng nhập)
+    Route::middleware('auth')->group(function () {
+        Route::get('/rooms', [RoomController::class, 'index'])->name('rooms.index');
+        Route::get('/rooms/{id}/edit', [RoomController::class, 'edit'])->name('rooms.edit');
+        Route::put('/rooms/{id}', [RoomController::class, 'update'])->name('rooms.update');
+    });
+
+    // Chuyển hướng mặc định đến trang đăng nhập
+    Route::get('/', function () {
+        return redirect()->route('login');
+    });
+
 
 

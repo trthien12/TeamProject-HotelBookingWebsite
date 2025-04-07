@@ -8,8 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class QuanLyController extends Controller
 {
-    // Truy vấn tất cả thông tin đặt phòng
-    function danhsachdatphong(){
+    function admin()
+    {
+        return view("QuanLy.admin");
+    }
+    
+    function danhsachdatphong()
+    {
             /*
         // Kết nối đến cơ sở dữ liệu
         session_start();
@@ -62,6 +67,12 @@ class QuanLyController extends Controller
 
         // Chuyển hướng về trang chi tiết đặt phòng
         return redirect(url('/detail_roomBooking/' . $id));
+    }
+
+    function danhsachkhachhang()
+    {
+        $data = DB::table("customer")->get();
+        return view("QuanLy.danhsachkhachhang", compact("data"));
     }
 
 

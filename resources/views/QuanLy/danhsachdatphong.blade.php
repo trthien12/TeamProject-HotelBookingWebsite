@@ -1,171 +1,120 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh Sách Đặt Phòng</title>
-    <link rel="stylesheet"  href="{{ asset('css/style.css') }}">
+<x-quan-ly-layout>
+    <x-slot name='title'>
+        Danh Sách Đặt Phòng
+    </x-slot>
+
+    <div class="booking-list">
+        @if (count($result) > 0)
+            <div class="booking-container">
+                @foreach ($result as $booking)
+                    <div class="booking-card">
+                        <div class="booking-info">
+                            <p><strong>ID Đặt Phòng:</strong> {{ htmlspecialchars($booking->id) }}</p>
+                            <p><strong>Tên Khách Hàng:</strong> {{ htmlspecialchars($booking->full_name) }}</p>
+                            <p><strong>Ngày Nhận Phòng:</strong> {{ htmlspecialchars($booking->check_in) }}</p>
+                            <p><strong>Ngày Trả Phòng:</strong> {{ htmlspecialchars($booking->check_out) }}</p>
+                            <p><strong>Ngày Đặt:</strong> {{ htmlspecialchars($booking->booking_date) }}</p>
+                            <p>
+                                <strong>Trạng Thái:</strong> 
+                                <span class="status {{ Str::slug($booking->status) }}">{{ htmlspecialchars($booking->status) }}</span>
+                            </p>
+                        </div>
+                        <a href="{{ url('detail_roomBooking/' . $booking->id) }}" class="btn-view">Xem Chi Tiết</a>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <div class="no-data">
+                <p>Không tìm thấy thông tin đặt phòng.</p>
+            </div>
+        @endif
+    </div>
+
     <style>
-        .container-detail {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Tự động điều chỉnh số cột */
-            gap: 20px; /* Khoảng cách giữa các khối phòng */
-            padding: 20px; /* Khoảng cách bên trong */
+        .booking-list {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        .room-detail {
-            display: flex; /* Sử dụng flexbox cho bố cục */
-            background-color: #ffffff; /* Màu nền trắng */
-            border-radius: 10px; /* Bo góc */
-            padding: 15px; /* Khoảng cách bên trong */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng mạnh hơn */
-            margin-bottom: 20px; /* Khoảng cách dưới giữa các khối */
-        }
-        .room-info {
-            display: flex; /* Sử dụng flexbox cho thông tin phòng */
-            flex: 1; /* Cho phép phần này chiếm không gian */
-        }
-        .room-header {
+        .booking-container {
             display: flex;
-            align-items: flex-start; /* Căn chỉnh sang bên trái */
-            margin-right: 20px; /* Khoảng cách bên phải của hình ảnh */
+            flex-wrap: wrap;
+            gap: 20px; 
         }
-        .room-header img {
-            max-width: 300px; /* Độ rộng tối đa cho hình ảnh */
-            border-radius: 8px; /* Bo góc cho ảnh */
-            margin-top: 10px; /* Khoảng cách trên của ảnh */
+        .booking-card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: calc(50% - 10px); 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+            border: 1px solid #f0f0f0;
         }
-        .room-description {
-            display: flex; /* Để căn chỉnh các thẻ <p> */
-            flex-direction: column; 
-        }        
-        .btn {
-            padding: 8px 15px;
-            background: #8B5A2B; /* Màu nền nâu */
+        .booking-card:hover {
+            transform: scale(1.02); 
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            border-color: #8B5A2B;
+        }
+        .booking-info p {
+            margin: 10px 0;
+            color: #34495e;
+            font-size: 15px;
+        }
+        .booking-info strong {
+            color: #8B5A2B;
+            font-weight: 600;
+        }
+        .status {
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 13px;
+            color: #fff;
+            display: inline-block;
+        }
+        .status.dang-xu-ly {
+            background-color: #f39c12;
+        }
+        .status.xac-nhan {
+            background-color: #27ae60;
+        }
+        .status.huy {
+            background-color: #e74c3c;
+        }
+        .btn-view {
+            align-self: flex-end; 
+            margin-top: 10px; 
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #8B5A2B 0%, #a67b5b 100%);
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            margin: 0 10px; /* Khoảng cách giữa các nút */
-            display: inline-flex; /* Để có thể sử dụng justify-content và align-items */
-            justify-content: center; /* Căn giữa các nút chính */
-            align-items: center; /* Căn giữa theo chiều dọc */
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.3s ease, transform 0.2s ease;
         }
-        .action-buttons {
-            display: flex;
-            justify-content: center; /* Căn giữa toàn bộ nút */
-            margin-top: 80px; /* Khoảng cách trên của nút */
-            margin-bottom: 80px; /* Khoảng cách trên của nút */
+        .btn-view:hover {
+            background: linear-gradient(90deg, #704c2d 0%, #8B5A2B 100%);
+            transform: translateY(-2px);
         }
-        .toggle{
-            color: black;
-        }        
-        .topbar {
-        display: flex; 
-        align-items: center; 
-        justify-content: space-between;
-        padding: 10px 20px; 
-        background-color: #ffffff; 
-        }
-        .topbar .toggle {
-            display: flex;
-            align-items: center;
-        }
-        .topbar .toggle .icon {
-            font-size: 24px; /* Kích thước biểu tượng */
-            color: #333;
-        }
-        .topbar .admin-info {
-            display: flex; /* Đặt tên và ảnh trong một hàng */
-            align-items: center; 
-            gap: 10px; 
-        }
-        .topbar .admin-info .name span {
-            font-size: 16px; 
-            color: #333; 
-        }
-        .topbar .admin-info .user img {
-            width: 40px; 
-            height: 40px; 
-            border-radius: 50%; 
-            object-fit: cover; 
+        .no-data {
+            text-align: center;
+            padding: 20px;
+            background: #fce4e4;
+            border-radius: 8px;
+            color: #e74c3c;
+            font-size: 18px;
+            margin: 20px 0;
         }
 
+        
+        @media (max-width: 768px) {
+            .booking-card {
+                width: 100%; 
+            }
+        }
     </style>
-</head>
-<body>
-    <div class="container">
-        <div class="Navigation">
-            <ul>
-                <li>
-                <a href="#">
-                    <span class="icon"><ion-icon name="business-sharp"></ion-icon></span>    
-                    <span class="title">GOLDEN TREE</span>         
-                </a>
-                </li>
-                <li>
-                    <a href="/list_roomBooking">
-                        <span class="icon"><ion-icon name="file-tray-full-outline"></ion-icon></span>
-                        <span class="title">Danh sách đặt phòng</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="newspaper-outline"></ion-icon></span>
-                        <span class="title">Thông tin phòng</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-                        <span class="title">Danh sách khách hàng</span>
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="arrow-undo-circle-outline"></ion-icon></span>
-                        <span class="title">Log out</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="main">
-            <div class="topbar">
-                <div class="toggle">
-                    <a href="#"  class="icon"><ion-icon name="home-sharp"></ion-icon></a>
-                </div>
-                <div class="admin-info">
-                <div class="name">
-                    <!-- <span><?php //echo $_SESSION['ten']; ?></span>  -->
-                </div>
-                <div class="user">
-                    <img src="https://www.bing.com/images/blob?bcid=S2iNBP37GUgI45gCmdy80-lcHyGb.....6w" alt="User Image">
-                </div>
-            </div>
-            </div>
-            <div class="container-detail">
-                @if (count($result) > 0)
-                    @foreach ($result as $booking)
-                        <div class="booking-detail">
-                            <p><strong>ID Đặt Phòng:</strong> <?php echo htmlspecialchars($booking->id); ?></p>
-                            <p><strong>Tên Khách Hàng:</strong> <?php echo htmlspecialchars($booking->full_name); ?></p>
-                            <p><strong>Ngày Nhận Phòng:</strong> <?php echo htmlspecialchars($booking->check_in); ?></p>
-                            <p><strong>Ngày Trả Phòng:</strong> <?php echo htmlspecialchars($booking->check_out); ?></p>
-                            <p><strong>Ngày Đặt:</strong> <?php echo htmlspecialchars($booking->booking_date); ?></p>
-                            <p><strong>Trạng Thái:</strong> <?php echo htmlspecialchars($booking->status); ?></p>
-                            <a href="./detail_roomBooking/<?php echo htmlspecialchars($booking->id); ?>" class="btn">Xem chi tiết</a>
-                        </div>
-                    @endforeach
-                @else
-                    <p>Không tìm thấy thông tin đặt phòng.</p>
-                @endif
-                
-            </div>
-        </div>
-    </div>
-    
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-</body>
-</html>
+</x-quan-ly-layout>
