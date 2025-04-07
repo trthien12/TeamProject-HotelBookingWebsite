@@ -46,6 +46,15 @@ class CartController extends Controller
         }
 
         Session::put('shoppingCart', $cart);
+        // Trả về kết quả AJAX
+    if ($request->ajax()) {
+        return response()->json([
+            'success' => true,
+            'cartCount' => array_sum(array_column($cart, 'quantity')) // Cập nhật số lượng giỏ hàng
+        ]);
+    }
+
+    // Nếu không phải AJAX
         return redirect()->route('cart.index')->with('success', 'Phòng đã được thêm vào giỏ hàng!');
     }
 

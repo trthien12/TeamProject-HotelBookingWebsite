@@ -127,18 +127,33 @@
     .btn-back:hover {
         background: #6F4C3E; /* Màu nền khi hover */
     }
-    /* Các nút */
-    .btn {
-        margin: 5px ; 
-        padding: 10px 20px;
-        background: #8B5A2B; /* Màu nền nâu */
+    
+    /* Đảm bảo các nút có cùng kích thước */
+    .action-buttons .btn {
+        padding: 10px 20px;   /* Điều chỉnh padding */
+        background-color: #B88A44;
         color: white;
-        text-decoration: none;
+        border: none;
         border-radius: 5px;
+        text-align: center;
+        width: 100%;  /* Chiều rộng của nút chiếm 100% của phần tử chứa */
         transition: background 0.3s;
-        text-align: center;   
     }
-    .btn:hover {
-        background: #6F4C3E; /* Màu nền khi hover */
+
+    .action-buttons .btn:hover {
+        background-color: #6F4C3E;  /* Thay đổi màu khi hover */
+    }
+
+    /* Đảm bảo các form có cùng chiều rộng */
+    .action-buttons form {
+        width: 100%;  /* Form chứa nút chiếm 100% chiều rộng */
+        display: flex;
+        justify-content: center;  /* Căn giữa nút trong form */
+        margin-bottom: 10px;
+    }
+
+    /* Thêm một số khoảng cách giữa các nút nếu cần */
+    .action-buttons .btn + .btn {
+        margin-top: 10px;  /* Tạo khoảng cách giữa các nút */
     }
 </style>

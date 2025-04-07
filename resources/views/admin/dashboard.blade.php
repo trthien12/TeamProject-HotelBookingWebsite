@@ -246,12 +246,6 @@ body {
                         <span class="title">Danh sách khách hàng</span>
                     </a>
                 </li>
-                <li>
-                    <form method="POST" action="{{ route('admin.logout') }}">
-                    @csrf
-                        <button type="submit" class="primary-btn">LOGOUT</button>
-                    </form>
-                </li>
             </ul>
         </div>
         <div class="main">
@@ -269,6 +263,12 @@ body {
                         <img src="{{ asset('img/nhanvien.jpg') }}" alt="User Image">
                     </div>
                 </div>
+                <li>
+                    <form method="POST" action="{{ route('admin.logout') }}">
+                    @csrf
+                        <button type="submit" class="primary-btn">LOGOUT</button>
+                    </form>
+                </li>
             </div>
 
             <div class="container-detail">

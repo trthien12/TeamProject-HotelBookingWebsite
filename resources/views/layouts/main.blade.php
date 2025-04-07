@@ -23,24 +23,18 @@
                 <nav class="navlinks">
                     <ul id="menulist">
                         <li><a href="{{ route('home') }}">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#rooms">Rooms</a></li>
+                        <li><a href="{{ route('home') }}#about">About</a></li>
+                        <li><a href="{{ route('home') }}#rooms">Rooms</a></li>
                         <li><a href="#pages">Pages</a></li>
                         <li><a href="#news">News</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="{{ route('home') }}#contact">Contact</a></li>
                         <li>
                         <a href="{{ route('cart.index') }}" aria-label="Giỏ hàng">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                @if(session('shoppingCart') && count(session('shoppingCart')) > 0) <!-- Kiểm tra nếu giỏ hàng có sản phẩm -->
-                                    @php
-                                        $cartCount = 0;
-                                        foreach(session('shoppingCart') as $item) {
-                                            $cartCount += $item['quantity']; // Tính tổng số lượng phòng trong giỏ
-                                        }
-                                    @endphp
-                                    <span class="cart-count">{{ $cartCount }}</span>
-                                @endif
-                            </a>
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="cart-count">
+                                {{ array_sum(array_column(session('shoppingCart', []), 'quantity')) ?: '' }}
+                            </span>
+                        </a>
                         </li>
                         <li>
                             @auth
@@ -74,7 +68,7 @@
              @yield('content')
         </main>
         <!-- Nội dung footer -->
-        <footer>
+        <footer id="contact">
             <div class="container grid">
                 <div class="box">
                     <p>Golden Tree Apartment chào đón bạn với không gian sang trọng, dịch vụ chuyên nghiệp và tiện nghi hiện đại. Chúng tôi cam kết mang đến cho bạn một kỳ nghỉ thoải mái và đáng nhớ với đội ngũ nhân viên tận tâm,

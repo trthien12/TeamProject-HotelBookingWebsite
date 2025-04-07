@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\BookingController;
+//use App\Http\Controllers\BookingController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -52,17 +52,19 @@ Route::match(['get', 'post'], '/home/search', [HomeController::class, 'search'])
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::delete('/cart/remove/{roomId}', [CartController::class, 'remove'])->name('cart.remove');
-// Đặt phòng (Booking)
-Route::get('/dat-phong', [BookingController::class, 'showForm'])->name('booking.form');
-Route::post('/dat-phong', [BookingController::class, 'store'])->name('booking.store');
+// Route tạm cho Điền thông tin Đặt phòng (Booking), nào merge thì chỉnh lại
+Route::get('/dat-phong', function () {
+    return "Chức năng Điền thông tin đặt phòng đang được phát triển...";
+})->name('booking.form');
+//Route::post('/dat-phong', [BookingController::class, 'store'])->name('booking.store');
 
-Route::post('/booking-submit', [BookingController::class, 'submit'])->name('booking.submit');
+//Route::post('/booking-submit', [BookingController::class, 'submit'])->name('booking.submit');
 
 
-Route::post('/booking/submit', [BookingController::class, 'submitBooking'])->name('booking.submit');
-Route::get('/api/booking-info/{roomId}', [BookingController::class, 'getBookingInfo']);
+//Route::post('/booking/submit', [BookingController::class, 'submitBooking'])->name('booking.submit');
+//Route::get('/api/booking-info/{roomId}', [BookingController::class, 'getBookingInfo']);
 
-Route::get('/dat-phong-thanh-cong', [BookingController::class, 'success'])->name('booking.success');
+//Route::get('/dat-phong-thanh-cong', [BookingController::class, 'success'])->name('booking.success');
 
 // Đảm bảo đăng ký các route cho auth
 require __DIR__.'/auth.php';

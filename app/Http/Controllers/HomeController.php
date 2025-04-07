@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $slideshows = Slideshow::all();
+        $slideshows = Slideshow::take(4)->get();
         $roomDetails = RoomDetail::with('capacities')->get();
 
         return view('homepage.trangchu', compact('slideshows', 'roomDetails'));

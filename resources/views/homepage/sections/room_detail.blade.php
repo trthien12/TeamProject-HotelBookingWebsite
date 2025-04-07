@@ -88,7 +88,7 @@
         font-weight: 400;
         }
 </style>
-<section class="room">
+<section class="room"id="rooms">
     <div class="container top">
         <div class="heading">
             <h1 style="font-family: serif; font-size: 45px;">Our Rooms</h1><br>
@@ -105,24 +105,30 @@
                     <h3>{{ $room->room_type }}</h3>
                     <p><i class="fas fa-bed"></i> Giường: {{ $room->bed_type }}</p>
                     <p><i class="fas fa-expand"></i> Diện tích: {{ $room->area }} m²</p>
-                    <p><i class="fas fa-binoculars"></i> Hướng phòngphòng: {{ $room->view }}</p>
+                    <p><i class="fas fa-binoculars"></i> Hướng phòng: {{ $room->view }}</p>
                     <p><i class="fas fa-wallet"></i> Giá: {{ number_format($room->price_per_night, 0, ',', '.') }}₫</p>
                     <p class="discount"><i class="fas fa-tag"></i> Giảm {{ $room->discount_percent }}%</p>
                     <p><i class="fas fa-door-open"></i> Còn trống: {{ $room->remaining_rooms }}</p>
                     <p><i class="fas fa-users-friends"></i> Sức chứa: {{ $room->capacities->first()->max_capacity ?? 'Không xác định' }} người </p>
                     
                     <div class="action-buttons">
-                        <form action="" method="GET" class="p-4 bg-light rounded shadow">
-                            @csrf
-                            <input type="hidden" name="room_id" value="{{ $room->id }}">
-                            <button type="submit" class="book-now">Đặt ngay</button>
-                        </form>
-
-                        <form method="GET" action="">
+                        <form action="{{ route('booking.form') }}" method="GET" class="p-4 bg-light rounded shadow">
                             @csrf
                             <input type="hidden" name="room_id" value="{{ $room->id }}">
                             <input type="hidden" name="check_in" value="{{ date('Y-m-d') }}">
                             <input type="hidden" name="check_out" value="{{ date('Y-m-d', strtotime('+1 day')) }}">
+                            <input type="hidden" name="adults" value="1">
+                            <input type="hidden" name="children" value="0">
+                            <button type="submit" class="book-now">Đặt ngay</button>
+                        </form>
+
+                        <form  method="POST" action="{{ route('cart.add') }}" class="add-to-cart-form">
+                            @csrf
+                            <input type="hidden" name="room_id" value="{{ $room->id }}">
+                            <input type="hidden" name="check_in" value="{{ date('Y-m-d') }}">
+                            <input type="hidden" name="check_out" value="{{ date('Y-m-d', strtotime('+1 day')) }}">
+                            <input type="hidden" name="adults" value="1">
+                            <input type="hidden" name="children" value="0">
                             <button type="submit" class="add-cart">Thêm vào giỏ hàng</button>
                         </form>
                     </div>
@@ -131,3 +137,32 @@
         @endforeach
     </div>
 </section>
+<script>
+$(document).ready(function(){
+    $(".add-to-cart-form").submit(function(e){
+        e.preventDefault(); // Ngừng việc gửi form theo cách thông thường
+
+        // Lấy thông tin từ form
+        var formData = $(this).serialize(); // Lấy tất cả dữ liệu form dưới dạng chuỗi (bao gồm CSRF token và các dữ liệu ẩn)
+        
+        $.ajax({
+            type: "POST",
+            url: "{{ route('cart.add') }}", // Đảm bảo route chính xác
+            data: formData, // Gửi dữ liệu form
+            success: function(response) {
+                if (response.success) {
+                    // Cập nhật số lượng giỏ hàng
+                    $(".cart-count").text(response.cartCount);
+                    alert('Đã thêm vào giỏ hàng!');
+                } else {
+                    alert('Có lỗi xảy ra!');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+                alert('Không thể kết nối server.');
+            }
+        });
+    });
+});
+</script>
