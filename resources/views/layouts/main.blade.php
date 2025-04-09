@@ -103,8 +103,16 @@
                     <i class="fa fa-envelope"></i>
                     <a href="mailto:golden@gmail.com" class="contact-link">golden@gmail.com</a> <br>
                 </div>
+                <div class="box map-box">
+                    <h2>Địa chỉ Khách sạn</h2>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.101196232708!2d106.70722927377419!3d10.726677760111963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f925b569a7f%3A0xa52fa046276b4007!2zTmFtIExvbmcgMSwgMTIwIEjDoCBIdXkgVOG6rXAsIFTDom4gUGhvbmcsIFF14bqtbiA3LCBI4buTIENow60gTWluaCA3MDAwMDAsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1744222343820!5m2!1svi!2s" 
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
         </footer>
+        <a href="tel:01234585997" class="hotline-button">
+            <i class="fa fa-phone"></i> 0123 458 5997
+        </a>
         <div class="legal">
             <p class="container">Copyright (c) {{ date('Y') }} Copyright Holder All Rights Reserved.</p>
         </div> 

@@ -356,11 +356,13 @@
     footer {
         background: #282834;
         color: #b6b7b9;
-        padding: 10% 0 5% 0;
+        padding: 5% 0;
     }
 
     footer .grid {
-        grid-template-columns: 6fr 3fr 3fr;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
     }
 
     footer p {
@@ -368,7 +370,15 @@
         font-size: 15px;
         line-height: 25px;
     }
-
+    footer .box {
+        padding: 0 20px;
+    }
+    footer .map-box iframe {
+        width: 100%;
+        height: 250px;
+        border: none;
+        border-radius: 10px;
+    }
     footer .icon i {
         margin: 20px 20px 20px 0;
         color: #b6b7b9;
@@ -511,6 +521,42 @@
         footer .grid {
             grid-template-columns: repeat(1, 1fr);
         }
+    }
+    /*------------------HOTLINE------------------*/
+    .hotline-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #b88a44;
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        z-index: 999;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        animation: shake 1s infinite;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }    
+    .hotline-button i {
+        font-size: 20px;
+    }    
+    /* Hiệu ứng rung */
+    @keyframes shake {
+        0% { transform: translate(1px, 1px) rotate(0deg); }
+        10% { transform: translate(-1px, -2px) rotate(-1deg); }
+        20% { transform: translate(-3px, 0px) rotate(1deg); }
+        30% { transform: translate(3px, 2px) rotate(0deg); }
+        40% { transform: translate(1px, -1px) rotate(1deg); }
+        50% { transform: translate(-1px, 2px) rotate(-1deg); }
+        60% { transform: translate(-3px, 1px) rotate(0deg); }
+        70% { transform: translate(3px, 1px) rotate(-1deg); }
+        80% { transform: translate(-1px, -1px) rotate(1deg); }
+        90% { transform: translate(1px, 2px) rotate(0deg); }
+        100% { transform: translate(1px, -2px) rotate(-1deg); }
     }
     /*---------------------------------ĐIỀN THÔNG TIN ĐẶT PHÒNG---------------------------------------------------*/
     /*---------CSS SEARCH RESULT-----------------------------*/

@@ -101,15 +101,13 @@
 
     .room-info {
         display: flex;
+        flex-direction: row; /* Hàng ngang */
         justify-content: space-between; /* Đảm bảo các phần tử bên trái và phải nằm cách nhau */
-        gap: 20px; /* Khoảng cách giữa room-header và room-description */
+        gap: 30px; /* Khoảng cách giữa room-header và room-description */
     }
 
     .room-header {
-        display: flex;
-        flex-direction: column; /* Để h3 và img xếp theo cột */
-        align-items: flex-start;
-        gap: 10px; /* Khoảng cách giữa h3 và img */
+        width: 50%; 
     }
 
     .room-header h3 {
@@ -125,9 +123,7 @@
     }
 
     .room-description {
-        flex: 1;
-        display: flex;
-        flex-direction: column; /* Để các dòng thông tin xếp theo cột */
+        width: 50%;
         gap: 10px; /* Khoảng cách giữa các dòng thông tin */
     }
 
@@ -293,10 +289,10 @@
                     <h2>Links</h2>
                     <ul>
                         <li><a href="#">Company History</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="{{ route('home') }}#about">About Us</a></li>
+                        <li><a href="{{ route('contact') }}">Contact Us</a></li>
                         <li><a href="#">Services</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="{{ route('privacy.policy') }}">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div class="box">
@@ -305,9 +301,14 @@
                     <i class="fa fa-location-dot"></i>
                     <label>120 Hà Huy Tập, Tân Phong, Thành phố Hồ Chí Minh</label> <br>
                     <i class="fa fa-phone"></i>
-                    <label>01234585997</label> <br>
+                    <a href="tel:01234585997" class="contact-link">01234585997</a> <br>
                     <i class="fa fa-envelope"></i>
-                    <label>golden@gmail.com</label> <br>
+                    <a href="mailto:golden@gmail.com" class="contact-link">golden@gmail.com</a> <br>
+                </div>
+                <div class="box map-box">
+                    <h2>Địa chỉ Khách sạn</h2>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.101196232708!2d106.70722927377419!3d10.726677760111963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f925b569a7f%3A0xa52fa046276b4007!2zTmFtIExvbmcgMSwgMTIwIEjDoCBIdXkgVOG6rXAsIFTDom4gUGhvbmcsIFF14bqtbiA3LCBI4buTIENow60gTWluaCA3MDAwMDAsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1744222343820!5m2!1svi!2s" 
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
           </div>
     </footer>
