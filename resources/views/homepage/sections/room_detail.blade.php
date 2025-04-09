@@ -137,32 +137,3 @@
         @endforeach
     </div>
 </section>
-<script>
-$(document).ready(function(){
-    $(".add-to-cart-form").submit(function(e){
-        e.preventDefault(); // Ngừng việc gửi form theo cách thông thường
-
-        // Lấy thông tin từ form
-        var formData = $(this).serialize(); // Lấy tất cả dữ liệu form dưới dạng chuỗi (bao gồm CSRF token và các dữ liệu ẩn)
-        
-        $.ajax({
-            type: "POST",
-            url: "{{ route('cart.add') }}", // Đảm bảo route chính xác
-            data: formData, // Gửi dữ liệu form
-            success: function(response) {
-                if (response.success) {
-                    // Cập nhật số lượng giỏ hàng
-                    $(".cart-count").text(response.cartCount);
-                    alert('Đã thêm vào giỏ hàng!');
-                } else {
-                    alert('Có lỗi xảy ra!');
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-                alert('Không thể kết nối server.');
-            }
-        });
-    });
-});
-</script>

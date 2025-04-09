@@ -28,10 +28,13 @@ class CartController extends Controller
         $room = RoomDetail::find($validated['room_id']);
         $cart = Session::get('shoppingCart', []);
 
-        if (isset($cart[$validated['room_id']])) {
-            $cart[$validated['room_id']]['quantity'] += 1;
+        // Tạo key riêng biệt dựa trên room_id và ngày nhận/trả phòng
+        $key = $validated['room_id'] . '_' . $validated['check_in'] . '_' . $validated['check_out'];
+        
+        if (isset($cart[$key])) {
+            $cart[$key]['quantity'] += 1;
         } else {
-            $cart[$validated['room_id']] = [
+            $cart[$key] = [
                 'room_id' => $room->id,
                 'room_type' => $room->room_type,
                 'bed_type' => $room->bed_type,
@@ -58,14 +61,15 @@ class CartController extends Controller
         return redirect()->route('cart.index')->with('success', 'Phòng đã được thêm vào giỏ hàng!');
     }
 
-    public function remove($roomId)
+    public function remove($key)
     {
         $cart = Session::get('shoppingCart', []);
-        if (isset($cart[$roomId])) {
-            unset($cart[$roomId]);
+
+        if (isset($cart[$key])) {
+            unset($cart[$key]);
             Session::put('shoppingCart', $cart);
-            return redirect()->route('cart.index')->with('success', 'Phòng đã được xóa khỏi giỏ hàng!');
+            return redirect()->route('cart.index')->with('success', 'Đã xóa phòng khỏi giỏ hàng.');
         }
-        return redirect()->route('cart.index')->with('error', 'Không tìm thấy phòng để xóa!');
+        return redirect()->route('cart.index')->with('error', 'Không tìm thấy phòng để xóa.');
     }
 }

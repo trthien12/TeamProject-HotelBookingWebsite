@@ -1,6 +1,8 @@
 @extends('layouts.main')
 @section('title', 'Kết quả tìm kiếm')
 @section('content')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <div class="container">
         <h2>Kết quả tìm kiếm</h2>
         @if($rooms->isEmpty())
@@ -30,7 +32,7 @@
                                     <input type="hidden" name="children" value="{{ $children }}">
                                     <button type="submit" class="book-now">Đặt ngay</button>
                                 </form>
-                                <form method="POST" action="{{ route('cart.add') }}">
+                                <form method="POST" action="{{ route('cart.add') }}"class="add-to-cart-form">
                                     @csrf
                                     <input type="hidden" name="room_id" value="{{ $room->id }}">
                                     <input type="hidden" name="check_in" value="{{ $check_in }}">

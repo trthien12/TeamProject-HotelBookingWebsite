@@ -7,101 +7,88 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
-    font-family: 'Roboto', sans-serif; /* Sử dụng font Roboto nhất quán */
-}
-
-/* Container chính */
-.container{
-    position: relative;
-    width: 100%;
-}
-/* Navigation */
-.Navigation {
-    position: fixed;
-    width: 300px;
-    height: 100%;
-    background: #B88A44;
-    padding: 20px 0; /* Khoảng cách bên trong cho navigation */
-}
-
-.Navigation.active {
-    width: 80px;
-}
-
-.Navigation ul {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 0; /* Bỏ padding để tránh chồng chéo */
-}
-
-.Navigation ul li {
-    position: relative;
-    width: 100%;
-    list-style: none;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-    margin-bottom: 20px; /* Khoảng cách giữa các mục */
-}
-
-.Navigation ul li a {
-    display: flex;
-    text-decoration: none;
-    color: beige;
-}
-
-.Navigation ul li:hover,
-.Navigation ul li.hovered {
-    background-color: beige;
-}
-
-.Navigation ul li:nth-child(1){
-    margin-bottom: 40px;
-    pointer-events: none;
-}
-.Navigation ul li:hover a,
-.Navigation ul li.hovered a {
-    color: #B88A44;
-}
-
-.Navigation ul li .icon{
-    position: relative;
-    display:block;
-    min-width: 60px;
-    height: 60px;
-    line-height: 75px;
-    text-align: center;
-}
-
-.Navigation ul li a .icon ion-icon{
-    font-size: 1.75rem;
-
-}
-/* Main nội dung */
-.main {
-    margin-left: 300px; /* Đảm bảo không chồng chéo với navigation */
-    min-height: 100vh;
-    background: beige;
-    padding: 20px; /* Khoảng cách bên trong cho nội dung */
-    transition: margin-left 0.3s;
-}
-
-.main.active {
-    margin-left: 80px; /* Điều chỉnh cho chế độ active */
-}
-
-/* CSS cho giao diện */
-.container-detail {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        gap: 20px; /* Khoảng cách giữa các thẻ .room-detail */
-        padding: 20px;
+    }
+    body {
+        font-family: 'Roboto', sans-serif; /* Sử dụng font Roboto nhất quán */
+        margin: 0;
+        padding: 0;
+    }
+    /* Navigation */
+    .Navigation {
+        position: fixed;
+        left: 0; 
+        top: 0;  
+        width: 300px;
+        height: 100%;
+        background: #B88A44;
+        padding: 20px 0; /* Khoảng cách bên trong cho navigation */
+    }
+    .Navigation.active {
+        width: 80px;
+    }
+    .Navigation ul {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 0; /* Bỏ padding để tránh chồng chéo */
+    }
+    .Navigation ul li {
+        position: relative;
+        width: 100%;
+        list-style: none;
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
+        margin-bottom: 20px; /* Khoảng cách giữa các mục */
     }
 
+    .Navigation ul li a {
+        display: flex;
+        text-decoration: none;
+        color: beige;
+    }
+    .Navigation ul li:hover,
+    .Navigation ul li.hovered {
+        background-color: beige;
+    }
+    .Navigation ul li:nth-child(1){
+        margin-bottom: 40px;
+        pointer-events: none;
+    }
+    .Navigation ul li:hover a,
+    .Navigation ul li.hovered a {
+        color: #B88A44;
+    }
+    .Navigation ul li .icon{
+        position: relative;
+        display:block;
+        min-width: 60px;
+        height: 60px;
+        line-height: 75px;
+        text-align: center;
+    }
+    .Navigation ul li a .icon ion-icon{
+        font-size: 1.75rem;
+
+    }
+    /* Main nội dung */
+    .main {
+        margin-left: 200px; /* Đảm bảo không chồng chéo với navigation */
+        min-height: 100vh;
+        background: beige;
+        padding: 20px 10px 20px 20px; /* Khoảng cách bên trong cho nội dung */
+        transition: margin-left 0.3s;
+    }
+    .main.active {
+        margin-left: 80px; /* Điều chỉnh cho chế độ active */
+    }
+    /* CSS cho giao diện */
+    .container-detail {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 20px; /* Khoảng cách giữa các thẻ .room-detail */
+            padding: 20px;
+        }
     .room-detail {
         display: flex;
         flex-direction: column; /* Để các phần tử trong room-info xếp theo cột */
@@ -168,7 +155,6 @@ body {
         margin-bottom: 80px;
     }
 
-
     .topbar {
     display: flex; 
     align-items: center; 
@@ -218,9 +204,7 @@ body {
 </style>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-<div class="container">
-        <div class="Navigation">
+    <div class="Navigation">
             <ul>
                 <li>
                     <a href="#">
@@ -247,8 +231,8 @@ body {
                     </a>
                 </li>
             </ul>
-        </div>
-        <div class="main">
+    </div>
+    <div class="main">
             <div class="topbar">
                 <div class="toggle">
                     <a href="{{ route('admin.dashboard') }}">
@@ -263,12 +247,12 @@ body {
                         <img src="{{ asset('img/nhanvien.jpg') }}" alt="User Image">
                     </div>
                 </div>
-                <li>
+                <div class="logout">
                     <form method="POST" action="{{ route('admin.logout') }}">
-                    @csrf
+                        @csrf
                         <button type="submit" class="primary-btn">LOGOUT</button>
                     </form>
-                </li>
+                </div>
             </div>
 
             <div class="container-detail">
@@ -293,9 +277,7 @@ body {
                 </div>
             @endforeach
         </div>
-        </div>
-    </div>
-    <!-- Footer -->
+        <!-- Footer -->
     <footer>
          <div class="container grid">
               <div class="box">
@@ -330,8 +312,9 @@ body {
           </div>
     </footer>
     <div class="legal">
-         <p class="container">Copyright &copy; {{ date('Y') }} Golden Tree Apartment. All Rights Reserved.</p>
+         <p class="container-fluid">Copyright &copy; {{ date('Y') }} Golden Tree Apartment. All Rights Reserved.</p>
     </div>
+   </div>    
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -344,7 +327,6 @@ body {
         });
         this.classList.add("hovered"); // Thêm lớp "hovered" vào mục hiện tại
     }
-
     list.forEach((item) => item.addEventListener("mouseover", activeLink));
 </script>
 @endsection

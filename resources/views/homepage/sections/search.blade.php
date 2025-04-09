@@ -1,3 +1,29 @@
+<style>
+    section.book {
+        position: relative;
+        z-index: 10;
+        margin-top: 80px; /* hoặc 120px, tuỳ chỉnh theo chiều cao ảnh slide */
+    }
+    /* Đảm bảo phần slider không bị ảnh hưởng */
+    .home {
+        position: relative;
+        z-index: 1;
+    }
+    .owl-carousel .item img {
+        height: 600px; /* Chiều cao tối đa slide, có thể thay đổi nếu cần */
+        object-fit: cover;
+        width: 100%;
+    }
+    /* Optional: Tối ưu phần text của slideshow để không bị form che */
+    .owl-carousel .text {
+        position: absolute;
+        bottom: 20%;
+        left: 10%;
+        z-index: 5;
+        color: white;
+        text-align: left;
+    }
+</style>
 <section class="book">
     <div class="container flex_space">
         <div class="text">

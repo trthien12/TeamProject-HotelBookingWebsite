@@ -9,7 +9,7 @@
     @if(empty(Session::get('shoppingCart')))
         <p>Giỏ hàng của bạn hiện đang trống.</p>
     @else
-        @foreach(Session::get('shoppingCart') as $roomId => $cartItem)
+        @foreach(Session::get('shoppingCart') as $key => $cartItem)
             <div class="room-info">
                 <div class="room-details">
                     <h3>Thông Tin Phòng: {{ $cartItem['room_type'] }}</h3>
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="action-buttons">
-                    <form action="{{ route('cart.remove', $roomId) }}" method="POST">
+                    <form action="{{ route('cart.remove',  $key) }}" method="POST"  onsubmit="return confirm('Bạn có chắc muốn xóa phòng này khỏi giỏ hàng?')">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn">Xóa</button>

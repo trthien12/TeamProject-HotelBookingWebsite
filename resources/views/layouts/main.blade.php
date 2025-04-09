@@ -27,7 +27,7 @@
                         <li><a href="{{ route('home') }}#rooms">Rooms</a></li>
                         <li><a href="#pages">Pages</a></li>
                         <li><a href="#news">News</a></li>
-                        <li><a href="{{ route('home') }}#contact">Contact</a></li>
+                        <li><a href="{{ route('contact') }}">Contact</a></li>
                         <li>
                         <a href="{{ route('cart.index') }}" aria-label="Giỏ hàng">
                             <i class="fa-solid fa-cart-shopping"></i>
@@ -85,10 +85,10 @@
                     <h2>Links</h2>
                     <ul>
                         <li><a href="#">Company History</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="{{ route('home') }}#about">About Us</a></li>
+                        <li><a href="{{ route('contact') }}">Contact Us</a></li>
                         <li><a href="#">Services</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="{{ route('privacy.policy') }}">Privacy Policy</a></li>
                     </ul>
                 </div>            
                 <div class="box">
@@ -99,9 +99,9 @@
                     <i class="fa fa-location-dot"></i>
                     <label>120 Hà Huy Tập, Tân Phong, Thành phố Hồ Chí Minh  </label> <br>
                     <i class="fa fa-phone"></i>
-                    <label>01234585997</label> <br>
+                    <a href="tel:01234585997" class="contact-link">01234585997</a> <br>
                     <i class="fa fa-envelope"></i>
-                    <label>golden@gmail.com</label> <br>
+                    <a href="mailto:golden@gmail.com" class="contact-link">golden@gmail.com</a> <br>
                 </div>
             </div>
         </footer>
@@ -110,6 +110,36 @@
         </div> 
          <!-- Scripts -->       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>   
+        
+        <script>
+            $(document).ready(function(){
+                $(".add-to-cart-form").submit(function(e){
+                    e.preventDefault(); // Ngừng việc gửi form theo cách thông thường
+
+                    // Lấy thông tin từ form
+                    var formData = $(this).serialize(); // Lấy tất cả dữ liệu form dưới dạng chuỗi (bao gồm CSRF token và các dữ liệu ẩn)
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ route('cart.add') }}", // Đảm bảo route chính xác
+                        data: formData, // Gửi dữ liệu form
+                        success: function(response) {
+                            if (response.success) {
+                                // Cập nhật số lượng giỏ hàng
+                                $(".cart-count").text(response.cartCount);
+                                alert('Đã thêm vào giỏ hàng!');
+                            } else {
+                                alert('Có lỗi xảy ra!');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                            alert('Không thể kết nối server.');
+                        }
+                    });
+                });
+            });
+        </script>
         @stack('scripts') <!-- Cho phép các view con thêm JS -->
     </body>
 </html>

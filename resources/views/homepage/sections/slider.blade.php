@@ -4,19 +4,22 @@
 <!-- Đợi DOM load xong mới chạy OwlCarousel -->
 <script>
     $(document).ready(function(){
-    $('.owl-carousel').owlCarousel({
-        loop: true,
-        margin: 40,
-        nav: true,
-        dots: true,
-        navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
-        responsive: {
-            0: { items: 1 },
-            768: { items: 1 },
-            1000: { items: 1 }
-        }
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 40,
+            nav: true,
+            dots: true,
+            autoplay: true,              //  Tự động chạy
+            autoplayTimeout: 4000,       //  Thời gian chờ giữa các slide (ms)
+            autoplayHoverPause: true,    // Dừng lại khi rê chuột vào
+            navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+            responsive: {
+                0: { items: 1 },
+                768: { items: 1 },
+                1000: { items: 1 }
+            }
+        });
     });
-});
 </script>
 <style>
     .owl-carousel {
