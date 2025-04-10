@@ -68,7 +68,7 @@ class QuanLyController extends Controller
             ->update(['status' => $newStatus]);
 
         // Chuyển hướng về trang chi tiết đặt phòng
-        return redirect(url('/detail_roomBooking/' . $id));
+        return redirect(url('/admin/detail_roomBooking/' . $id));
     }
 
     function danhsachkhachhang()

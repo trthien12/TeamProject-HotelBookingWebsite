@@ -22,7 +22,7 @@
                                 <span class="status {{ Str::slug($booking->status) }}">{{ htmlspecialchars($booking->status) }}</span>
                             </p>
                         </div>
-                        <a href="{{ url('detail_roomBooking/' . $booking->id) }}" class="btn-view">Xem Chi Tiết</a>
+                        <a href="{{ url('admin/detail_roomBooking/' . $booking->id) }}" class="btn-view">Xem Chi Tiết</a>
                     </div>
                 @endforeach
             </div>
