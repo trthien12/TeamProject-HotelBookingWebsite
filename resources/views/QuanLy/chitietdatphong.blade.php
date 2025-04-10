@@ -109,7 +109,7 @@
 
             <!-- Nút xử lý -->
             <?php if ($data->status === 'đang xử lý'): ?>
-                <form action="{{url('rooms_status/'.$bookingDetails->id)}}" method="post" class="btn-group">
+                <form action="{{url('rooms_status/'.$data->id)}}" method="post" class="btn-group">
                     <button type="submit" name="action" value="Xác nhận" class="btn-action">Xác Nhận</button>
                     <button type="submit" name="action" value="Huỷ" class="btn-action">Hủy</button>
                     {{ csrf_field() }}

@@ -162,15 +162,12 @@
                         </a>
                     </li>
                     <li class="nav-item logout-form">
-                        <!-- <form action="{{ route('logout') }}" method="POST">
+                        <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button type="submit" class="logout-btn">
                                 <i class="fas fa-sign-out-alt"></i> Log out
                             </button>
-                        </form> -->
-                        <button type="submit" class="logout-btn">
-                            <i class="fas fa-sign-out-alt"></i> Log out
-                        </button>
+                        </form>
                     </li>
                 </ul>
             </div>

@@ -15,7 +15,6 @@ class RoomController extends Controller
         return view('rooms.index', compact('rooms'));
     }
 
-    
     public function edit($id)
     {
         // $room = Room::findOrFail($id);
