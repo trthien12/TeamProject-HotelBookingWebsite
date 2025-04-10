@@ -152,12 +152,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('rooms.index') ? 'active' : '' }}" href="{{ route('rooms.index') }}">
+                        <a class="nav-link {{ request()->routeIs('manager.index') ? 'active' : '' }}" href="{{ route('manager.index') }}">
                             <i class="fas fa-bed"></i> Thông tin phòng
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('quanly.kh') ? 'active' : '' }}" href="{{ route('quanly.kh') }}">
+                        <a class="nav-link {{ request()->routeIs('manager.customerlist') ? 'active' : '' }}" href="{{ route('manager.customerlist') }}">
                             <i class="fas fa-users"></i> Danh sách khách hàng
                         </a>
                     </li>

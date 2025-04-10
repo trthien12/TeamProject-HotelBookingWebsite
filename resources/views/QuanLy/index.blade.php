@@ -23,7 +23,7 @@
                 <p><strong>Giảm Giá:</strong> <span class="price-discounted">{{ number_format($room->discount_percent) }} %</span></p>
                 <p><strong>Số Phòng Còn:</strong> {{ $room->remaining_rooms }}</p>
                 <div class="text-end">
-                    <a href="{{ route('rooms.edit', $room->id) }}" class="btn btn-brown">Sửa</a>
+                    <a href="{{ route('manager.edit', $room->id) }}" class="btn btn-brown">Sửa</a>
                 </div>
             </div>
         </div>

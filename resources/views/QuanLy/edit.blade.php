@@ -22,7 +22,7 @@
             </div>
         @endif
 
-        <form action="{{ route('rooms.update', $room->id) }}" method="POST" class="edit-form">
+        <form action="{{ route('manager.update', $room->id) }}" method="POST" class="edit-form">
             @csrf
             @method('PUT')
 
@@ -100,7 +100,7 @@
 
             <div class="text-end">
                 <button type="submit" class="btn btn-primary me-2">Cập Nhật</button>
-                <a href="{{ route('rooms.index') }}" class="btn btn-secondary">Hủy</a>
+                <a href="{{ route('manager.index') }}" class="btn btn-secondary">Hủy</a>
             </div>
         </form>
     </div>

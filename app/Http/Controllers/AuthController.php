@@ -24,7 +24,7 @@ class AuthController extends Controller
         if ($user && $user->password === $credentials['password']) {
             Auth::login($user);
             $request->session()->regenerate();
-            // return redirect()->route('rooms.index');
+            // return redirect()->route('manager.index');
             return redirect()->to('/admin');
 
         }
