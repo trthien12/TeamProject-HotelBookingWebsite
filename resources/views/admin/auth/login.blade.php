@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 <style>
    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 
@@ -13,7 +13,7 @@
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        background-image: url('{{ asset("img/golden-tree-apartment.jpg") }}');
+        background-image: url('{{ asset("img/bedrom.jpg") }}');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -60,25 +60,6 @@
     .navigation a:hover::after {
         transform: scaleX(1);
     }
-    .navigation .btnLogin-popup{
-        width: 130px;
-        height: 50px;
-        background: transparent;
-        border: 2px solid #fff;
-        outline: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 1.1em;
-        color: #fff;
-        font-weight: 500;
-        margin-left: 40px;
-        transition: .5s;
-    }
-    .navigation .btnLogin-popup:hover{
-        background: #fff;
-        color: #162938;
-    }
-
     .wrapper {
         position: relative;
         width: 400px;
@@ -197,26 +178,29 @@
         color: #fff;
         font-weight: 500;
     }
+    .btn:hover {
+        background-color: #B88A44; /* cùng màu gốc */
+        color: #fff;               /* giữ nguyên màu chữ */
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.2); /* hiệu ứng nhẹ */
+        transform: scale(1.01);    /* phóng nhẹ */
+        transition: all 0.2s ease-in-out;
+}
 </style>
 <body>
-    <header>
-        <div class="GOLDENTREEAPARTMENT">GOLDEN TREE APARTMENT</div>
-        <nav class="navigation">
-            <button class="btnLogin-popup">Admin Login</button>
-        </nav>
-    </header>
-    <div class="wrapper">
+    <div  class="wrapper active-popup">
         <button class="iconclose">X</button>
-        <div class="from-box">
-            <h2>Login</h2>
+        <div class="form-box">
+            <h1>Login</h1>
             <form action="{{ route('admin.login') }}" method="POST">
                 @csrf
                 <div class="input-box">
-                    <input type="email" name="email" placeholder="Email" required autofocus>
+                    <span class="icon"><i class="fas fa-envelope"></i></span>
+                    <input type="email" name="email" required autofocus>
                     <label>Email</label>
                 </div>
                 <div class="input-box">
-                    <input type="password" name="password" placeholder="Password" required>
+                    <span class="icon"><i class="fas fa-lock"></i></span>
+                    <input type="password" name="password" required>
                     <label>Password</label>
                 </div>
                 <button type="submit" class="btn">LOGIN</button>
@@ -231,21 +215,7 @@
         </div>
     <div>
     <script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log("JavaScript is running!");
-            const wrapper = document.querySelector('.wrapper');
-            const btnPopup = document.querySelector('.btnLogin-popup');
-            const iconClose = document.querySelector('.iconclose');
-
-            btnPopup.addEventListener('click', () => {
-                wrapper.classList.add('active-popup');
-            });
-
-            iconClose.addEventListener('click', () => {
-                wrapper.classList.remove('active-popup');
-            });
-        });
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" 
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" 
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>

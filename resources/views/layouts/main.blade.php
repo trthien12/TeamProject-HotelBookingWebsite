@@ -99,9 +99,9 @@
                     <i class="fa fa-location-dot"></i>
                     <label>120 Hà Huy Tập, Tân Phong, Thành phố Hồ Chí Minh  </label> <br>
                     <i class="fa fa-phone"></i>
-                    <a href="tel:01234585997" class="contact-link">01234585997</a> <br>
+                    <label>01234585997</label> <br>
                     <i class="fa fa-envelope"></i>
-                    <a href="mailto:golden@gmail.com" class="contact-link">golden@gmail.com</a> <br>
+                    <label>golden@gmail.com</label> 
                 </div>
                 <div class="box map-box">
                     <h2>Địa chỉ Khách sạn</h2>

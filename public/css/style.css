@@ -5,7 +5,6 @@
     margin: 0;
     box-sizing: border-box;
     }
-
     body {
         font-family: "Roboto", sans-serif;
     }
@@ -24,16 +23,13 @@
     li {
         list-style: none;
     }
-
     .flex {
         display: flex;
     }
-
     .flex_space {
         display: flex;
         justify-content: space-between;
     }
-
     button {
         border: none;
         background: none;
@@ -41,7 +37,6 @@
         transition: 0.5s;
         cursor: pointer;
     }
-
     .primary-btn {
         padding: 15px 40px;
         background: #b88a44;
@@ -52,7 +47,6 @@
         background-color: #965b02;
         color: #fff;
     }
-
     .secondary-btn {
         padding: 15px 40px;
         background: none;
@@ -68,7 +62,6 @@
         max-width: 85%;
         margin: auto;
     }
-
     /*--------header---------*/
     header {
         height: 10vh;
@@ -138,7 +131,7 @@
         }
 
         header .navlinks span {
-            color: bac;
+            color: black;
             display: block;
             cursor: pointer;
             line-height: 10vh;
@@ -150,7 +143,7 @@
     /*--------home---------*/
     .home {
         height: 100vh; 
-        overflow: hidden; /* Ẩn phần dư */
+        /*overflow: hidden; /* Ẩn phần dư */
         position: relative;
         color: #fff;
     }
@@ -205,10 +198,12 @@
     .grid {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        grid-gap: 20px;
+        grid-gap: 20px; /* Tăng khoảng cách giữa các trường */
+        align-items:center;
     }
 
-    input {
+    .input {
+        padding: 15px; /* Thêm padding cho input để dễ nhìn hơn */
         outline: none;
         border: none;
         width: 100%;
@@ -220,7 +215,8 @@
         background: #3a3434;
         color: #fff;
         z-index: 10; /* Đảm bảo book form luôn ở trên */
-        padding-top: 20px; /* Đảm bảo không có phần tử nào che khuất form */
+        margin-top: -10px;
+        /*padding-top: 20px; /* Đảm bảo không có phần tử nào che khuất form */
     }
 
     h1 {
@@ -253,21 +249,35 @@
         width: 100%;
         border-collapse: collapse;
         margin-left: 90px;
+        display: flex;
+        align-items: center; /* Đảm bảo các phần tử trong ô căn giữa theo chiều dọc */
+        justify-content: space-between; /* Dãn cách giữa tiêu đề và ô input */
+        font-family: "Roboto", sans-serif;
     }
-
-    .table-book th,
-    .table-book td {
+    .table-book th i {
+        margin-right: 8px;
+        vertical-align: middle;
+    }
+    .table-book th:hover i {
+        color: #b88a44;
+        transition: color 0.3s ease;
+    }
+    .table-book th,.table-book td {
         font-family: "Roboto", sans-serif;
         text-align: center;
-        padding: 15px;
+        padding: 15px 20px;
+        font-size: 18px;
     }
-    .table-book td select {
-        width: 150px;
-        padding: 10px;
+    .table-book td input,.table-book td select {
+        width: 100%;
+        padding: 12px;
+        border-radius: 6px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
         font-family: "Roboto", sans-serif;
     }
     .table-book td input[type="number"] {
-        width: 150px;
+        min-width: 150px;
     }
 
     .grid button:hover {
@@ -293,8 +303,7 @@
         padding: 5px;
     }
     /*--------about---------*/
-    .left,
-    .right {
+    .left,.right {
         width: 100%;
         padding: 30px;
     }
@@ -303,8 +312,49 @@
         height: 100%;
         object-fit: cover;
         object-position: center;
+        border-radius: 10px;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     }
-
+    .right img:hover {
+        transform: scale(1.03) translateY(-5px); /* Nhẹ nhàng nhích lên và to ra 1 chút */
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Đổ bóng mạnh hơn khi hover */
+    }
+    .image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .image-wrapper img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 10px;
+        transition: opacity 1s ease-in-out;
+        animation: fadeImage 6s infinite;
+    }
+    
+    /* Ẩn ảnh thứ hai ban đầu */
+    .image-wrapper .img2 {
+        animation-delay: 3s; /* Delay để ảnh 2 xuất hiện sau 3s */
+    }
+    
+    @keyframes fadeImage {
+        0%, 45% {
+            opacity: 1;
+        }
+        50%, 95% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
     .top {
         margin-top: 80px;
     }
@@ -392,7 +442,17 @@
     footer li {
         margin-bottom: 20px;
     }
-
+    footer a {
+        color: #b6b7b9;
+        text-decoration: none;
+    }
+    
+    footer a:visited {
+        color: #b6b7b9;
+    }
+    footer a:hover {
+        color: #fff; 
+    }
     footer i {
         color: #b88a44;
         margin: 20px 0;
@@ -401,6 +461,7 @@
 
     footer label {
         margin: 20px 0;
+        color: #b6b7b9;
     }
 
     .legal {
@@ -536,26 +597,35 @@
         text-decoration: none;
         z-index: 999;
         box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        animation: shake 1s infinite;
+        animation: shake 2s ease-in-out infinite;
+        animation-delay: 0s;
+        animation-iteration-count: infinite;
+        animation-play-state: running;
         display: flex;
         align-items: center;
         gap: 10px;
-    }    
-    .hotline-button i {
-        font-size: 20px;
-    }    
+        animation-timing-function: ease-in-out;
+        animation-name: shake;
+        animation-duration: 10s;
+        animation-delay: 0s;
+        animation-iteration-count: infinite;
+        animation-direction: normal;
+    }  
     /* Hiệu ứng rung */
     @keyframes shake {
-        0% { transform: translate(1px, 1px) rotate(0deg); }
-        10% { transform: translate(-1px, -2px) rotate(-1deg); }
-        20% { transform: translate(-3px, 0px) rotate(1deg); }
-        30% { transform: translate(3px, 2px) rotate(0deg); }
-        40% { transform: translate(1px, -1px) rotate(1deg); }
-        50% { transform: translate(-1px, 2px) rotate(-1deg); }
-        60% { transform: translate(-3px, 1px) rotate(0deg); }
-        70% { transform: translate(3px, 1px) rotate(-1deg); }
-        80% { transform: translate(-1px, -1px) rotate(1deg); }
-        90% { transform: translate(1px, 2px) rotate(0deg); }
+        0%, 93% {
+            transform: none;
+        }
+        90% { transform: translate(1px, 1px) rotate(0deg); }
+        91% { transform: translate(-1px, -2px) rotate(-1deg); }
+        92% { transform: translate(-3px, 0px) rotate(1deg); }
+        93% { transform: translate(3px, 2px) rotate(0deg); }
+        94% { transform: translate(1px, -1px) rotate(1deg); }
+        95% { transform: translate(-1px, 2px) rotate(-1deg); }
+        96% { transform: translate(-3px, 1px) rotate(0deg); }
+        97% { transform: translate(3px, 1px) rotate(-1deg); }
+        98% { transform: translate(-1px, -1px) rotate(1deg); }
+        99% { transform: translate(1px, 2px) rotate(0deg); }
         100% { transform: translate(1px, -2px) rotate(-1deg); }
     }
     /*---------------------------------ĐIỀN THÔNG TIN ĐẶT PHÒNG---------------------------------------------------*/

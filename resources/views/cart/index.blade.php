@@ -43,7 +43,18 @@
         @endforeach
     @endif
     <div style="text-align: center; margin-top: 20px;">
-        <a href="{{ route('home') }}" class="btn-back">Quay lại trang chính</a>
+        <!-- Nút quay lại kết quả tìm kiếm -->
+        @if(session('search_data'))
+            <form action="{{ route('home.search') }}" method="GET">
+                <input type="hidden" name="check_in" value="{{ session('search_data')['check_in'] }}">
+                <input type="hidden" name="check_out" value="{{ session('search_data')['check_out'] }}">
+                <input type="hidden" name="adults" value="{{ session('search_data')['adults'] }}">
+                <input type="hidden" name="children" value="{{ session('search_data')['children'] }}">
+                <button type="submit" class="btn-back">← Quay lại kết quả tìm kiếm</button>
+            </form>
+        @endif
+        <!-- Nút quay lại trang chính -->
+        <a href="{{ route('home') }}" class="btn-back">Quay lại trang chính</a>    
     </div>
 </div>
 <style>
@@ -127,7 +138,6 @@
     .btn-back:hover {
         background: #6F4C3E; /* Màu nền khi hover */
     }
-    
     /* Đảm bảo các nút có cùng kích thước */
     .action-buttons .btn {
         padding: 10px 20px;   /* Điều chỉnh padding */
@@ -153,7 +163,7 @@
     }
 
     /* Thêm một số khoảng cách giữa các nút nếu cần */
-    .action-buttons .btn + .btn {
+    .action-buttons .btn {
         margin-top: 10px;  /* Tạo khoảng cách giữa các nút */
     }
 </style>

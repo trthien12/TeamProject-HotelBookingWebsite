@@ -186,6 +186,17 @@
         border-radius: 50%; 
         object-fit: cover; 
     }
+    footer a {
+        color: #b6b7b9;
+        text-decoration: none;
+    }
+    
+    footer a:visited {
+        color: #b6b7b9;
+    }
+    footer a:hover {
+        color: #fff; 
+    }
 /* Responsive Design */
 @media only screen and (max-width: 768px) {
     .Navigation {

@@ -2,7 +2,7 @@
     section.book {
         position: relative;
         z-index: 10;
-        margin-top: 80px; /* hoặc 120px, tuỳ chỉnh theo chiều cao ảnh slide */
+        margin-top: -6.5px; /* hoặc 120px, tuỳ chỉnh theo chiều cao ảnh slide */
     }
     /* Đảm bảo phần slider không bị ảnh hưởng */
     .home {
@@ -34,18 +34,18 @@
                     @csrf
                     <table class="table-book">
                         <tr>
-                            <td>Ngày nhận phòng</td>
-                            <td>Ngày trả phòng</td>
-                            <td>Người lớn</td>
-                            <td>Trẻ em</td>
-                            <td></td>
+                            <th><i class="fa-solid fa-calendar-days"></i>Ngày nhận phòng</th>
+                            <th><i class="fa-solid fa-calendar-check"></i>Ngày trả phòng</th>
+                            <th><i class="fa-solid fa-user"></i> Người lớn</th>
+                            <th><i class="fa-solid fa-child"></i>Trẻ em</th>
+                            <th></th>
                         </tr>
                         <tr>
                             <td><input type="date" name="check_in" id="checkin" required></td>
                             <td><input type="date" name="check_out" id="checkout" required></td>
                             <td><input type="number" name="adults" min="1" placeholder="Người lớn" max="10" value="1" required></td>
                             <td><input type="number" name="children" min="0" placeholder="Trẻ em"  max="10" value="0"  required></td>
-                            <td><button type="submit" class="primary-btn">Tìm kiếm</button></td>
+                            <td><button type="submit" class="primary-btn" style="font-size:18px;">Tìm kiếm</button></td>
                         </tr>
                     </table>
                 </form>

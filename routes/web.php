@@ -14,7 +14,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 //Contact ở menu
 Route::get('/contact', [ContactController::class, 'show'])->name('contact');
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
-//Prvacy_policy ở footerfooter
+//Privacy_policy ở footerfooter
 Route::get('/chinh-sach-quyen-rieng-tu', function () {
     return view('homepage.privacy_policy'); })->name('privacy.policy');
 
