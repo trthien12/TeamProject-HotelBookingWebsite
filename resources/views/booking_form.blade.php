@@ -367,7 +367,7 @@
 
                     <div class="infor-container-button d-flex justify-content-between">
                         <a href="{{ url('/') }}" class="back-btn btn btn-secondary"><span>&#171;</span> Quay lại</a>
-                        <button type="submit" class="primary-btn btn btn-primary">Thanh toán</button>
+                        <button type="submit" a href="{{ route('payment.form') }}" class="primary-btn btn btn-primary">Thanh toán</button>
                     </div>
                 </form>
             </div>

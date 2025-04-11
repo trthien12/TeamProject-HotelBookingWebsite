@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 // Hiển thị form đặt phòng
 Route::get('/dat-phong', [BookingController::class, 'showForm'])->name('booking.form');
-// Xử lý khi người dùng submit form đặt phòng
+
 Route::post('/dat-phong', [BookingController::class, 'storeBooking'])->name('booking.store');
 
 // API lấy thông tin phòng theo ID (cho AJAX dùng)
