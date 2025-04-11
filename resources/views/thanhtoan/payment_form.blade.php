@@ -264,8 +264,8 @@
         <form action="{{ route('payment.process') }}" method="POST">
             
         @csrf 
-        <button type="button" class="primary-btn">Thanh toán</button>
-        </a>
+        <button type="submit" class="primary-btn">Thanh toán</button>
+
         </form>
     </div>
 

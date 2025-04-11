@@ -21,12 +21,14 @@ class BookingController extends Controller
     $children = $request->get('children');
 
     // Nếu thiếu dữ liệu thì redirect hoặc báo lỗi
-    if (!$room_id || !$check_in || !$check_out || !$adults || !$children) {
+    if (is_null($room_id) || is_null($check_in) || is_null($check_out) || is_null($adults) || is_null($children)) {
         return redirect()->route('home')->withErrors(['msg' => 'Thiếu thông tin đặt phòng.']);
     }
+    
 
     // Lấy thông tin chi tiết phòng
-    $roomDetail = \App\Models\RoomDetail::find($room_id);
+    $roomDetail = RoomDetail::find($room_id);
+
 
     $total_amount = null;
     if ($roomDetail) {

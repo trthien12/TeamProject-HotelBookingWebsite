@@ -2,7 +2,7 @@
   <div class="container grid">
     <div class="box">
       <img src="{{ asset('images/logo-2.png') }}" alt="">
-      <p>Golden Tree Apartment chào đón bạn với không gian sang trọng...</p>
+      <p>Chào mừng bạn đến với Golden Tree Apartment – điểm đến của phong cách sống đỉnh cao và sự thư thái tuyệt đối.</p>
       <div class="icon">
         <i class="fa-brands fa-facebook"></i>
         <i class="fa-brands fa-instagram"></i>
