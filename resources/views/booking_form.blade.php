@@ -7,7 +7,6 @@
             h1,
             h2 {
                 font-family: 'Roboto', sans-serif;
-
                 font-weight: 400;
             }
 
@@ -328,23 +327,23 @@
         </div>
     </div>
 
-    <form action="{{ route('booking.submit') }}" method="POST">
-        @csrf
-        <!-- Hidden fields to pass booking data -->
-        <input type="hidden" name="room_id" value="{{ old('room_id', $room->id ?? '') }}">
-        <input type="hidden" name="check_in" value="{{ old('check_in', $checkin_date ?? '') }}">
-        <input type="hidden" name="check_out" value="{{ old('check_out', $checkout_date ?? '') }}">
-        <input type="hidden" name="adults" value="{{ old('adults', $adults ?? '') }}">
-        <input type="hidden" name="children" value="{{ old('children', $children ?? '') }}">
+    <form action="{{ route('booking.store') }}" method="POST" class="p-4 bg-light rounded shadow">
 
-    </form>
+    @csrf
+    <!-- Hidden fields to pass booking data -->
+    <input type="hidden" name="room_id" value="{{ old('room_id', $room->id ?? '') }}">
+    <input type="hidden" name="check_in" value="{{ old('check_in', $checkin_date ?? '') }}">
+    <input type="hidden" name="check_out" value="{{ old('check_out', $checkout_date ?? '') }}">
+    <input type="hidden" name="adults" value="{{ old('adults', $adults ?? '') }}">
+    <input type="hidden" name="children" value="{{ old('children', $children ?? '') }}">
 
+    
     <div class="main-container">
         <div class="booking-container">
             <!-- Form Đặt Phòng -->
             <div class="booking-form">
                 <h2 class="text-center">Đặt Phòng Khách Sạn</h2>
-                <form action="{{ route('booking.store') }}" method="POST" class="p-4 bg-light rounded shadow">
+                
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Họ và tên:</label>
@@ -386,16 +385,26 @@
                         <th>Thành tiền</th>
                     </tr>
                     <tr>
-                        <td id="room_type" class="loading">Đang tải...</td>
-                        <td id="checkin_date" class="loading">Đang tải...</td>
-                        <td id="checkout_date" class="loading">Đang tải...</td>
-                        <td id="total_people" class="loading">Đang tải...</td>
-                        <td id="price_per_night" class="loading">Đang tải...</td>
-                        <td id="total_amount" class="loading">Đang tải...</td>
+                        <td>{{ $roomDetail->room_type ?? 'Không có dữ liệu' }}</td>
+                        <td>{{ \Carbon\Carbon::parse($check_in)->format('d/m/Y') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($check_out)->format('d/m/Y') }}</td>
+                        <td>{{ ($adults ?? 0) + ($children ?? 0) }}</td>
+                        <td>{{ number_format($roomDetail->price_per_night ?? 0, 0, ',', '.') }} VNĐ</td>
+                        <td>{{ number_format($total_amount ?? 0, 0, ',', '.') }} VNĐ</td>
                     </tr>
                 </table>
             </div>
-
+            <!-- Hiển thị lỗi nếu có -->
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @if (false)
             <script>
                 document.addEventListener("DOMContentLoaded", function () {
                     let roomId = document.querySelector('input[name="room_id"]').value;
@@ -441,13 +450,6 @@
                 }
 
             </script>
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+            
             @endif
 @endsection

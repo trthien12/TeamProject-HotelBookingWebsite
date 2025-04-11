@@ -43,6 +43,11 @@ class PaymentController extends Controller
         // Xóa session nếu muốn
         // session()->forget('customer_info');
 
-        return view('thanhtoan.payment_success');
+       // return view('thanhtoan.xong', compact('customer')); // Trả về view thành công
+    }
+    
+    public function success()
+    {
+        return view('thanhtoan.xong'); // Trang xong.blade.php
     }
 }

@@ -137,7 +137,7 @@
         </p>
 
         <div class="complete-payment">
-            <a href="{{ route('payment.complete') }}" class="btn-complete">Hoàn tất</a>
+        <a href="{{ route('payment.success') }}" class="btn-complete">Hoàn tất</a>
         </div>
     </div>
 

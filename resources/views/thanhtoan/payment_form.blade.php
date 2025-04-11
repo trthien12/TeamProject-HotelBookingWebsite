@@ -246,7 +246,7 @@
                     </div>
                     <div class="icon-item">
                         <i class="bx bxs-bed"></i>
-                        <pre>View: {{ Session::get('customer_info.view') }}</pre>
+                        <pre>Loại giường: {{ Session::get('customer_info.bed_type') }}</pre>
                     </div>
                     <div class="icon-item">
                         <i class='bx bxs-florist'></i>
@@ -262,7 +262,7 @@
     </div>
     <div class="thanhtoan" style="font-size: 20px;">
         <form action="{{ route('payment.process') }}" method="POST">
-            <a href="{{ route('payment.process') }}">
+            
         @csrf 
         <button type="button" class="primary-btn">Thanh toán</button>
         </a>
