@@ -331,11 +331,11 @@
 
     @csrf
     <!-- Hidden fields to pass booking data -->
-    <input type="hidden" name="room_id" value="{{ old('room_id', $room->id ?? '') }}">
-    <input type="hidden" name="check_in" value="{{ old('check_in', $checkin_date ?? '') }}">
-    <input type="hidden" name="check_out" value="{{ old('check_out', $checkout_date ?? '') }}">
-    <input type="hidden" name="adults" value="{{ old('adults', $adults ?? '') }}">
-    <input type="hidden" name="children" value="{{ old('children', $children ?? '') }}">
+    <input type="hidden" name="room_id" value="{{ old('room_id', $roomDetail->id) }}">
+    <input type="hidden" name="check_in" value="{{ old('check_in', $check_in) }}">
+    <input type="hidden" name="check_out" value="{{ old('check_out', $check_out) }}">
+    <input type="hidden" name="adults" value="{{ old('adults', $adults) }}">
+    <input type="hidden" name="children" value="{{ old('children', $children) }}">
 
     
     <div class="main-container">
@@ -343,35 +343,34 @@
             <!-- Form Đặt Phòng -->
             <div class="booking-form">
                 <h2 class="text-center">Đặt Phòng Khách Sạn</h2>
-                
-                    @csrf
+            
                     <div class="mb-3">
                         <label class="form-label">Họ và tên:</label>
-                        <input type="text" name="ho_ten" class="form-control" placeholder="Nhập họ và tên" required>
+                        <input type="text" name="ho_ten" class="form-control" placeholder="Nhập họ và tên" value="{{ old('ho_ten') }}" required>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Email:</label>
-                        <input type="email" name="email" class="form-control" placeholder="Nhập email" required>
+                        <input type="email" name="email" class="form-control" placeholder="Nhập email" value="{{ old('email') }}" required>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Số điện thoại:</label>
-                        <input type="text" name="sdt" class="form-control" placeholder="Nhập số điện thoại">
+                        <input type="text" name="sdt" class="form-control" placeholder="Nhập số điện thoại" value="{{ old('sdt') }}">
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Quốc tịch:</label>
-                        <input type="text" name="nationality" class="form-control" placeholder="Nhập quốc tịch" required>
+                        <input type="text" name="nationality" class="form-control" placeholder="Nhập quốc tịch" value="{{ old('nationality') }}" required>
                     </div>
 
                     <div class="infor-container-button d-flex justify-content-between">
                         <a href="{{ url('/') }}" class="back-btn btn btn-secondary"><span>&#171;</span> Quay lại</a>
-                        <button type="submit" a href="{{ route('payment.form') }}" class="primary-btn btn btn-primary">Thanh toán</button>
+                        <button type="submit" class="primary-btn btn btn-primary">Thanh toán</button>
                     </div>
-                </form>
+                
             </div>
-
+        
             <!-- Hiển thị thông tin đặt phòng -->
             <div class="infor-container-right">
                 <h2>Thông tin đặt phòng</h2>
@@ -394,6 +393,9 @@
                     </tr>
                 </table>
             </div>
+        </div>
+    </div>
+</form>
             <!-- Hiển thị lỗi nếu có -->
             @if ($errors->any())
                 <div class="alert alert-danger">
