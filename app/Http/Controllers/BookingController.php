@@ -6,59 +6,40 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Models\Booking;
+use App\Models\RoomDetail;
+use App\Models\Room; 
+use Carbon\Carbon;
 
 class BookingController extends Controller
 {
-    // Hiển thị form đặt phòng
-    public function showForm()
-    {
-        return view('booking_form');
+    public function showForm(Request $request)
+{
+    $room_id = $request->get('room_id');
+    $check_in = $request->get('check_in');
+    $check_out = $request->get('check_out');
+    $adults = $request->get('adults');
+    $children = $request->get('children');
+
+    // Nếu thiếu dữ liệu thì redirect hoặc báo lỗi
+    if (!$room_id || !$check_in || !$check_out || !$adults || !$children) {
+        return redirect()->route('home')->withErrors(['msg' => 'Thiếu thông tin đặt phòng.']);
     }
 
-    // Xử lý lưu đặt phòng
-    /*public function store(Request $request)
-    {
-        $request->validate([
-            'ho_ten' => 'required|string|max:255',
-            'email' => 'required|email',
-            'sdt' => 'nullable|string|max:15',
-            'nationality' => 'required|string',
-            'room_id' => 'required|integer',
-            'check_in' => 'required|date',
-            'check_out' => 'required|date|after:check_in',
-            'adults' => 'required|integer|min:1',
-            'children' => 'required|integer|min:0'
-        ]);
-        Booking::create($request->all());
+    // Lấy thông tin chi tiết phòng
+    $roomDetail = \App\Models\RoomDetail::find($room_id);
 
-        return redirect()->route('booking.form');
+    $total_amount = null;
+    if ($roomDetail) {
+        $checkInDate = \Carbon\Carbon::parse($check_in);
+        $checkOutDate = \Carbon\Carbon::parse($check_out);
+        $total_amount = $checkInDate->diffInDays($checkOutDate) * $roomDetail->price_per_night;
     }
-    /* Trang xác nhận đặt phòng thành công
-    public function success()
-    {
-        return view('booking_success');
-    }*/
-    public function submitBooking(Request $request)
-    {
-        $request->validate([
-            'room_id' => 'required|exists:rooms,id',
-            'check_in' => 'required|date',
-            'check_out' => 'required|date|after:check_in',
-            'adults' => 'required|integer|min:1',
-            'children' => 'required|integer|min:0',
-        ]);
 
-        // Lưu thông tin đặt phòng vào database
-        $booking = Booking::create([
-            'room_id' => $request->room_id,
-            'check_in' => $request->check_in,
-            'check_out' => $request->check_out,
-            'adults' => $request->adults,
-            'children' => $request->children,
-        ]);
+    return view('booking_form', compact('roomDetail', 'check_in', 'check_out', 'adults', 'children', 'total_amount'));
+}
 
-        return response()->json(['message' => 'Đặt phòng thành công', 'booking_id' => $booking->id]);
-    }
+    
+    
     public function storeBooking(Request $request)
     {
         // Validate input

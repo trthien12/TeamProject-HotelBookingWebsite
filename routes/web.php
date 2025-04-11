@@ -22,24 +22,12 @@ Route::get('/', function () {
     return view('welcome'); // hoặc view trang chủ của bạn
 })->name('home');
 
-
-/*
-=======
->>>>>>> 44fa949a9a25bdeade7b9aab293984aa7d521a25
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/about', [PageController::class, 'about'])->name('about');
-Route::get('/rooms', [PageController::class, 'rooms'])->name('rooms');
-Route::get('/pages', [PageController::class, 'pages'])->name('pages');
-Route::get('/news', [PageController::class, 'news'])->name('news');
-Route::get('/contact', [PageController::class, 'contact'])->name('contact');
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
-
-*/
-
+// Hiển thị form đặt phòng
 Route::get('/dat-phong', [BookingController::class, 'showForm'])->name('booking.form');
-Route::post('/booking/submit', [BookingController::class, 'submitBooking'])->name('booking.submit');
 
 Route::post('/dat-phong', [BookingController::class, 'storeBooking'])->name('booking.store');
+
+// API lấy thông tin phòng theo ID (cho AJAX dùng)
 Route::get('/api/booking-info/{roomId}', [BookingController::class, 'getBookingInfo']);
 
 // Route cho trang thanh toán

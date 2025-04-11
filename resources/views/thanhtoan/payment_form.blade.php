@@ -262,7 +262,7 @@
     </div>
     <div class="thanhtoan" style="font-size: 20px;">
         <form action="{{ route('payment.process') }}" method="POST">
-            <a href="{{ route('payment.process') }}">
+            
         @csrf 
         <button type="button" class="primary-btn">Thanh toán</button>
         </a>
