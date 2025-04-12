@@ -23,7 +23,6 @@
                 <nav class="navlinks">
                     <ul id="menulist">
                         <li><a href="{{ route('home') }}">Home</a></li>
-<<<<<<< HEAD
                         <li><a href="{{ route('home') }}#about">About</a></li>
                         <li><a href="{{ route('home') }}#rooms">Rooms</a></li>
                         <li><a href="#pages">Pages</a></li>
@@ -36,26 +35,6 @@
                                 {{ array_sum(array_column(session('shoppingCart', []), 'quantity')) ?: '' }}
                             </span>
                         </a>
-=======
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#rooms">Rooms</a></li>
-                        <li><a href="#pages">Pages</a></li>
-                        <li><a href="#news">News</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li>
-                        <a href="{{ route('cart.index') }}" aria-label="Giỏ hàng">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                @if(session('shoppingCart') && count(session('shoppingCart')) > 0) <!-- Kiểm tra nếu giỏ hàng có sản phẩm -->
-                                    @php
-                                        $cartCount = 0;
-                                        foreach(session('shoppingCart') as $item) {
-                                            $cartCount += $item['quantity']; // Tính tổng số lượng phòng trong giỏ
-                                        }
-                                    @endphp
-                                    <span class="cart-count">{{ $cartCount }}</span>
-                                @endif
-                            </a>
->>>>>>> ĐiềnthôngtinHậuthanhtoán
                         </li>
                         <li>
                             @auth
@@ -67,15 +46,11 @@
                                 <a href="{{ route('admin.login.form') }}" class="primary-btn">Login</a>
                             @endauth
                         </li>
-<<<<<<< HEAD
                         <span class="fa fa-bars" onclick="menutoggle()"></span>
-=======
->>>>>>> ĐiềnthôngtinHậuthanhtoán
                     </ul>
                 </nav>
             </div>
         </header>
-<<<<<<< HEAD
         <script>
                 var menulist = document.getElementById('menulist');
                 menulist.style.maxHeight = "0px";
@@ -88,18 +63,12 @@
                     }
                 }
         </script>
-=======
->>>>>>> ĐiềnthôngtinHậuthanhtoán
         <!-- Page Content -->
         <main>
              @yield('content')
         </main>
         <!-- Nội dung footer -->
-<<<<<<< HEAD
         <footer id="contact">
-=======
-        <footer>
->>>>>>> ĐiềnthôngtinHậuthanhtoán
             <div class="container grid">
                 <div class="box">
                     <p>Golden Tree Apartment chào đón bạn với không gian sang trọng, dịch vụ chuyên nghiệp và tiện nghi hiện đại. Chúng tôi cam kết mang đến cho bạn một kỳ nghỉ thoải mái và đáng nhớ với đội ngũ nhân viên tận tâm,
@@ -115,19 +84,11 @@
                 <div class="box">
                     <h2>Links</h2>
                     <ul>
-<<<<<<< HEAD
                         <li><a href="#">Company History</a></li>
                         <li><a href="{{ route('home') }}#about">About Us</a></li>
                         <li><a href="{{ route('contact') }}">Contact Us</a></li>
                         <li><a href="#">Services</a></li>
                         <li><a href="{{ route('privacy.policy') }}">Privacy Policy</a></li>
-=======
-                        <li>Company History</li>
-                        <li>About Us</li>
-                        <li>Contact Us</li>
-                        <li>Services</li>
-                        <li>Privacy Policy</li>
->>>>>>> ĐiềnthôngtinHậuthanhtoán
                     </ul>
                 </div>            
                 <div class="box">
@@ -140,7 +101,6 @@
                     <i class="fa fa-phone"></i>
                     <label>01234585997</label> <br>
                     <i class="fa fa-envelope"></i>
-<<<<<<< HEAD
                     <label>golden@gmail.com</label> 
                 </div>
                 <div class="box map-box">
@@ -153,18 +113,11 @@
         <a href="tel:01234585997" class="hotline-button">
             <i class="fa fa-phone"></i> 0123 458 5997
         </a>
-=======
-                    <label>golden@gmail.com</label> <br>
-                </div>
-            </div>
-        </footer>
->>>>>>> ĐiềnthôngtinHậuthanhtoán
         <div class="legal">
             <p class="container">Copyright (c) {{ date('Y') }} Copyright Holder All Rights Reserved.</p>
         </div> 
          <!-- Scripts -->       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>   
-<<<<<<< HEAD
         
         <script>
             $(document).ready(function(){
@@ -198,19 +151,3 @@
         @stack('scripts') <!-- Cho phép các view con thêm JS -->
     </body>
 </html>
-=======
-        @stack('scripts') <!-- Cho phép các view con thêm JS -->
-    </body>
-</html>
-<script>
-    var menulist =document.getElementById('menulist');
-    menulist.style.maxHeight ="0px";
-    function menutoggle(){
-        if(menulist.style.maxHeight == "0px"){
-            menulist.style.maxHeight ="100vh";
-        }else{
-            menulist.style.maxHeight ="0px";
-        }
-    }
-</script>
->>>>>>> ĐiềnthôngtinHậuthanhtoán

@@ -22,8 +22,4 @@ class RoomDetail extends Model
     {
         return $this->hasMany(RoomBookingDetail::class, 'room_id');
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> ĐiềnthôngtinHậuthanhtoán

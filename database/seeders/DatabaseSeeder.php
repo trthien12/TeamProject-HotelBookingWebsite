@@ -31,11 +31,7 @@ class DatabaseSeeder extends Seeder
             ],
             
             [
-<<<<<<< HEAD
                 'S_img' => 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/354661255.jpg?k=c3e75d3bc28b232bc41f4295e28f39d214794b2621babeae2e465c11bcea71af&o=&hp=1',
-=======
-                'S_img' => 'https://images.trvl-media.com/lodging/1000000/10000/9100/9100/e6ebefae.jpg?impolicy=resizecrop&amp;rw=1200&amp;ra=fit',
->>>>>>> ĐiềnthôngtinHậuthanhtoán
                 'caption1' => 'Unwind with Us',
                 'caption2' => 'Explore new experience with Golden Tree Hotel',
             ],
@@ -45,8 +41,6 @@ class DatabaseSeeder extends Seeder
                 'caption2' => 'Explore new experience with Golden Tree Hotel',
             ],
         ]);
-<<<<<<< HEAD
-=======
 
         //admin
         Admin::create([
@@ -54,6 +48,5 @@ class DatabaseSeeder extends Seeder
             'email' => 'ng.thanhnguyen162@gmail.com',
             'password' => bcrypt('20012004'), // Mật khẩu đã mã hóa
         ]);
->>>>>>> ĐiềnthôngtinHậuthanhtoán
     }
 }

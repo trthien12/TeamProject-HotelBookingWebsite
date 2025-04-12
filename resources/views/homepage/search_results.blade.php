@@ -1,11 +1,8 @@
 @extends('layouts.main')
 @section('title', 'Kết quả tìm kiếm')
 @section('content')
-<<<<<<< HEAD
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-=======
->>>>>>> ĐiềnthôngtinHậuthanhtoán
     <div class="container">
         <h2>Kết quả tìm kiếm</h2>
         @if($rooms->isEmpty())
@@ -35,7 +32,6 @@
                                     <input type="hidden" name="children" value="{{ $children }}">
                                     <button type="submit" class="book-now">Đặt ngay</button>
                                 </form>
-<<<<<<< HEAD
                                 <form method="POST" action="{{ route('cart.add') }}"class="add-to-cart-form">
                                     @csrf
                                     <input type="hidden" name="room_id" value="{{ $room->id }}">
@@ -50,13 +46,6 @@
                                             {{ $errors->first('quantity') }}
                                         </div>
                                     @endif
-=======
-                                <form method="POST" action="{{ route('cart.add') }}">
-                                    @csrf
-                                    <input type="hidden" name="room_id" value="{{ $room->id }}">
-                                    <input type="hidden" name="check_in" value="{{ date('Y-m-d') }}">
-                                    <input type="hidden" name="check_out" value="{{ date('Y-m-d', strtotime('+1 day')) }}">
->>>>>>> ĐiềnthôngtinHậuthanhtoán
                                     <button type="submit" class="add-cart">Thêm vào giỏ hàng</button>
                                 </form>
                              </div>
@@ -128,10 +117,6 @@
         font-size: 14px;
         cursor: pointer;
         margin-top: 10px;
-<<<<<<< HEAD
-=======
-        margin-left: 200px;
->>>>>>> ĐiềnthôngtinHậuthanhtoán
         }
 
     .book-now {
@@ -154,7 +139,6 @@
 
         font-weight: 400;
         }
-<<<<<<< HEAD
     .add-to-cart-form {
         margin-top: 10px;
         display: flex;
@@ -178,6 +162,4 @@
     .add-to-cart-form .add-cart {
         flex-shrink: 0; /* tránh nút bị co nhỏ nếu không đủ chỗ */
     }
-=======
->>>>>>> ĐiềnthôngtinHậuthanhtoán
 </style>

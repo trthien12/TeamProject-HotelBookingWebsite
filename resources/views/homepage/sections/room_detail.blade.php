@@ -64,10 +64,6 @@
         font-size: 14px;
         cursor: pointer;
         margin-top: 10px;
-<<<<<<< HEAD
-=======
-        margin-left: 200px;
->>>>>>> ĐiềnthôngtinHậuthanhtoán
         }
 
     .room .book-now {
@@ -90,7 +86,6 @@
 
         font-weight: 400;
         }
-<<<<<<< HEAD
     .room .action-buttons {
         display: flex;
         flex-direction: column;
@@ -126,10 +121,6 @@
 
 </style>
 <section class="room"id="rooms">
-=======
-</style>
-<section class="room">
->>>>>>> ĐiềnthôngtinHậuthanhtoán
     <div class="container top">
         <div class="heading">
             <h1 style="font-family: serif; font-size: 45px;">Our Rooms</h1><br>
@@ -146,18 +137,13 @@
                     <h3>{{ $room->room_type }}</h3>
                     <p><i class="fas fa-bed"></i> Giường: {{ $room->bed_type }}</p>
                     <p><i class="fas fa-expand"></i> Diện tích: {{ $room->area }} m²</p>
-<<<<<<< HEAD
                     <p><i class="fas fa-binoculars"></i> Hướng phòng: {{ $room->view }}</p>
-=======
-                    <p><i class="fas fa-binoculars"></i> Hướng phòngphòng: {{ $room->view }}</p>
->>>>>>> ĐiềnthôngtinHậuthanhtoán
                     <p><i class="fas fa-wallet"></i> Giá: {{ number_format($room->price_per_night, 0, ',', '.') }}₫</p>
                     <p class="discount"><i class="fas fa-tag"></i> Giảm {{ $room->discount_percent }}%</p>
                     <p><i class="fas fa-door-open"></i> Còn trống: {{ $room->remaining_rooms }}</p>
                     <p><i class="fas fa-users-friends"></i> Sức chứa: {{ $room->capacities->first()->max_capacity ?? 'Không xác định' }} người </p>
                     
                     <div class="action-buttons">
-<<<<<<< HEAD
                         <form action="{{ route('booking.form') }}" method="GET" class="p-4 bg-light rounded shadow">
                             @csrf
                             <input type="hidden" name="room_id" value="{{ $room->id }}">
@@ -169,20 +155,10 @@
                         </form>
 
                         <form  method="POST" action="{{ route('cart.add') }}" class="add-to-cart-form">
-=======
-                        <form action="" method="GET" class="p-4 bg-light rounded shadow">
-                            @csrf
-                            <input type="hidden" name="room_id" value="{{ $room->id }}">
-                            <button type="submit" class="book-now">Đặt ngay</button>
-                        </form>
-
-                        <form method="GET" action="">
->>>>>>> ĐiềnthôngtinHậuthanhtoán
                             @csrf
                             <input type="hidden" name="room_id" value="{{ $room->id }}">
                             <input type="hidden" name="check_in" value="{{ date('Y-m-d') }}">
                             <input type="hidden" name="check_out" value="{{ date('Y-m-d', strtotime('+1 day')) }}">
-<<<<<<< HEAD
                             <input type="hidden" name="adults" value="1">
                             <input type="hidden" name="children" value="0">
                             <label for="quantity">Số lượng:</label>
@@ -192,8 +168,6 @@
                                     {{ $errors->first('quantity') }}
                                 </div>
                             @endif
-=======
->>>>>>> ĐiềnthôngtinHậuthanhtoán
                             <button type="submit" class="add-cart">Thêm vào giỏ hàng</button>
                         </form>
                     </div>

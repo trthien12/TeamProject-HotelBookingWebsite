@@ -40,16 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-<<<<<<< HEAD
             // Thêm guard cho admin
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
-=======
-        'admin' => [   // Thêm guard admin
-        'driver' => 'session',
-        'provider' => 'admins',
->>>>>>> ĐiềnthôngtinHậuthanhtoán
     ],
     ],
 

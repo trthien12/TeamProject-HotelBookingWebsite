@@ -6,19 +6,12 @@ use App\Models\RoomDetail;
 use Illuminate\Support\Facades;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
-<<<<<<< HEAD
-=======
 use Illuminate\Support\Facades\DB;
->>>>>>> ĐiềnthôngtinHậuthanhtoán
 class HomeController extends Controller
 {
     public function index()
     {
-<<<<<<< HEAD
         $slideshows = Slideshow::take(4)->get();
-=======
-        $slideshows = Slideshow::all();
->>>>>>> ĐiềnthôngtinHậuthanhtoán
         $roomDetails = RoomDetail::with('capacities')->get();
 
         return view('homepage.trangchu', compact('slideshows', 'roomDetails'));
@@ -33,7 +26,6 @@ class HomeController extends Controller
             'adults' => 'required|integer|min:1',
             'children' => 'required|integer|min:0'
         ]);
-<<<<<<< HEAD
 
           // Lưu thông tin tìm kiếm vào session 
         session([
@@ -44,8 +36,6 @@ class HomeController extends Controller
                 'children' => $validated['children']
             ]
         ]);
-=======
->>>>>>> ĐiềnthôngtinHậuthanhtoán
         // Truy vấn tìm phòng trống
         $rooms = RoomDetail::with('capacities')
             ->whereHas('capacities', function($query) use ($validated) {
