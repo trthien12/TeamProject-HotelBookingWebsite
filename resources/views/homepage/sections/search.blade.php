@@ -2,12 +2,13 @@
     section.book {
         position: relative;
         z-index: 10;
-        margin-top: -6.5px; /* hoặc 120px, tuỳ chỉnh theo chiều cao ảnh slide */
+        margin-top: -6.5px; /* chỉnh tuỳ chỉnh theo chiều cao ảnh slide */
     }
     /* Đảm bảo phần slider không bị ảnh hưởng */
     .home {
         position: relative;
         z-index: 1;
+        height: 600px;
     }
     .owl-carousel .item img {
         height: 600px; /* Chiều cao tối đa slide, có thể thay đổi nếu cần */

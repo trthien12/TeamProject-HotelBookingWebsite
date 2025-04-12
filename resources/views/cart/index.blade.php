@@ -1,5 +1,10 @@
 <div class="container">
     <h2>GIỎ HÀNG CỦA BẠN</h2>
+     @if ($errors->has('quantity'))
+        <div class="alert alert-danger">
+            {{ $errors->first('quantity') }}
+        </div>
+    @endif
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -21,6 +26,7 @@
                     <p><strong>Giá Mỗi Đêm:</strong> {{ number_format($cartItem['price_per_night'], 0, ',', '.') }} VNĐ</p>
                     <p><strong>Ngày Nhận Phòng:</strong> {{ $cartItem['check_in'] }}</p>
                     <p><strong>Ngày Trả Phòng:</strong> {{ $cartItem['check_out'] }}</p>
+                    <p><strong>Số lượng phòng:</strong> {{ $cartItem['quantity'] }}</p>
                 </div>
 
                 <div class="action-buttons">
@@ -42,7 +48,7 @@
             <hr>
         @endforeach
     @endif
-    <div style="text-align: center; margin-top: 20px;">
+    <div class="button-group">
         <!-- Nút quay lại kết quả tìm kiếm -->
         @if(session('search_data'))
             <form action="{{ route('home.search') }}" method="GET">
@@ -127,13 +133,13 @@
     }
     /* Nút quay lại */
     .btn-back {
-        margin-right: auto;
         padding: 10px 20px;
         background: #8B5A2B; /* Màu nền nâu */
         color: white;
         text-decoration: none;
         border-radius: 5px;
         transition: background 0.3s;
+        flex-direction:row;
     }
     .btn-back:hover {
         background: #6F4C3E; /* Màu nền khi hover */
@@ -165,5 +171,23 @@
     /* Thêm một số khoảng cách giữa các nút nếu cần */
     .action-buttons .btn {
         margin-top: 10px;  /* Tạo khoảng cách giữa các nút */
+    }
+    .button-group {
+        display: flex;
+        justify-content: center;     /* Căn giữa cả hàng nút */
+        align-items: center;         /* Căn giữa theo chiều dọc nếu cần */
+        gap: 20px;                   /* Khoảng cách giữa hai nút */
+        margin-top: 20px;
+    }
+
+    .button-group form,
+    .button-group a {
+        display: inline-block;
+    }
+    .button-group form {
+        margin: 0; /* bỏ margin mặc định */
+    }
+    .button-group .btn-back {
+    display: block;
     }
 </style>

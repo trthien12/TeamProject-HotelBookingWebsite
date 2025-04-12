@@ -64,7 +64,6 @@
         font-size: 14px;
         cursor: pointer;
         margin-top: 10px;
-        margin-left: 200px;
         }
 
     .room .book-now {
@@ -87,6 +86,39 @@
 
         font-weight: 400;
         }
+    .room .action-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end; /* giữ các nút và form nằm sát phải */
+        gap: 8px; /* khoảng cách nhỏ giữa các phần tử */
+    }
+    .room .add-to-cart-form {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap; /* để không bị vỡ layout trên màn hình nhỏ */
+    }
+
+    .room .add-to-cart-form label {
+        font-size: 0.7em;
+        color: #333;
+        margin-bottom: 0;
+    }
+
+    .room .add-to-cart-form input[type="number"] {
+        padding: 6px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 60px;
+        text-align: center;
+        font-size: 0.7em;
+    }
+
+    .room .add-to-cart-form .add-cart {
+        flex-shrink: 0; /* tránh nút bị co nhỏ nếu không đủ chỗ */
+    }
+
 </style>
 <section class="room"id="rooms">
     <div class="container top">
@@ -129,6 +161,13 @@
                             <input type="hidden" name="check_out" value="{{ date('Y-m-d', strtotime('+1 day')) }}">
                             <input type="hidden" name="adults" value="1">
                             <input type="hidden" name="children" value="0">
+                            <label for="quantity">Số lượng:</label>
+                            <input type="number" name="quantity" value="1" min="1" style="width: 50px;">
+                            @if ($errors->has('quantity'))
+                                <div class="alert alert-danger mt-2">
+                                    {{ $errors->first('quantity') }}
+                                </div>
+                            @endif
                             <button type="submit" class="add-cart">Thêm vào giỏ hàng</button>
                         </form>
                     </div>
