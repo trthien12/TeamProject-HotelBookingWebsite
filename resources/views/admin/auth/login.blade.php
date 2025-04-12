@@ -18,6 +18,22 @@
         background-size: cover;
         background-position: center;
     }
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Độ tối: 0.3 - 0.5 tuỳ ý */
+        z-index: 1;
+    }
+
+    /* Đảm bảo form nằm TRÊN lớp overlay */
+    .wrapper {
+        position: relative;
+        z-index: 2;
+    }
+
     header {
         position: fixed;
         top: 0;
@@ -64,32 +80,32 @@
         position: relative;
         width: 400px;
         height: 440px;
-        background: transparent;
-        border: 2px solid rgba(255, 255, 255, .5);
+        /*background: transparent;*/
+        background: rgba(255, 255, 255, 0.85); /* Nền trắng mờ */
+        border: 2px solid rgba(255, 255, 255, .3);
         border-radius: 20px;
-        backdrop-filter: blur(20px);
-        box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+        /*backdrop-filter: blur(25px);*/
+        box-shadow: 0 0 30px rgba(0, 0, 0, .2);
         display: flex;
         justify-content: center;
         align-items: center;
         overflow: hidden;
-        transform: scale(0);
+        transform: scale(1);
         transition: transform .5s ease;
     }
 
-    .wrapper.active-popup{
+    /*.wrapper.active-popup{
         transform: scale(1);
     }
-
     .wrapper.active {
         height: 420px;
-    }
+    }*/
 
     .wrapper.form-box {
         width: 100%;
         padding: 40px;
     }
-    .wrapper .iconclose {
+    /*.wrapper .iconclose {
         position: absolute;
         top: 0;
         right: 0;
@@ -102,11 +118,12 @@
         justify-content: center;
         align-items: center;
         border-bottom-left-radius: 20px;
-    }
-    .form-box h2 {
-        font-size: 1em;
+    }*/
+    .form-box h1 {
+        font-size: 1.8em;
         color: #030c13;
         text-align: center;
+        margin-bottom: 20px;
     }
     .input-box {
         position: relative;
@@ -177,6 +194,7 @@
         font-size: 1em;
         color: #fff;
         font-weight: 500;
+        margin-top:10px;
     }
     .btn:hover {
         background-color: #B88A44; /* cùng màu gốc */
@@ -184,36 +202,53 @@
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.2); /* hiệu ứng nhẹ */
         transform: scale(1.01);    /* phóng nhẹ */
         transition: all 0.2s ease-in-out;
-}
+    }
+    .home-link {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0,0,0,0.3);
+        padding: 8px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background 0.3s;
+    }
+    .home-link:hover {
+        background-color: rgba(0,0,0,0.5);
+    }
 </style>
 <body>
-    <div  class="wrapper active-popup">
-        <button class="iconclose">X</button>
-        <div class="form-box">
-            <h1>Login</h1>
-            <form action="{{ route('admin.login') }}" method="POST">
-                @csrf
-                <div class="input-box">
-                    <span class="icon"><i class="fas fa-envelope"></i></span>
-                    <input type="email" name="email" required autofocus>
-                    <label>Email</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><i class="fas fa-lock"></i></span>
-                    <input type="password" name="password" required>
-                    <label>Password</label>
-                </div>
-                <button type="submit" class="btn">LOGIN</button>
+    <div class="overlay"></div>
+        <div  class="wrapper">
+            <!--<button class="iconclose">X</button>-->
+            <div class="form-box">
+                <h1>Login</h1>
+                <form action="{{ route('admin.login') }}" method="POST">
+                    @csrf
+                    <div class="input-box">
+                        <span class="icon"><i class="fas fa-envelope"></i></span>
+                        <input type="email" name="email" required autofocus>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><i class="fas fa-lock"></i></span>
+                        <input type="password" name="password" required>
+                        <label>Password</label>
+                    </div>
+                    <button type="submit" class="btn">LOGIN</button>
 
-                <div class="remember-forgot">
-                <label><input type="checkbox" name="remember"> Remember me</label>
-                @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}">Forgot Password?</a>
-                @endif
-                </div>
-            </form>
-        </div>
-    <div>
+                    <div class="remember-forgot">
+                    <label><input type="checkbox" name="remember"> Remember me</label>
+                    @if (Route::has('password.request'))
+                        <a href="{{ route('password.request') }}">Forgot Password?</a>
+                    @endif
+                    </div>
+                </form>
+                <a href="{{ url('/') }}" class="home-link">← Quay về Trang chủ</a>
+            </div>
+        <div>
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" 
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" 

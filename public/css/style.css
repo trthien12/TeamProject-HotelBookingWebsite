@@ -302,6 +302,11 @@
         background-color: #fff; /* If hidden behind other elements, a background helps */
         padding: 5px;
     }
+    @media (max-height: 768px) {
+        section.book {
+            margin-top: 0; /* hoặc tăng margin-top nếu cần để tránh đè lên slide */
+        }
+    }
     /*--------about---------*/
     .left,.right {
         width: 100%;

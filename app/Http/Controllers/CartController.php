@@ -22,17 +22,28 @@ class CartController extends Controller
             'check_in' => 'required|date',
             'check_out' => 'required|date|after:check_in',
             'adults' => 'required|integer|min:1',
-            'children' => 'required|integer|min:0'
+            'children' => 'required|integer|min:0',
+            'quantity' => 'required|integer|min:1'
         ]);
 
         $room = RoomDetail::find($validated['room_id']);
         $cart = Session::get('shoppingCart', []);
+        //$quantity = $validated['quantity']; //số phòng
 
         // Tạo key riêng biệt dựa trên room_id và ngày nhận/trả phòng
         $key = $validated['room_id'] . '_' . $validated['check_in'] . '_' . $validated['check_out'];
-        
+        $newQuantity = $validated['quantity'];//kiểm tra số phòng
+
+         // Tổng số lượng hiện tại trong cart của cùng phòng và thời gian đó
+        $currentQuantityInCart = isset($cart[$key]) ? $cart[$key]['quantity'] : 0;
+
+        // Kiểm tra nếu vượt quá số lượng phòng còn trống
+        if ($currentQuantityInCart + $newQuantity > $room->remaining_rooms) {
+            return redirect()->back()->with('error', 'Số lượng phòng bạn chọn vượt quá số phòng còn trống!');
+        }
+
         if (isset($cart[$key])) {
-            $cart[$key]['quantity'] += 1;
+            $cart[$key]['quantity'] +=  $newQuantity;//cập nhật số lượng muốn thêm vào giỏ 
         } else {
             $cart[$key] = [
                 'room_id' => $room->id,
@@ -44,7 +55,8 @@ class CartController extends Controller
                 'image_url' => $room->image_url,
                 'check_in' => $validated['check_in'],
                 'check_out' => $validated['check_out'],
-                'quantity' => 1,
+                /*'quantity' => 1,*/
+                'quantity' =>  $newQuantity,
             ];
         }
 

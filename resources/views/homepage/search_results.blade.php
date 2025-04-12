@@ -23,7 +23,7 @@
                             <p><i class="fas fa-users"></i> Sức chứa: {{ $room->capacities->first()->max_capacity ?? 'Không xác định' }} người</p>
 
                             <div class="action-buttons">
-                                <form action="{{ route('booking.form') }}" method="GET" class="p-4 bg-light rounded shadow">
+                                <<form action="{{ route('booking.form') }}" method="GET" class="p-4 bg-light rounded shadow">
                                 @csrf
                                     <input type="hidden" name="room_id" value="{{ $room->id }}">
                                     <input type="hidden" name="check_in" value="{{ $check_in }}">
@@ -39,6 +39,13 @@
                                     <input type="hidden" name="check_out" value="{{ $check_out }}">
                                     <input type="hidden" name="adults" value="{{ $adults }}">
                                     <input type="hidden" name="children" value="{{ $children }}">
+                                    <label for="quantity">Số lượng:</label>
+                                    <input type="number" name="quantity" value="1" min="1" style="width: 50px;">
+                                    @if ($errors->has('quantity'))
+                                        <div class="alert alert-danger mt-2">
+                                            {{ $errors->first('quantity') }}
+                                        </div>
+                                    @endif
                                     <button type="submit" class="add-cart">Thêm vào giỏ hàng</button>
                                 </form>
                              </div>
@@ -110,7 +117,6 @@
         font-size: 14px;
         cursor: pointer;
         margin-top: 10px;
-        margin-left: 200px;
         }
 
     .book-now {
@@ -133,4 +139,27 @@
 
         font-weight: 400;
         }
+    .add-to-cart-form {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap; /* để không bị vỡ layout trên màn hình nhỏ */
+    }
+    .add-to-cart-form label {
+        font-size: 0.7em;
+        color: #333;
+        margin-bottom: 0;
+    }
+    .add-to-cart-form input[type="number"] {
+        padding: 6px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 60px;
+        text-align: center;
+        font-size: 0.7em;
+    }
+    .add-to-cart-form .add-cart {
+        flex-shrink: 0; /* tránh nút bị co nhỏ nếu không đủ chỗ */
+    }
 </style>
