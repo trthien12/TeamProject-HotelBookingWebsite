@@ -1,50 +1,68 @@
 <?php
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BookingController;
-use App\Http\Controllers\PaymentController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CartController;
+//use App\Http\Controllers\BookingController;
+use App\Http\Controllers\LoginController;
+use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('welcome'); // hoặc view trang chủ của bạn
-})->name('home');
 
-/*
+// Trang chủ
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/about', [PageController::class, 'about'])->name('about');
-Route::get('/rooms', [PageController::class, 'rooms'])->name('rooms');
-Route::get('/pages', [PageController::class, 'pages'])->name('pages');
-Route::get('/news', [PageController::class, 'news'])->name('news');
-Route::get('/contact', [PageController::class, 'contact'])->name('contact');
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
-*/
+//Contact ở menu
+Route::get('/contact', [ContactController::class, 'show'])->name('contact');
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
+//Privacy_policy ở footerfooter
+Route::get('/chinh-sach-quyen-rieng-tu', function () {
+    return view('homepage.privacy_policy'); })->name('privacy.policy');
 
-Route::get('/dat-phong', [BookingController::class, 'showForm'])->name('booking.form');
+//Login +Dashboard +Logout
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Route hiển thị form login cho admin
+    Route::get('login', [LoginController::class, 'showLoginForm'])->name('login.form');
+    // Xử lý login cho admin
+    Route::post('login', [LoginController::class, 'login'])->name('login');
+    // Dashboard cho admin (chỉ truy cập nếu đã đăng nhập)
+    Route::middleware('auth:admin')->get('dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
+    // Route logout cho admin
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::post('/booking-submit', [BookingController::class, 'submit'])->name('booking.submit');
+    //Route tạm thời cho các chức năng quản lý, khi nào merge chỉnh lại cho khớp
+    Route::middleware('auth:admin')->group(function () {
+        Route::get('rooms', function () {
+            return "Chức năng Thông tin phòng đang được phát triển...";
+        })->name('rooms');
 
+        Route::get('customers', function () {
+            return "Chức năng Danh sách khách hàng đang được phát triển...";
+        })->name('customers');
 
-Route::post('/booking/submit', [BookingController::class, 'submitBooking'])->name('booking.submit');
-Route::post('/dat-phong', [BookingController::class, 'storeBooking'])->name('booking.store');
-Route::get('/api/booking-info/{roomId}', [BookingController::class, 'getBookingInfo']);
+        Route::get('bookings', function () {
+            return "Chức năng Danh sách đặt phòng đang được phát triển...";
+        })->name('bookings');
+    });
 
-// Route cho trang thanh toán
-Route::get('/payment_form', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
+});
+// Tìm kiếm phòng trống
+Route::match(['get', 'post'], '/home/search', [HomeController::class, 'search'])->name('home.search');
+//Giỏ hàng
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::delete('/cart/remove/{key}', [CartController::class, 'remove'])->name('cart.remove');
+// Route tạm cho Điền thông tin Đặt phòng (Booking), nào merge thì chỉnh lại
+Route::get('/dat-phong', function () {
+    return "Chức năng Điền thông tin đặt phòng đang được phát triển...";
+})->name('booking.form');
 
-// Route xác nhận thanh toán
-Route::get('/payment', [PaymentController::class, 'processPayment'])->name('payment.process');
+//Route::post('/dat-phong', [BookingController::class, 'store'])->name('booking.store');
+//Route::post('/booking-submit', [BookingController::class, 'submit'])->name('booking.submit');
+//Route::post('/booking/submit', [BookingController::class, 'submitBooking'])->name('booking.submit');
+//Route::get('/api/booking-info/{roomId}', [BookingController::class, 'getBookingInfo']);
+//Route::get('/dat-phong-thanh-cong', [BookingController::class, 'success'])->name('booking.success');
 
-// Route cho trang thanh toán
-Route::get('/payment/success', [PaymentController::class, 'completePayment'])->name('payment.complete');
-
+// Đảm bảo đăng ký các route cho auth
+require __DIR__.'/auth.php';
 
 
