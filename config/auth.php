@@ -40,9 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'admin' => [   // Thêm guard admin
-        'driver' => 'session',
-        'provider' => 'admins',
+            // Thêm guard cho admin
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
     ],
     ],
 

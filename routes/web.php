@@ -1,31 +1,27 @@
 <?php
-use Faker\Provider\ar_EG\Payment;
-use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\LoginController;
+use Illuminate\Support\Facades\Auth;
+use Faker\Provider\ar_EG\Payment;
+use Illuminate\Http\Request;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-// Hiển thị form đặt phòng
-use App\Http\Controllers\LoginController;
-use Illuminate\Support\Facades\Auth;
-
 // Trang chủ
 Route::get('/', [HomeController::class, 'index'])->name('home');
+//Contact ở menu
+Route::get('/contact', [ContactController::class, 'show'])->name('contact');
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
+//Privacy_policy ở footerfooter
+Route::get('/chinh-sach-quyen-rieng-tu', function () {
+    return view('homepage.privacy_policy'); })->name('privacy.policy');
+
 //Login +Dashboard +Logout
 Route::prefix('admin')->name('admin.')->group(function () {
     // Route hiển thị form login cho admin
@@ -36,16 +32,30 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('auth:admin')->get('dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
     // Route logout cho admin
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+    //Route tạm thời cho các chức năng quản lý, khi nào merge chỉnh lại cho khớp
+    Route::middleware('auth:admin')->group(function () {
+        Route::get('rooms', function () {
+            return "Chức năng Thông tin phòng đang được phát triển...";
+        })->name('rooms');
+
+        Route::get('customers', function () {
+            return "Chức năng Danh sách khách hàng đang được phát triển...";
+        })->name('customers');
+
+        Route::get('bookings', function () {
+            return "Chức năng Danh sách đặt phòng đang được phát triển...";
+        })->name('bookings');
+    });
+
 });
+
 // Tìm kiếm phòng trống
 Route::match(['get', 'post'], '/home/search', [HomeController::class, 'search'])->name('home.search');
-
-// Giỏ hàng (Cart)
-Route::prefix('cart')->group(function () {
-    Route::get('/', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/add', [CartController::class, 'add'])->name('cart.add');
-    Route::post('/remove/{roomId}', [CartController::class, 'remove'])->name('cart.remove');
-});
+//Giỏ hàng
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::delete('/cart/remove/{key}', [CartController::class, 'remove'])->name('cart.remove');
 
 // Đặt phòng (Booking)
 Route::get('/dat-phong', [BookingController::class, 'showForm'])->name('booking.form');
@@ -68,3 +78,10 @@ Route::get('payment/xong', [PaymentController::class, 'success'])->name('payment
 
 // Đảm bảo đăng ký các route cho auth
 require __DIR__.'/auth.php';
+
+
+
+
+
+
+

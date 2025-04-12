@@ -14,6 +14,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // Kiểm tra xem admin đã tồn tại chưa, chỉ tạo admin nếu nó chưa tồn tại trong bảng admins
+        if (Admin::where('email', 'ng.thanhnguyen162@gmail.com')->doesntExist()) {
+            Admin::create([
+                'name' => 'Admin',
+                'email' => 'ng.thanhnguyen162@gmail.com',
+                'password' => bcrypt('20012004'), // Mật khẩu hiện trong db là đã mã hóa
+            ]);
+        }
         // \App\Models\User::factory(10)->create();
         Slideshow::insert([
             [
@@ -23,7 +31,7 @@ class DatabaseSeeder extends Seeder
             ],
             
             [
-                'S_img' => 'https://images.trvl-media.com/lodging/1000000/10000/9100/9100/e6ebefae.jpg?impolicy=resizecrop&amp;rw=1200&amp;ra=fit',
+                'S_img' => 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/354661255.jpg?k=c3e75d3bc28b232bc41f4295e28f39d214794b2621babeae2e465c11bcea71af&o=&hp=1',
                 'caption1' => 'Unwind with Us',
                 'caption2' => 'Explore new experience with Golden Tree Hotel',
             ],

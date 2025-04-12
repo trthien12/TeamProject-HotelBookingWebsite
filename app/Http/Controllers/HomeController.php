@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $slideshows = Slideshow::all();
+        $slideshows = Slideshow::take(4)->get();
         $roomDetails = RoomDetail::with('capacities')->get();
 
         return view('homepage.trangchu', compact('slideshows', 'roomDetails'));
@@ -25,6 +25,16 @@ class HomeController extends Controller
             'check_out' => 'required|date|after:check_in',
             'adults' => 'required|integer|min:1',
             'children' => 'required|integer|min:0'
+        ]);
+
+          // Lưu thông tin tìm kiếm vào session 
+        session([
+            'search_data' => [
+                'check_in' => $validated['check_in'],
+                'check_out' => $validated['check_out'],
+                'adults' => $validated['adults'],
+                'children' => $validated['children']
+            ]
         ]);
         // Truy vấn tìm phòng trống
         $rooms = RoomDetail::with('capacities')
