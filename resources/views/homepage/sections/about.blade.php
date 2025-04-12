@@ -1,5 +1,9 @@
 <!--About-->
+<<<<<<< HEAD
 <section class="about top"id="about">
+=======
+<section class="about top">
+>>>>>>> ĐiềnthôngtinHậuthanhtoán
     <div class="container flex">
         <div class="left">
             <div class="heading">
@@ -11,10 +15,14 @@
             <button class="primary-btn">ABOUT US</button>
         </div>
         <div class="right">
+<<<<<<< HEAD
             <div class="image-wrapper">
                 <img src="{{ asset('img/about1.jpg') }}" alt="Ảnh 1" class="img1">
                 <img src="{{ asset('img/blog-1.jpg') }}" alt="Ảnh 2" class="img2">
             </div>
+=======
+            <img src="{{ asset('img/about1.jpg') }}" alt="">
+>>>>>>> ĐiềnthôngtinHậuthanhtoán
         </div>
     </div>
 </section>

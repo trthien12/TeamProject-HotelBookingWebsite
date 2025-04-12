@@ -8,9 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     use HasFactory;
+<<<<<<< HEAD
     protected $table = 'cart'; // Tên bảng
     public $timestamps = false; // Tắt timestamps
 
+=======
+    protected $table = 'cart';
+>>>>>>> ĐiềnthôngtinHậuthanhtoán
     protected $fillable = [
         'session_id', 'room_id', 'check_in', 'check_out', 'adults', 'children', 'quantity'
     ];

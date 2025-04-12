@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <style>
     section.book {
         position: relative;
@@ -25,6 +26,8 @@
         text-align: left;
     }
 </style>
+=======
+>>>>>>> ĐiềnthôngtinHậuthanhtoán
 <section class="book">
     <div class="container flex_space">
         <div class="text">
@@ -35,18 +38,30 @@
                     @csrf
                     <table class="table-book">
                         <tr>
+<<<<<<< HEAD
                             <th><i class="fa-solid fa-calendar-days"></i>Ngày nhận phòng</th>
                             <th><i class="fa-solid fa-calendar-check"></i>Ngày trả phòng</th>
                             <th><i class="fa-solid fa-user"></i> Người lớn</th>
                             <th><i class="fa-solid fa-child"></i>Trẻ em</th>
                             <th></th>
+=======
+                            <td>Ngày nhận phòng</td>
+                            <td>Ngày trả phòng</td>
+                            <td>Người lớn</td>
+                            <td>Trẻ em</td>
+                            <td></td>
+>>>>>>> ĐiềnthôngtinHậuthanhtoán
                         </tr>
                         <tr>
                             <td><input type="date" name="check_in" id="checkin" required></td>
                             <td><input type="date" name="check_out" id="checkout" required></td>
                             <td><input type="number" name="adults" min="1" placeholder="Người lớn" max="10" value="1" required></td>
                             <td><input type="number" name="children" min="0" placeholder="Trẻ em"  max="10" value="0"  required></td>
+<<<<<<< HEAD
                             <td><button type="submit" class="primary-btn" style="font-size:18px;">Tìm kiếm</button></td>
+=======
+                            <td><button type="submit" class="primary-btn">Tìm kiếm</button></td>
+>>>>>>> ĐiềnthôngtinHậuthanhtoán
                         </tr>
                     </table>
                 </form>
