@@ -1,10 +1,43 @@
 /* Tổng thể */
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Dancing+Script:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+<<<<<<< HEAD
+=======
 
+>>>>>>> FINAL
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+<<<<<<< HEAD
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+h1,
+h2 {
+    font-family: 'Roboto', sans-serif;
+
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    border: none;
+    background: none;
+    outline: none;
+    transition: 0.5s;
+    cursor: pointer;
+
+}
+=======
   }
   body {
       font-family: "Roboto", sans-serif;
@@ -37,11 +70,16 @@ button {
 
 }
 
+>>>>>>> FINAL
 .btn {
   background-color: #c4c6b9;
   color: black;
   padding: 8px 16px;
+<<<<<<< HEAD
+  border-radius: 5px;
+=======
   
+>>>>>>> FINAL
   font-size: 1rem;
   text-align: center;
 }
@@ -52,6 +90,15 @@ button {
 
 
 .logo span {
+<<<<<<< HEAD
+    font-size: 1.5rem;
+    /* Giữ kích thước hợp lý */
+    font-weight: bold;
+    white-space: nowrap;
+    /* Không xuống dòng, tránh lỗi */
+    overflow: hidden;
+    text-overflow: ellipsis;
+=======
   font-size: 1.5rem;
   /* Giữ kích thước hợp lý */
   font-weight: bold;
@@ -59,6 +106,7 @@ button {
   /* Không xuống dòng, tránh lỗi */
   overflow: hidden;
   text-overflow: ellipsis;
+>>>>>>> FINAL
 }
 
 .container {
@@ -76,6 +124,156 @@ button {
   display: flex;
   justify-content: space-between;
 }
+<<<<<<< HEAD
+header {
+    background: #fff;
+    padding: 10px 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .primary-btn {
+    padding: 10px 20px;
+    background: #B88A44;
+    color: white;
+    min-height: 46px;
+    border-radius: 5px;
+
+}
+
+.primary-btn:hover {
+    background-color: #c4c6b9;
+    color: white;
+}
+
+.secondary-btn {
+    padding: 15px 40px;
+    background: none;
+    border: 2px solid white;
+    font-weight: bold;
+    color: white;
+}
+
+.secondary-btn:hover {
+    background-color: #a09688;
+    color: #fff;
+}
+
+.back-btn {
+    color: #B88A44;
+
+}
+  
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Cho phép xuống dòng khi không đủ chỗ */
+    padding: 10px 20px;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  .navlinks ul {
+    list-style: none;
+    display: flex;
+    gap: 26px;
+    align-items: center;   
+    flex-wrap: wrap; /* Xuống dòng khi thiếu chỗ */
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navlinks ul li {
+    display: inline-block;
+  }
+  
+  .navlinks ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 8px;
+    white-space: nowrap; /* Tránh chữ bị xuống dòng trong từng mục */
+  }
+  
+  .navlinks ul li a:hover {
+    color: #B88A44;
+  }
+  /* Footer */
+footer {
+    background: #1e1e28; /* Màu tối hơn một chút */
+    color: #dcdde1; /* Màu sáng hơn để dễ đọc */
+    padding: 20px; /* Giảm padding trên và dưới */
+    width: 100%;
+    clear: both;
+  }
+  
+  footer .grid {
+    display: grid;
+    grid-template-columns: 4fr 2fr 3fr;
+    gap: 30px;
+  }
+  
+  footer p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  
+  footer .icon i {
+    margin-right: 15px;
+    font-size: 18px;
+    color: #B88A44;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  footer .icon i:hover {
+    color: #c4c6b9; 
+  }
+  
+  footer h2 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #B88A44;
+    padding-bottom: 5px;
+    display: inline-block;
+  }
+  
+  footer li {
+    margin-bottom: 15px;
+    list-style: none;
+  }
+  
+  footer li a {
+    text-decoration: none;
+    color: #c4c6b9;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  footer li a:hover {
+    color: #B88A44;
+  }
+  
+  footer i {
+    color: #B88A44;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  footer label {
+    font-size: 14px;
+  }
+  
+  .legal {
+    text-align: center;
+    padding: 15px 0;
+    background: #181822;
+    color: #b6b7b9;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+  }
+=======
 
 header {
   background: #fff;
@@ -328,3 +526,4 @@ footer .box {
   color: #c19b76; 
   text-decoration: underline;
 }
+>>>>>>> FINAL
