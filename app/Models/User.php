@@ -13,6 +13,7 @@ class User extends Authenticatable
         'email',
         'email_verified_at',
         'password',
+        'role', // Thêm thuộc tính role để phân biệt admin và user
     ];
 
     protected $hidden = [
@@ -23,4 +24,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    /**
+     * Kiểm tra nếu người dùng là admin.
+     *
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->role === 'admin'; // Kiểm tra nếu role là admin
+    }
 }

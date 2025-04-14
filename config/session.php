@@ -18,7 +18,11 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'driver' => env('SESSION_DRIVER', 'database'),
+=======
+   'driver' => env('SESSION_DRIVER', 'file'),
+>>>>>>> FINAL
 
     /*
     |--------------------------------------------------------------------------
@@ -169,7 +173,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE'),
+    'secure' => env('SESSION_SECURE_COOKIE', false),  // Chỉ bật nếu sử dụng HTTPS
 
     /*
     |--------------------------------------------------------------------------
@@ -182,7 +186,11 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'http_only' => env('SESSION_HTTP_ONLY', true),
+=======
+    'http_only' => true,  // Bảo vệ cookie khỏi JavaScript
+>>>>>>> FINAL
 
     /*
     |--------------------------------------------------------------------------

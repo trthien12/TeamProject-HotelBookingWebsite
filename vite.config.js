@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+<<<<<<< HEAD
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
@@ -25,4 +26,14 @@ export default defineConfig({
             vue: 'vue/dist/vue.esm-bundler.js',
         },
     },
+=======
+
+export default defineConfig({
+    plugins: [
+        laravel([
+            'resources/css/app.css',
+            'resources/js/app.js',
+        ]),
+    ],
+>>>>>>> FINAL
 });
