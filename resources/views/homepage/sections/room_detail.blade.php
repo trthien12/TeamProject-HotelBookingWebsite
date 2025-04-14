@@ -101,7 +101,7 @@
     }
 
     .room .add-to-cart-form label {
-        font-size: 0.7em;
+        font-size: 0.9em;
         color: #333;
         margin-bottom: 0;
     }
@@ -112,7 +112,7 @@
         border-radius: 4px;
         width: 60px;
         text-align: center;
-        font-size: 0.7em;
+        font-size: 1em;
     }
 
     .room .add-to-cart-form .add-cart {

@@ -49,14 +49,14 @@
         width: 45px;
         height: 45px;
         border-radius: 50%;
-        background-color:  #c4c6b9;/* Màu nền mặc định cho số 1 và 3 */
-        color: black; /* Màu chữ mặc định cho số 1 và 3 */
+        background-color: #b88a44;/* Màu nền mặc định cho số 1 và 3 */
+        color: white; /* Màu chữ mặc định cho số 1 và 3 */
         font-weight: bold;
         font-size: 1.2rem;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         transition: transform 0.3s ease;
         }
-    
+
         .phandaua1:hover span {
         transform: scale(1.1);
         }
@@ -73,7 +73,7 @@
         /* Chỉnh màu số 2 thành #b88a44 */
         .xong-page .phandaua1:nth-child(3) span {
         background-color: white;
-        color: black;
+        color: #b88a44;
         }
     
     
@@ -90,17 +90,21 @@
         background-color: white;
         margin: 30px auto;
         max-width: 900px;
-        border-radius: 15px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        border: 3px solid #b88a44;
+        border-radius: 20px;
         }
     
         .phanthanmot p {
         text-align: center;
         font-size: 1.3rem;
-        color: #e74c3c;
         margin-bottom: 20px;
-        font-weight: 500;
-        font-weight: bold;
+        
+        line-height: 1; /* Tăng khoảng cách giữa các dòng */
+        text-align: center; /* Căn giữa nội dung */
+        margin-top: 20px; /* Thêm khoảng cách phía trên */
+
+        
     
         }
 </style>
@@ -127,8 +131,11 @@
 <div class="container">
     <div class="phanthanmot">
         <h2>Đặt Phòng Thành Công!</h2>
-        <p>Cảm ơn bạn đã đặt phòng tại Golden Tree Apartment. Chúng tôi hy vọng bạn sẽ có trải nghiệm tuyệt vời.</p>
-        <a href="{{ url('/') }}" class="btn-complete">Quay lại trang chủ</a>
+        <p style="color: red; font-weight: bold;font-weight: 500;">Thông tin đặt phòng đã được gửi về {{ htmlspecialchars(session('customer_info.email')) }}. 
+             
+            <p style="color: red; font-weight: bold;font-weight: 500;">Chúng tôi hy vọng bạn sẽ có trải nghiệm tuyệt vời.</p>
+            <p style="text-size:8px; font-style: italic; color: black;">Vui lòng kiểm tra hộp thư để biết thêm chi tiết.</p>
+       
     </div>
 </div>
 

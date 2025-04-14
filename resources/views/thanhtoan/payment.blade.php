@@ -127,8 +127,8 @@
         </div>
 
         <div class="payment-info">
-            <p><strong>Khách hàng:</strong> {{ session('customer_info.full_name') }}</p>
-            <p><strong>Số tiền thanh toán:</strong> {{ number_format(session('customer_info.total_amount'), 0, ',', '.') }}
+            <p>Khách hàng: {{ session('customer_info.full_name') }}</p>
+            <p>Số tiền thanh toán: {{ number_format(session('customer_info.total_amount'), 0, ',', '.') }}
                 đ</p>
         </div>
 

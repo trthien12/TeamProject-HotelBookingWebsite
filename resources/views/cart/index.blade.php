@@ -140,6 +140,7 @@
         border-radius: 5px;
         transition: background 0.3s;
         flex-direction:row;
+        /* font-size: 14px; */
     }
     .btn-back:hover {
         background: #6F4C3E; /* Màu nền khi hover */

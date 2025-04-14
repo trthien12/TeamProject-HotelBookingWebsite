@@ -261,10 +261,10 @@
             </div>
             <div class="thanphancuoi">
                 <div class="benphai">
-                    <p>Tên khách hàng: {{ htmlspecialchars(session('customer_info.full_name')) }}</p>
-                    <p>Ngày check-in: {{ htmlspecialchars(session('customer_info.check_in')) }}</p>
-                    <p>Ngày check-out: {{ htmlspecialchars(session('customer_info.check_out')) }}</p>
-                    <p>Tổng tiền: {{ number_format(session('customer_info.total_amount'), 0, ',', '.') }} đ</p>
+                    <p>Tên khách hàng: <span style="font-weight: bold;">{{ htmlspecialchars(session('customer_info.full_name')) }}</span></p>
+                    <p>Ngày check-in: <span style="font-weight: bold;">{{ htmlspecialchars(session('customer_info.check_in')) }}</span></p>
+                    <p>Ngày check-out: <span style="font-weight: bold;">{{ htmlspecialchars(session('customer_info.check_out')) }}</span></p>
+                    <p>Tổng tiền: <span style="font-weight: bold;">{{ number_format(session('customer_info.total_amount'), 0, ',', '.') }} đ</span></p>
                 </div>
                 <div class="bentrai">
                     <img src="{{ session('customer_info.image_url') }}" alt="Apartment Image" />
@@ -272,19 +272,19 @@
                 <div class="thongtin-icon">
                     <div class="icon-item">
                         <i class='bx bx-home-alt-2'></i>
-                        <pre>Loại phòng: {{ htmlspecialchars(session('customer_info.room_type')) }}</pre>
+                        <pre>Loại phòng: <span style="font-weight: bold;">{{ htmlspecialchars(session('customer_info.room_type')) }}</span></pre>
                     </div>
                     <div class="icon-item">
                         <i class="bx bxs-bed"></i>
-                        <pre>Loại giường: {{ Session::get('customer_info.bed_type') }}</pre>
+                        <pre>Loại giường: <span style="font-weight: bold;">{{ Session::get('customer_info.bed_type') }}</span></pre>
                     </div>
                     <div class="icon-item">
                         <i class='bx bxs-florist'></i>
-                        <pre>View: {{ session('customer_info.view') }}</pre>
+                        <pre>View: <span style="font-weight: bold;">{{ session('customer_info.view') }}</span></pre>
                     </div>
                     <div class="icon-item">
                         <i class='bx bxs-group'></i>
-                        <pre>Số người: {{ session('customer_info.adults') + session('customer_info.children') }}</pre>
+                        <pre>Số người: <span style="font-weight: bold;">{{ session('customer_info.adults') + session('customer_info.children') }}</span></pre>
                     </div>
                 </div>
             </div>

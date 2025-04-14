@@ -235,6 +235,10 @@
                 border-radius: 10px;
                 box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             }
+            .form-label{
+                font-weight: bold;
+                color: #333;
+            }
 
             /* Responsive: Khi màn hình nhỏ, xếp dọc */
             @media (max-width: 768px) {
