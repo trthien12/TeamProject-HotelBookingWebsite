@@ -10,6 +10,9 @@ class HomeController extends Controller
 {
     public function index()
     {
+        //Xoá session seach_data khi vào trang chủ
+        session()->forget('search_data');
+
         $slideshows = Slideshow::take(4)->get();
         $roomDetails = RoomDetail::with('capacities')->get();
 

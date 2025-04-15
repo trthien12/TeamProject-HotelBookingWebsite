@@ -147,7 +147,7 @@
         flex-wrap: wrap; /* để không bị vỡ layout trên màn hình nhỏ */
     }
     .add-to-cart-form label {
-        font-size: 0.7em;
+        font-size: 0.9em;
         color: #333;
         margin-bottom: 0;
     }
@@ -157,7 +157,7 @@
         border-radius: 4px;
         width: 60px;
         text-align: center;
-        font-size: 0.7em;
+        font-size: 1em;
     }
     .add-to-cart-form .add-cart {
         flex-shrink: 0; /* tránh nút bị co nhỏ nếu không đủ chỗ */
