@@ -25,7 +25,7 @@ class LoginController extends Controller
         // Xác thực với guard 'admin'
         if (Auth::guard('admin')->attempt($credentials)) {
             // Chuyển hướng đến dashboard của admin
-            return redirect()->intended(route('admin.dashboard'));
+            return redirect()->intended(route('manager.admin'));
         }
 
         // Nếu đăng nhập thất bại
@@ -38,7 +38,9 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::guard('admin')->logout();
-        return redirect('/');
+        // return redirect('/');
+        return redirect()->route('admin.login.form'); 
+
     }
 
      // Hiển thị Dashboard cho Admin

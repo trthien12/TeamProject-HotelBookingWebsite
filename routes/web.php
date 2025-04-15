@@ -1,50 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\QuanLyController;
-
-require __DIR__.'/auth.php';
-
-// Trang quản lý, login nhà làm :v 
-    // Route cho đăng nhập
-    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [AuthController::class, 'login']);
-
-    // Route cho đăng xuất
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-    // Route cho trang Admin, Danh sách đặt phòng, Danh sách khách hàng, Thông tin phòng (yêu cầu đăng nhập)
-    Route::middleware('auth')->group(function () {
-        Route::get('/admin', [QuanLyController::class, 'admin'])->name('manager.admin');
-        Route::get('/admin/list_roomBooking', [QuanLyController::class, 'bookinglist'])->name('manager.bookinglist');
-        Route::get('/admin/detail_roomBooking/{id}', [QuanLyController::class, 'bookingdetails'])->name('manager.bookingdetails');
-        // Route::post('/rooms_status/{id}','App\Http\Controllers\QuanLyController@updateroomstatus');
-        Route::post('/admin/rooms_status/{id}',[QuanLyController::class, 'updateroomstatus']);
-        Route::get('/admin/customer', [QuanLyController::class, 'danhsachkhachhang'])->name('manager.customerlist');
-        /////////////////////////
-        Route::get('/admin/rooms', [QuanLyController::class, 'index'])->name('manager.index');
-        Route::get('/admin/rooms/{id}/edit', [QuanLyController::class, 'edit'])->name('manager.edit');
-        Route::put('/admin/rooms/{id}', [QuanLyController::class, 'update'])->name('manager.update');
-    });
-
-    // Chuyển hướng mặc định đến trang đăng nhập
-    // Route::get('/', function () {
-    //     return redirect()->route('login');
-    // });
-
-
-
-=======
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\LoginController;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
 
@@ -68,23 +33,22 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('auth:admin')->get('dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
     // Route logout cho admin
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
-
+});
     //Route tạm thời cho các chức năng quản lý, khi nào merge chỉnh lại cho khớp
     Route::middleware('auth:admin')->group(function () {
-        Route::get('rooms', function () {
-            return "Chức năng Thông tin phòng đang được phát triển...";
-        })->name('rooms');
-
-        Route::get('customers', function () {
-            return "Chức năng Danh sách khách hàng đang được phát triển...";
-        })->name('customers');
-
-        Route::get('bookings', function () {
-            return "Chức năng Danh sách đặt phòng đang được phát triển...";
-        })->name('bookings');
+        Route::get('/admin', [QuanLyController::class, 'admin'])->name('manager.admin');
+        Route::get('/admin/list_roomBooking', [QuanLyController::class, 'bookinglist'])->name('manager.bookinglist');
+        Route::get('/admin/detail_roomBooking/{id}', [QuanLyController::class, 'bookingdetails'])->name('manager.bookingdetails');
+        // Route::post('/rooms_status/{id}','App\Http\Controllers\QuanLyController@updateroomstatus');
+        Route::post('/admin/rooms_status/{id}',[QuanLyController::class, 'updateroomstatus']);
+        Route::get('/admin/customer', [QuanLyController::class, 'danhsachkhachhang'])->name('manager.customerlist');
+        /////////////////////////
+        Route::get('/admin/rooms', [QuanLyController::class, 'index'])->name('manager.index');
+        Route::get('/admin/rooms/{id}/edit', [QuanLyController::class, 'edit'])->name('manager.edit');
+        Route::put('/admin/rooms/{id}', [QuanLyController::class, 'update'])->name('manager.update');
     });
 
-});
+
 // Tìm kiếm phòng trống
 Route::match(['get', 'post'], '/home/search', [HomeController::class, 'search'])->name('home.search');
 //Giỏ hàng
@@ -114,4 +78,25 @@ Route::get('payment/xong', [PaymentController::class, 'success'])->name('payment
 require __DIR__.'/auth.php';
 
 
->>>>>>> FINAL
+// Trang quản lý, login nhà làm :v 
+    /* // Route cho đăng nhập
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+
+    // Route cho đăng xuất
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout'); */
+
+    /* // Route cho trang Admin, Danh sách đặt phòng, Danh sách khách hàng, Thông tin phòng (yêu cầu đăng nhập)
+    Route::middleware('auth')->group(function () {
+        Route::get('/admin', [QuanLyController::class, 'admin'])->name('manager.admin');
+        Route::get('/admin/list_roomBooking', [QuanLyController::class, 'bookinglist'])->name('manager.bookinglist');
+        Route::get('/admin/detail_roomBooking/{id}', [QuanLyController::class, 'bookingdetails'])->name('manager.bookingdetails');
+        // Route::post('/rooms_status/{id}','App\Http\Controllers\QuanLyController@updateroomstatus');
+        Route::post('/admin/rooms_status/{id}',[QuanLyController::class, 'updateroomstatus']);
+        Route::get('/admin/customer', [QuanLyController::class, 'danhsachkhachhang'])->name('manager.customerlist');
+        /////////////////////////
+        Route::get('/admin/rooms', [QuanLyController::class, 'index'])->name('manager.index');
+        Route::get('/admin/rooms/{id}/edit', [QuanLyController::class, 'edit'])->name('manager.edit');
+        Route::put('/admin/rooms/{id}', [QuanLyController::class, 'update'])->name('manager.update');
+    });
+ */
